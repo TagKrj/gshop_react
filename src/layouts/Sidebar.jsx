@@ -93,11 +93,12 @@ const Sidebar = () => {
                         {item.hasSubmenu && (
                             <div className="w-5 h-5">
                                 <img
-                                    src={item.isExpanded ? ArrowUpIcon : ArrowDownIcon}
+                                    src={ArrowDownIcon}
                                     alt="arrow"
-                                    className="w-full h-full"
+                                    className="w-full h-full transition-transform duration-300 ease-in-out"
                                     style={{
-                                        filter: getIconFilter(item)
+                                        filter: getIconFilter(item),
+                                        transform: item.isExpanded ? 'rotate(180deg)' : 'rotate(0deg)'
                                     }}
                                 />
                             </div>
