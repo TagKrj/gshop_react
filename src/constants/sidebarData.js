@@ -9,6 +9,7 @@ import SettingIcon from '../assets/icons/setting-2.svg';
 import LogoutIcon from '../assets/icons/logout.svg';
 import ArrowUpIcon from '../assets/icons/arrow-up.svg';
 import ArrowDownIcon from '../assets/icons/arrow-down.svg';
+import Avatar from '../assets/imgs/3d_avatar_30.png';
 
 // Sidebar menu structure với đệ quy support
 export const sidebarMenuData = {
@@ -51,9 +52,41 @@ export const sidebarMenuData = {
             title: 'Quản lý đơn hàng',
             icon: ReceiptIcon,
             path: '/orders',
-            hasSubmenu: false,
+            hasSubmenu: true,
             isActive: false,
-            children: null
+            isExpanded: false,
+            children: [
+                {
+                    id: 'order-list',
+                    title: 'Danh sách đơn hàng',
+                    icon: null,
+                    path: '/orders/list',
+                    hasSubmenu: false,
+                    isActive: false,
+                    isSelected: false,
+                    children: null
+                },
+                {
+                    id: 'order-create',
+                    title: 'Tạo đơn hàng mới',
+                    icon: null,
+                    path: '/orders/create',
+                    hasSubmenu: false,
+                    isActive: false,
+                    isSelected: false,
+                    children: null
+                },
+                {
+                    id: 'order-history',
+                    title: 'Lịch sử đơn hàng',
+                    icon: null,
+                    path: '/orders/history',
+                    hasSubmenu: false,
+                    isActive: false,
+                    isSelected: false,
+                    children: null
+                }
+            ]
         },
         {
             id: 'finance',
@@ -61,8 +94,8 @@ export const sidebarMenuData = {
             icon: DollarIcon,
             path: '/finance',
             hasSubmenu: true,
-            isActive: true,
-            isExpanded: true,
+            isActive: false,
+            isExpanded: false,
             children: [
                 {
                     id: 'finance-types',
@@ -71,7 +104,7 @@ export const sidebarMenuData = {
                     path: '/finance/types',
                     hasSubmenu: false,
                     isActive: false,
-                    isSelected: true,
+                    isSelected: false,
                     children: null
                 },
                 {
@@ -182,7 +215,7 @@ export const sidebarMenuData = {
 
     // User profile data
     userProfile: {
-        avatar: null, // Avatar image placeholder
+        avatar: Avatar, // Avatar image placeholder
         fullName: "Lê Hoàng Anh",
         username: "lehoanganh123",
         role: "Admin"

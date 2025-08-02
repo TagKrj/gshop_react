@@ -1,24 +1,30 @@
 import React, { useState } from 'react';
 import { sidebarMenuData } from '../constants/sidebarData';
-import { findMenuItemById, updateMenuState } from '../utils/sidebar';
+import { findMenuItemById, updateMenuState, getMenuItemStyle, getIconFilter, toggleMenuExclusive, initializeMenuState } from '../utils/sidebar';
 
 const Sidebar = () => {
-    const [menuData, setMenuData] = useState(sidebarMenuData);
+    // Khởi tạo state với tất cả menu đóng
+    const [menuData, setMenuData] = useState({
+        ...sidebarMenuData,
+        mainMenu: initializeMenuState(sidebarMenuData.mainMenu),
+        bottomMenu: initializeMenuState(sidebarMenuData.bottomMenu)
+    });
 
     const toggleMenu = (menuKey) => {
-        // Update main menu
-        const updatedMainMenu = updateMenuState(
-            menuData.mainMenu,
-            menuKey,
-            { isExpanded: !findMenuItemById(menuData.mainMenu, menuKey)?.isExpanded }
-        );
+        // Tìm xem menu nằm ở main hay bottom
+        const isInMainMenu = findMenuItemById(menuData.mainMenu, menuKey);
+        const isInBottomMenu = findMenuItemById(menuData.bottomMenu, menuKey);
 
-        // Update bottom menu
-        const updatedBottomMenu = updateMenuState(
-            menuData.bottomMenu,
-            menuKey,
-            { isExpanded: !findMenuItemById(menuData.bottomMenu, menuKey)?.isExpanded }
-        );
+        let updatedMainMenu = menuData.mainMenu;
+        let updatedBottomMenu = menuData.bottomMenu;
+
+        if (isInMainMenu) {
+            // Nếu menu ở main, toggle nó và đóng các menu khác trong main
+            updatedMainMenu = toggleMenuExclusive(menuData.mainMenu, menuKey);
+        } else if (isInBottomMenu) {
+            // Nếu menu ở bottom, toggle nó và đóng các menu khác trong bottom  
+            updatedBottomMenu = toggleMenuExclusive(menuData.bottomMenu, menuKey);
+        }
 
         setMenuData(prev => ({
             ...prev,
@@ -37,8 +43,8 @@ const Sidebar = () => {
             <div key={item.id} className="flex flex-col gap-2 w-full">
                 {/* Main Menu Item */}
                 <div
-                    className={`flex items-center justify-between px-3 py-3 rounded-lg cursor-pointer transition-colors
-            ${level > 0 ? 'ml-6' : ''}
+                    className={`flex items-center justify-between px-3 py-3 cursor-pointer transition-colors
+            ${level > 0 ? 'ml-6 rounded-lg' : 'rounded-lg'}
             ${item.isActive
                             ? 'text-white'
                             : item.isSelected
@@ -48,8 +54,8 @@ const Sidebar = () => {
             ${item.isLogout ? 'hover:bg-red-50 text-red-500' : ''}
           `}
                     style={{
-                        backgroundColor: item.isActive ? '#6366F1' : item.isSelected ? '#6366F1' : 'transparent',
-                        color: item.isActive ? '#FFFFFF' : item.isSelected ? '#FFFFFF' : item.isLogout ? '#EF4444' : '#171717'
+                        ...getMenuItemStyle(item),
+                        borderRadius: level > 0 ? '8px' : '8px'
                     }}
                     onClick={() => item.hasSubmenu && toggleMenu(item.id)}
                 >
@@ -61,9 +67,7 @@ const Sidebar = () => {
                                     alt={item.title}
                                     className="w-full h-full"
                                     style={{
-                                        filter: item.isActive || item.isSelected ? 'brightness(0) invert(1)' :
-                                            item.isLogout ? 'hue-rotate(0deg) saturate(1.5) brightness(1.2)' :
-                                                'none'
+                                        filter: getIconFilter(item)
                                     }}
                                 />
                             </div>
@@ -93,9 +97,7 @@ const Sidebar = () => {
                                     alt="arrow"
                                     className="w-full h-full"
                                     style={{
-                                        filter: item.isActive || item.isSelected ? 'brightness(0) invert(1)' :
-                                            item.isLogout ? 'hue-rotate(0deg) saturate(1.5) brightness(1.2)' :
-                                                'none'
+                                        filter: getIconFilter(item)
                                     }}
                                 />
                             </div>
@@ -149,18 +151,28 @@ const Sidebar = () => {
 
                 {/* Profile Section */}
                 <div className="flex items-center gap-2 p-3 mt-2">
-                    <div
-                        className="w-10 h-10 rounded-full flex items-center justify-center"
-                        style={{
-                            background: 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)'
-                        }}
-                    >
-                        <span
-                            className="text-white text-sm font-semibold"
-                            style={{ fontFamily: 'Open Sans' }}
-                        >
-                            {menuData.userProfile.fullName.split(' ').map(name => name[0]).join('')}
-                        </span>
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
+                        {menuData.userProfile.avatar ? (
+                            <img
+                                src={menuData.userProfile.avatar}
+                                alt={menuData.userProfile.fullName}
+                                className="w-full h-full object-cover"
+                            />
+                        ) : (
+                            <div
+                                className="w-full h-full flex items-center justify-center"
+                                style={{
+                                    background: 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)'
+                                }}
+                            >
+                                <span
+                                    className="text-white text-sm font-semibold"
+                                    style={{ fontFamily: 'Open Sans' }}
+                                >
+                                    {menuData.userProfile.fullName.split(' ').map(name => name[0]).join('')}
+                                </span>
+                            </div>
+                        )}
                     </div>
                     <div className="flex flex-col flex-1">
                         <span

@@ -121,3 +121,99 @@ export const setActiveByPath = (menuItems, targetPath) => {
         };
     });
 };
+
+// Helper function để tính toán style cho menu item
+export const getMenuItemStyle = (item) => {
+    // Priority 1: Active hoặc Selected - background primary, text white
+    if (item.isActive || item.isSelected) {
+        return {
+            backgroundColor: '#6366F1',
+            color: '#FFFFFF'
+        };
+    }
+
+    // Priority 2: Expanded nhưng không active/selected - chỉ text primary, không background
+    if (item.isExpanded && !item.isActive && !item.isSelected) {
+        return {
+            backgroundColor: 'transparent',
+            color: '#6366F1'
+        };
+    }
+
+    // Priority 3: Logout - text red
+    if (item.isLogout) {
+        return {
+            backgroundColor: 'transparent',
+            color: '#EF4444'
+        };
+    }
+
+    // Default: text black
+    return {
+        backgroundColor: 'transparent',
+        color: '#171717'
+    };
+};
+
+// Helper function để tính toán filter cho icon
+export const getIconFilter = (item) => {
+    // White icon for active/selected items
+    if (item.isActive || item.isSelected) {
+        return 'brightness(0) invert(1)';
+    }
+
+    // Primary color #6366F1 for expanded items (không active/selected)
+    if (item.isExpanded && !item.isActive && !item.isSelected) {
+        // Filter đơn giản để tạo màu xanh tím
+        return 'invert(27%) sepia(51%) saturate(2878%) hue-rotate(224deg) brightness(95%) contrast(103%)';
+    }
+
+    // Special filter for logout - màu đỏ
+    if (item.isLogout) {
+        return 'invert(38%) sepia(96%) saturate(7404%) hue-rotate(343deg) brightness(97%) contrast(94%)';
+    }
+
+    // Default: no filter
+    return 'none';
+};
+
+// Helper function để toggle menu và đóng các menu khác
+export const toggleMenuExclusive = (menuItems, targetId) => {
+    return menuItems.map(item => {
+        if (item.id === targetId) {
+            // Toggle menu được click
+            return {
+                ...item,
+                isExpanded: !item.isExpanded,
+                children: item.children ? toggleMenuExclusive(item.children, targetId) : item.children
+            };
+        } else {
+            // Đóng tất cả menu khác
+            return {
+                ...item,
+                isExpanded: false,
+                children: item.children ? closeAllSubmenus(item.children) : item.children
+            };
+        }
+    });
+};
+
+// Helper function để đóng tất cả submenu
+export const closeAllSubmenus = (menuItems) => {
+    return menuItems.map(item => ({
+        ...item,
+        isExpanded: false,
+        children: item.children ? closeAllSubmenus(item.children) : item.children
+    }));
+};
+
+// Helper function để khởi tạo trạng thái menu ban đầu (tất cả đóng)
+export const initializeMenuState = (menuItems) => {
+    return menuItems.map(item => ({
+        ...item,
+        isActive: false,
+        isSelected: false,
+        isExpanded: false,
+        children: item.children ? initializeMenuState(item.children) : item.children
+    }));
+};

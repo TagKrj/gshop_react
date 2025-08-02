@@ -8,7 +8,12 @@ export {
     hasActiveChild,
     toggleAllSubmenus,
     resetActiveStates,
-    setActiveByPath
+    setActiveByPath,
+    getMenuItemStyle,
+    getIconFilter,
+    toggleMenuExclusive,
+    closeAllSubmenus,
+    initializeMenuState
 } from './menuHelpers';
 
 // Export default for easy importing
