@@ -155,7 +155,7 @@ const Sidebar = () => {
             {/* Top Section */}
             <div className="flex flex-col gap-3 flex-1 overflow-y-auto">
                 {/* Logo */}
-                <div className="flex items-center gap-3 p-3 flex-shrink-0">
+                <div className="flex items-center gap-3 pt-3 pb-3 pl-2 pr-2 flex-shrink-0">
                     <div className="w-8 h-8 rounded-md flex-shrink-0" style={{ backgroundColor: '#6366F1' }}></div>
                     <span className={`font-bold text-lg sm:text-xl transition-opacity duration-200 ${isCollapsed ? 'opacity-0' : 'opacity-100'}`} style={{
                         fontFamily: 'Open Sans',
@@ -181,7 +181,7 @@ const Sidebar = () => {
                 </div>
 
                 {/* Profile Section */}
-                <div className="flex items-center gap-3 p-3 mt-2">
+                <div className="flex items-center gap-3 pt-3 pb-3 pl-2 pr-2 mt-2">
                     <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0">
                         {menuData.userProfile.avatar ? (
                             <img
