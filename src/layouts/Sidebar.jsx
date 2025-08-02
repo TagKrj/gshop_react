@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { sidebarMenuData } from '../constants/sidebarData';
-import { findMenuItemById, updateMenuState, getMenuItemStyle, getIconFilter, toggleMenuExclusive, initializeMenuState } from '../utils/sidebar';
+import { findMenuItemById, updateMenuState, getMenuItemStyle, getIconFilter, toggleMenuExclusive, initializeMenuState, closeAllSubmenus } from '../utils/sidebar';
 
 const Sidebar = () => {
     // Khởi tạo state với tất cả menu đóng
@@ -19,11 +19,13 @@ const Sidebar = () => {
         let updatedBottomMenu = menuData.bottomMenu;
 
         if (isInMainMenu) {
-            // Nếu menu ở main, toggle nó và đóng các menu khác trong main
+            // Nếu menu ở main, toggle nó và đóng các menu khác trong main + đóng tất cả bottom menu
             updatedMainMenu = toggleMenuExclusive(menuData.mainMenu, menuKey);
+            updatedBottomMenu = closeAllSubmenus(menuData.bottomMenu);
         } else if (isInBottomMenu) {
-            // Nếu menu ở bottom, toggle nó và đóng các menu khác trong bottom  
+            // Nếu menu ở bottom, toggle nó và đóng các menu khác trong bottom + đóng tất cả main menu
             updatedBottomMenu = toggleMenuExclusive(menuData.bottomMenu, menuKey);
+            updatedMainMenu = closeAllSubmenus(menuData.mainMenu);
         }
 
         setMenuData(prev => ({
