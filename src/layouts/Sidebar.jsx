@@ -40,25 +40,41 @@ const Sidebar = () => {
                     className={`flex items-center justify-between px-3 py-3 rounded-lg cursor-pointer transition-colors
             ${level > 0 ? 'ml-6' : ''}
             ${item.isActive
-                            ? 'bg-primary/10 text-primary'
+                            ? 'text-white'
                             : item.isSelected
-                                ? 'bg-primary text-white'
-                                : 'hover:bg-gray-100 text-gray-700'
+                                ? 'text-white'
+                                : 'hover:bg-gray-100'
                         }
             ${item.isLogout ? 'hover:bg-red-50 text-red-500' : ''}
           `}
+                    style={{
+                        backgroundColor: item.isActive ? '#6366F1' : item.isSelected ? '#6366F1' : 'transparent',
+                        color: item.isActive ? '#FFFFFF' : item.isSelected ? '#FFFFFF' : item.isLogout ? '#EF4444' : '#171717'
+                    }}
                     onClick={() => item.hasSubmenu && toggleMenu(item.id)}
                 >
                     <div className="flex items-center gap-3">
                         {IconComponent && (
-                            <div className={`w-5 h-5 ${item.isActive ? 'text-primary' :
-                                item.isSelected ? 'text-white' :
-                                    item.isLogout ? 'text-red-500' : 'text-gray-600'
-                                }`}>
-                                <img src={IconComponent} alt={item.title} className="w-full h-full" />
+                            <div className="w-5 h-5">
+                                <img
+                                    src={IconComponent}
+                                    alt={item.title}
+                                    className="w-full h-full"
+                                    style={{
+                                        filter: item.isActive || item.isSelected ? 'brightness(0) invert(1)' :
+                                            item.isLogout ? 'hue-rotate(0deg) saturate(1.5) brightness(1.2)' :
+                                                'none'
+                                    }}
+                                />
                             </div>
                         )}
-                        <span className={`text-sm ${level > 0 ? 'font-normal' : 'font-semibold'}`}>
+                        <span
+                            className={`text-sm ${level > 0 ? 'font-normal' : 'font-semibold'}`}
+                            style={{
+                                fontFamily: 'Open Sans',
+                                color: 'inherit'
+                            }}
+                        >
                             {item.title}
                         </span>
                     </div>
@@ -71,13 +87,16 @@ const Sidebar = () => {
                         )}
 
                         {item.hasSubmenu && (
-                            <div className={`w-5 h-5 ${item.isActive ? 'text-primary' :
-                                item.isLogout ? 'text-red-500' : 'text-gray-600'
-                                }`}>
+                            <div className="w-5 h-5">
                                 <img
                                     src={item.isExpanded ? ArrowUpIcon : ArrowDownIcon}
                                     alt="arrow"
                                     className="w-full h-full"
+                                    style={{
+                                        filter: item.isActive || item.isSelected ? 'brightness(0) invert(1)' :
+                                            item.isLogout ? 'hue-rotate(0deg) saturate(1.5) brightness(1.2)' :
+                                                'none'
+                                    }}
                                 />
                             </div>
                         )}
@@ -95,13 +114,21 @@ const Sidebar = () => {
     };
 
     return (
-        <div className="bg-white w-64 h-screen flex flex-col justify-between p-6 shadow-lg rounded-xl">
+        <div
+            className="w-64 h-screen flex flex-col justify-between p-6 shadow-lg rounded-xl"
+            style={{ backgroundColor: '#FFFFFF' }}
+        >
             {/* Top Section */}
             <div className="flex flex-col gap-4">
                 {/* Logo */}
                 <div className="flex items-center gap-3 p-2">
-                    <div className="w-8 h-8 bg-primary rounded-md"></div>
-                    <span className="text-xl font-bold text-gray-900">{menuData.logo.title}</span>
+                    <div className="w-8 h-8 rounded-md" style={{ backgroundColor: '#6366F1' }}></div>
+                    <span className="font-bold" style={{
+                        fontFamily: 'Open Sans',
+                        fontSize: '25px',
+                        fontWeight: 700,
+                        color: '#171717'
+                    }}>{menuData.logo.title}</span>
                 </div>
 
                 {/* Main Menu */}
@@ -122,14 +149,32 @@ const Sidebar = () => {
 
                 {/* Profile Section */}
                 <div className="flex items-center gap-2 p-3 mt-2">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
-                        <span className="text-white text-sm font-semibold">
+                    <div
+                        className="w-10 h-10 rounded-full flex items-center justify-center"
+                        style={{
+                            background: 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)'
+                        }}
+                    >
+                        <span
+                            className="text-white text-sm font-semibold"
+                            style={{ fontFamily: 'Open Sans' }}
+                        >
                             {menuData.userProfile.fullName.split(' ').map(name => name[0]).join('')}
                         </span>
                     </div>
                     <div className="flex flex-col flex-1">
-                        <span className="text-sm font-semibold text-gray-900">{menuData.userProfile.fullName}</span>
-                        <span className="text-xs text-gray-500">{menuData.userProfile.username}</span>
+                        <span
+                            className="text-sm font-semibold"
+                            style={{ fontFamily: 'Open Sans', color: '#171717' }}
+                        >
+                            {menuData.userProfile.fullName}
+                        </span>
+                        <span
+                            className="text-xs"
+                            style={{ fontFamily: 'Open Sans', color: '#737373' }}
+                        >
+                            {menuData.userProfile.username}
+                        </span>
                     </div>
                 </div>
             </div>
