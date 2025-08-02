@@ -187,7 +187,7 @@ const Sidebar = () => {
                 </div>
 
                 {/* Profile Section */}
-                <div className="flex items-center gap-3 pt-3 pb-3 pl-2 pr-2 mt-2">
+                <div className="flex items-center gap-3 pt-3 pb-3 pl-1 pr-2 mt-2">
                     <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0">
                         {menuData.userProfile.avatar ? (
                             <img
