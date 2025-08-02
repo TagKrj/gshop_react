@@ -3,6 +3,9 @@ import { sidebarMenuData } from '../constants/sidebarData';
 import { findMenuItemById, updateMenuState, getMenuItemStyle, getIconFilter, toggleMenuExclusive, initializeMenuState, closeAllSubmenus } from '../utils/sidebar';
 
 const Sidebar = () => {
+    // State để quản lý trạng thái collapse/expand của sidebar
+    const [isCollapsed, setIsCollapsed] = useState(true);
+
     // Khởi tạo state đơn giản
     const [menuData, setMenuData] = useState({
         ...sidebarMenuData,
@@ -87,7 +90,7 @@ const Sidebar = () => {
                 >
                     <div className="flex items-center gap-3">
                         {IconComponent && (
-                            <div className="w-5 h-5">
+                            <div className="w-5 h-5 flex-shrink-0">
                                 <img
                                     src={IconComponent}
                                     alt={item.title}
@@ -99,7 +102,7 @@ const Sidebar = () => {
                             </div>
                         )}
                         <span
-                            className={`text-sm ${level > 0 ? 'font-normal' : 'font-semibold'}`}
+                            className={`text-sm ${level > 0 ? 'font-normal' : 'font-semibold'} transition-opacity duration-200 ${isCollapsed ? 'opacity-0' : 'opacity-100'}`}
                             style={{
                                 fontFamily: 'Open Sans',
                                 color: 'inherit'
@@ -109,7 +112,7 @@ const Sidebar = () => {
                         </span>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className={`flex items-center gap-2 transition-opacity duration-200 ${isCollapsed ? 'opacity-0' : 'opacity-100'}`}>
                         {item.badge && (
                             <span className="bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full min-w-[20px] h-5 flex items-center justify-center">
                                 {item.badge}
@@ -133,7 +136,7 @@ const Sidebar = () => {
                 </div>
 
                 {/* Submenu - Recursive */}
-                {item.hasSubmenu && item.isExpanded && item.children && (
+                {!isCollapsed && item.hasSubmenu && item.isExpanded && item.children && (
                     <div className="flex flex-col gap-1">
                         {item.children.map(subItem => renderMenuItem(subItem, level + 1))}
                     </div>
@@ -146,13 +149,15 @@ const Sidebar = () => {
         <div
             className="w-64 min-w-64 max-w-64  flex flex-col justify-between p-4 shadow-lg rounded-[12px] overflow-y-auto"
             style={{ backgroundColor: '#FFFFFF' }}
+            onMouseEnter={() => setIsCollapsed(false)}
+            onMouseLeave={() => setIsCollapsed(true)}
         >
             {/* Top Section */}
             <div className="flex flex-col gap-3 flex-1 overflow-y-auto">
                 {/* Logo */}
                 <div className="flex items-center gap-3 p-3 flex-shrink-0">
-                    <div className="w-8 h-8 rounded-md" style={{ backgroundColor: '#6366F1' }}></div>
-                    <span className="font-bold text-lg sm:text-xl" style={{
+                    <div className="w-8 h-8 rounded-md flex-shrink-0" style={{ backgroundColor: '#6366F1' }}></div>
+                    <span className={`font-bold text-lg sm:text-xl transition-opacity duration-200 ${isCollapsed ? 'opacity-0' : 'opacity-100'}`} style={{
                         fontFamily: 'Open Sans',
                         fontWeight: 700,
                         color: '#171717'
@@ -176,8 +181,8 @@ const Sidebar = () => {
                 </div>
 
                 {/* Profile Section */}
-                <div className="flex items-center gap-2 p-3 mt-2">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
+                <div className="flex items-center gap-3 p-3 mt-2">
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0">
                         {menuData.userProfile.avatar ? (
                             <img
                                 src={menuData.userProfile.avatar}
@@ -200,7 +205,7 @@ const Sidebar = () => {
                             </div>
                         )}
                     </div>
-                    <div className="flex flex-col flex-1">
+                    <div className={`flex flex-col flex-1 transition-opacity duration-200 ${isCollapsed ? 'opacity-0' : 'opacity-100'}`}>
                         <span
                             className="text-sm font-semibold"
                             style={{ fontFamily: 'Open Sans', color: '#171717' }}
