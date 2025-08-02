@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { sidebarMenuData, renderMenuRecursive, findMenuItemById, updateMenuState } from '../constants/sidebarData';
+import { sidebarMenuData } from '../constants/sidebarData';
+import { findMenuItemById, updateMenuState } from '../utils/sidebar';
 
 const Sidebar = () => {
     const [menuData, setMenuData] = useState(sidebarMenuData);
@@ -51,8 +52,8 @@ const Sidebar = () => {
                     <div className="flex items-center gap-3">
                         {IconComponent && (
                             <div className={`w-5 h-5 ${item.isActive ? 'text-primary' :
-                                    item.isSelected ? 'text-white' :
-                                        item.isLogout ? 'text-red-500' : 'text-gray-600'
+                                item.isSelected ? 'text-white' :
+                                    item.isLogout ? 'text-red-500' : 'text-gray-600'
                                 }`}>
                                 <img src={IconComponent} alt={item.title} className="w-full h-full" />
                             </div>
@@ -71,7 +72,7 @@ const Sidebar = () => {
 
                         {item.hasSubmenu && (
                             <div className={`w-5 h-5 ${item.isActive ? 'text-primary' :
-                                    item.isLogout ? 'text-red-500' : 'text-gray-600'
+                                item.isLogout ? 'text-red-500' : 'text-gray-600'
                                 }`}>
                                 <img
                                     src={item.isExpanded ? ArrowUpIcon : ArrowDownIcon}
