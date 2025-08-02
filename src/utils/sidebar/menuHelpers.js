@@ -148,10 +148,10 @@ export const getMenuItemStyle = (item) => {
         };
     }
 
-    // Default: text black
+    // Default: text màu #404040
     return {
         backgroundColor: 'transparent',
-        color: '#171717'
+        color: '#404040'
     };
 };
 
@@ -173,8 +173,8 @@ export const getIconFilter = (item) => {
         return 'invert(38%) sepia(96%) saturate(7404%) hue-rotate(343deg) brightness(97%) contrast(94%)';
     }
 
-    // Default: no filter
-    return 'none';
+    // Default: màu #404040 (xám đậm)
+    return 'invert(25%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%)';
 };
 
 // Helper function để toggle menu và đóng các menu khác
