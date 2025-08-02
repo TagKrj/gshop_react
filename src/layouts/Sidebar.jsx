@@ -101,38 +101,42 @@ const Sidebar = () => {
                                 />
                             </div>
                         )}
-                        <span
-                            className={`text-sm ${level > 0 ? 'font-normal' : 'font-semibold'} transition-opacity duration-200 ${isCollapsed ? 'opacity-0' : 'opacity-100'}`}
-                            style={{
-                                fontFamily: 'Open Sans',
-                                color: 'inherit'
-                            }}
-                        >
-                            {item.title}
-                        </span>
-                    </div>
-
-                    <div className={`flex items-center gap-2 transition-opacity duration-200 ${isCollapsed ? 'opacity-0' : 'opacity-100'}`}>
-                        {item.badge && (
-                            <span className="bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full min-w-[20px] h-5 flex items-center justify-center">
-                                {item.badge}
+                        {!isCollapsed && (
+                            <span
+                                className={`text-sm ${level > 0 ? 'font-normal' : 'font-semibold'}`}
+                                style={{
+                                    fontFamily: 'Open Sans',
+                                    color: 'inherit'
+                                }}
+                            >
+                                {item.title}
                             </span>
                         )}
-
-                        {item.hasSubmenu && (
-                            <div className="w-5 h-5">
-                                <img
-                                    src={ArrowDownIcon}
-                                    alt="arrow"
-                                    className="w-full h-full transition-transform duration-300 ease-in-out"
-                                    style={{
-                                        filter: getIconFilter(item),
-                                        transform: item.isExpanded ? 'rotate(180deg)' : 'rotate(0deg)'
-                                    }}
-                                />
-                            </div>
-                        )}
                     </div>
+
+                    {!isCollapsed && (
+                        <div className="flex items-center gap-2">
+                            {item.badge && (
+                                <span className="bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full min-w-[20px] h-5 flex items-center justify-center">
+                                    {item.badge}
+                                </span>
+                            )}
+
+                            {item.hasSubmenu && (
+                                <div className="w-5 h-5">
+                                    <img
+                                        src={ArrowDownIcon}
+                                        alt="arrow"
+                                        className="w-full h-full transition-transform duration-300 ease-in-out"
+                                        style={{
+                                            filter: getIconFilter(item),
+                                            transform: item.isExpanded ? 'rotate(180deg)' : 'rotate(0deg)'
+                                        }}
+                                    />
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </div>
 
                 {/* Submenu - Recursive */}
@@ -157,11 +161,13 @@ const Sidebar = () => {
                 {/* Logo */}
                 <div className="flex items-center gap-3 pt-3 pb-3 pl-2 pr-2 flex-shrink-0">
                     <div className="w-8 h-8 rounded-md flex-shrink-0" style={{ backgroundColor: '#6366F1' }}></div>
-                    <span className={`font-bold text-lg sm:text-xl transition-opacity duration-200 ${isCollapsed ? 'opacity-0' : 'opacity-100'}`} style={{
-                        fontFamily: 'Open Sans',
-                        fontWeight: 700,
-                        color: '#171717'
-                    }}>{menuData.logo.title}</span>
+                    {!isCollapsed && (
+                        <span className="font-bold text-lg sm:text-xl" style={{
+                            fontFamily: 'Open Sans',
+                            fontWeight: 700,
+                            color: '#171717'
+                        }}>{menuData.logo.title}</span>
+                    )}
                 </div>
 
                 {/* Main Menu */}
@@ -205,20 +211,22 @@ const Sidebar = () => {
                             </div>
                         )}
                     </div>
-                    <div className={`flex flex-col flex-1 transition-opacity duration-200 ${isCollapsed ? 'opacity-0' : 'opacity-100'}`}>
-                        <span
-                            className="text-sm font-semibold"
-                            style={{ fontFamily: 'Open Sans', color: '#171717' }}
-                        >
-                            {menuData.userProfile.fullName}
-                        </span>
-                        <span
-                            className="text-xs"
-                            style={{ fontFamily: 'Open Sans', color: '#737373' }}
-                        >
-                            {menuData.userProfile.username}
-                        </span>
-                    </div>
+                    {!isCollapsed && (
+                        <div className="flex flex-col flex-1">
+                            <span
+                                className="text-sm font-semibold"
+                                style={{ fontFamily: 'Open Sans', color: '#171717' }}
+                            >
+                                {menuData.userProfile.fullName}
+                            </span>
+                            <span
+                                className="text-xs"
+                                style={{ fontFamily: 'Open Sans', color: '#737373' }}
+                            >
+                                {menuData.userProfile.username}
+                            </span>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
