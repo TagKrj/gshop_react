@@ -148,9 +148,8 @@ export const getMenuItemStyle = (item) => {
         };
     }
 
-    // Default: text màu #404040
+    // Default: chỉ set color, không set backgroundColor để hover có thể hoạt động
     return {
-        backgroundColor: 'transparent',
         color: '#404040'
     };
 };

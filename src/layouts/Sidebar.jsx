@@ -62,13 +62,14 @@ const Sidebar = () => {
             <div key={item.id} className="flex flex-col gap-2 w-full">
                 {/* Main Menu Item */}
                 <div
-                    className={`flex items-center justify-between px-3 py-2 cursor-pointer transition-colors
+                    className={`flex items-center justify-between px-3 py-2 cursor-pointer transition-all duration-200
             ${level > 0 ? 'ml-4' : ''}
             ${item.isActive || item.isSelected
                             ? 'text-white'
-                            : 'hover:bg-gray-100'
+                            : item.isLogout
+                                ? 'hover:bg-red-50 text-red-500'
+                                : 'hover:bg-indigo-50'
                         }
-            ${item.isLogout ? 'hover:bg-red-50 text-red-500' : ''}
           `}
                     style={{
                         ...getMenuItemStyle(item),
