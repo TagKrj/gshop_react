@@ -43,8 +43,8 @@ const Sidebar = () => {
             <div key={item.id} className="flex flex-col gap-2 w-full">
                 {/* Main Menu Item */}
                 <div
-                    className={`flex items-center justify-between px-3 py-3 cursor-pointer transition-colors
-            ${level > 0 ? 'ml-6 rounded-lg' : 'rounded-lg'}
+                    className={`flex items-center justify-between px-3 py-2 cursor-pointer transition-colors
+            ${level > 0 ? 'ml-4 rounded-lg' : 'rounded-lg'}
             ${item.isActive
                             ? 'text-white'
                             : item.isSelected
@@ -118,30 +118,29 @@ const Sidebar = () => {
 
     return (
         <div
-            className="w-64 h-screen flex flex-col justify-between p-6 shadow-lg rounded-xl"
+            className="w-64 min-w-64 max-w-64  flex flex-col justify-between p-4 shadow-lg rounded-xl overflow-y-auto"
             style={{ backgroundColor: '#FFFFFF' }}
         >
             {/* Top Section */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3 flex-1 overflow-y-auto">
                 {/* Logo */}
-                <div className="flex items-center gap-3 p-2">
+                <div className="flex items-center gap-3 p-3 flex-shrink-0">
                     <div className="w-8 h-8 rounded-md" style={{ backgroundColor: '#6366F1' }}></div>
-                    <span className="font-bold" style={{
+                    <span className="font-bold text-lg sm:text-xl" style={{
                         fontFamily: 'Open Sans',
-                        fontSize: '25px',
                         fontWeight: 700,
                         color: '#171717'
                     }}>{menuData.logo.title}</span>
                 </div>
 
                 {/* Main Menu */}
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-3">
                     {menuData.mainMenu.map(item => renderMenuItem(item))}
                 </div>
             </div>
 
             {/* Bottom Section */}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 flex-shrink-0">
                 {/* Divider */}
                 <hr className="border-gray-200 mb-2" />
 

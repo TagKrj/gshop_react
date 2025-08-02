@@ -8,7 +8,12 @@ function App() {
 
   return (
     <>
-      <Sidebar />
+      <div className="flex min-h-screen p-3">
+        <Sidebar />
+        <div className="flex-1 ml-5">
+          {/* Main content area */}
+        </div>
+      </div>
     </>
   )
 }
