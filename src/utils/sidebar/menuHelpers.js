@@ -207,12 +207,12 @@ export const closeAllSubmenus = (menuItems) => {
     }));
 };
 
-// Helper function để khởi tạo trạng thái menu ban đầu (tất cả đóng)
+// Helper function để khởi tạo trạng thái menu ban đầu (chỉ reset isActive và isExpanded)
 export const initializeMenuState = (menuItems) => {
     return menuItems.map(item => ({
         ...item,
         isActive: false,
-        isSelected: false,
+        isSelected: item.isSelected || false, // Giữ nguyên isSelected từ dữ liệu gốc
         isExpanded: false,
         children: item.children ? initializeMenuState(item.children) : item.children
     }));

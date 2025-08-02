@@ -3,7 +3,7 @@ import { sidebarMenuData } from '../constants/sidebarData';
 import { findMenuItemById, updateMenuState, getMenuItemStyle, getIconFilter, toggleMenuExclusive, initializeMenuState, closeAllSubmenus } from '../utils/sidebar';
 
 const Sidebar = () => {
-    // Khởi tạo state với tất cả menu đóng
+    // Khởi tạo state đơn giản
     const [menuData, setMenuData] = useState({
         ...sidebarMenuData,
         mainMenu: initializeMenuState(sidebarMenuData.mainMenu),
@@ -35,6 +35,23 @@ const Sidebar = () => {
         }));
     };
 
+    // Function để set menu con được selected
+    const selectMenuItem = (menuKey) => {
+        const setSelected = (menuItems, targetId) => {
+            return menuItems.map(item => ({
+                ...item,
+                isSelected: item.id === targetId,
+                children: item.children ? setSelected(item.children, targetId) : item.children
+            }));
+        };
+
+        setMenuData(prev => ({
+            ...prev,
+            mainMenu: setSelected(prev.mainMenu, menuKey),
+            bottomMenu: setSelected(prev.bottomMenu, menuKey)
+        }));
+    };
+
     // Recursive menu renderer
     const renderMenuItem = (item, level = 0) => {
         const IconComponent = item.icon;
@@ -46,20 +63,26 @@ const Sidebar = () => {
                 {/* Main Menu Item */}
                 <div
                     className={`flex items-center justify-between px-3 py-2 cursor-pointer transition-colors
-            ${level > 0 ? 'ml-4 rounded-lg' : 'rounded-lg'}
-            ${item.isActive
+            ${level > 0 ? 'ml-4' : ''}
+            ${item.isActive || item.isSelected
                             ? 'text-white'
-                            : item.isSelected
-                                ? 'text-white'
-                                : 'hover:bg-gray-100'
+                            : 'hover:bg-gray-100'
                         }
             ${item.isLogout ? 'hover:bg-red-50 text-red-500' : ''}
           `}
                     style={{
                         ...getMenuItemStyle(item),
-                        borderRadius: level > 0 ? '8px' : '8px'
+                        borderRadius: '8px'
                     }}
-                    onClick={() => item.hasSubmenu && toggleMenu(item.id)}
+                    onClick={() => {
+                        if (item.hasSubmenu) {
+                            // Menu cha có submenu - toggle expand/collapse
+                            toggleMenu(item.id);
+                        } else {
+                            // Menu con hoặc menu không có submenu - select
+                            selectMenuItem(item.id);
+                        }
+                    }}
                 >
                     <div className="flex items-center gap-3">
                         {IconComponent && (
