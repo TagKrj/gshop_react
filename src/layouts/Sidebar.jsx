@@ -120,7 +120,7 @@ const Sidebar = () => {
 
     return (
         <div
-            className="w-64 min-w-64 max-w-64  flex flex-col justify-between p-4 shadow-lg rounded-xl overflow-y-auto"
+            className="w-64 min-w-64 max-w-64  flex flex-col justify-between p-4 shadow-lg rounded-[12px] overflow-y-auto"
             style={{ backgroundColor: '#FFFFFF' }}
         >
             {/* Top Section */}
