@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Sidebar from './layouts/Sidebar'
-import ReceiptTypes from './pages/receiptTypes'
+import Supplier from './pages/products/supplier'
 
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
     <>
       <div className="min-h-screen bg-gray-100">
         <Sidebar />
-        <ReceiptTypes />
+        <Supplier />
       </div>
     </>
   )

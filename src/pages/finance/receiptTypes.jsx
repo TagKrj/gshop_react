@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import Main from '../layouts/Main';
-import InputSearch from '../components/inpurtSearch';
-import ButtonFilter from '../components/buttonFilter';
-import ButtonAdd from '../components/buttonAdd';
-import TableHeader from '../components/receiptTypes/TableHeader';
-import TableRow from '../components/receiptTypes/TableRow';
-import { mockData } from '../constants/receiptTypesData';
+import Main from '../../layouts/Main';
+import InputSearch from '../../components/inpurtSearch';
+import ButtonFilter from '../../components/buttonFilter';
+import ButtonAdd from '../../components/buttonAdd';
+import TableHeader from '../../components/finance/receiptTypes/TableHeader';
+import TableRow from '../../components/finance/receiptTypes/TableRow';
+import { mockData } from '../../constants/receiptTypesData';
 
 const ReceiptTypes = () => {
     const [isFilterActive, setIsFilterActive] = useState(false);
@@ -41,6 +41,16 @@ const ReceiptTypes = () => {
 
     const handleToggleActive = (id, isActive) => {
         console.log(`Toggle row ${id} to ${isActive ? 'active' : 'inactive'}`);
+    };
+
+    const handleEditRow = (id) => {
+        console.log(`Edit row ${id}`);
+        // Thêm logic chỉnh sửa
+    };
+
+    const handleDeleteRow = (id) => {
+        console.log(`Delete row ${id}`);
+        // Thêm logic xóa
     };
 
     const handleSelectAll = () => {
@@ -95,6 +105,8 @@ const ReceiptTypes = () => {
                             isSelected={selectedRows.includes(item.id)}
                             onSelect={handleRowSelect}
                             onToggleActive={handleToggleActive}
+                            onEdit={handleEditRow}
+                            onDelete={handleDeleteRow}
                         />
                     ))}
                 </div>

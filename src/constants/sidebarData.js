@@ -25,27 +25,163 @@ export const sidebarMenuData = {
             title: 'Quản lý sản phẩm',
             icon: GridIcon,
             path: '/products',
-            hasSubmenu: false,
+            hasSubmenu: true,
             isActive: false,
-            children: null
+            isExpanded: false,
+            children: [
+                {
+                    id: 'product-suppliers',
+                    title: 'Nhà cung cấp',
+                    icon: null,
+                    path: '/products/suppliers',
+                    hasSubmenu: false,
+                    isActive: false,
+                    isSelected: false,
+                    children: null
+                },
+                {
+                    id: 'product-types',
+                    title: 'Loại sản phẩm',
+                    icon: null,
+                    path: '/products/types',
+                    hasSubmenu: false,
+                    isActive: false,
+                    isSelected: false,
+                    children: null
+                },
+                {
+                    id: 'product-list',
+                    title: 'Danh sách sản phẩm',
+                    icon: null,
+                    path: '/products/list',
+                    hasSubmenu: false,
+                    isActive: false,
+                    isSelected: false,
+                    children: null
+                },
+                {
+                    id: 'product-import',
+                    title: 'Bảng giá',
+                    icon: null,
+                    path: '/products/import',
+                    hasSubmenu: false,
+                    isActive: false,
+                    isSelected: false,
+                    children: null
+                }
+            ]
         },
         {
             id: 'customer',
             title: 'Quản lý khách hàng',
             icon: UserIcon,
             path: '/customers',
-            hasSubmenu: false,
+            hasSubmenu: true,
             isActive: false,
-            children: null
+            isExpanded: false,
+            children: [
+                {
+                    id: 'customer-group',
+                    title: 'Nhóm khách hàng',
+                    icon: null,
+                    path: '/customers/group',
+                    hasSubmenu: false,
+                    isActive: false,
+                    isSelected: false,
+                    children: null
+                },
+                {
+                    id: 'customer-list',
+                    title: 'Danh sách khách hàng',
+                    icon: null,
+                    path: '/customers/list',
+                    hasSubmenu: false,
+                    isActive: false,
+                    isSelected: false,
+                    children: null
+                }
+            ]
         },
         {
             id: 'inventory',
             title: 'Quản lý kho',
             icon: BoxIcon,
             path: '/inventory',
-            hasSubmenu: false,
+            hasSubmenu: true,
             isActive: false,
-            children: null
+            isExpanded: false,
+            children: [
+                {
+                    id: 'inventory-category',
+                    title: 'Danh mục kho',
+                    icon: null,
+                    path: '/inventory/category',
+                    hasSubmenu: false,
+                    isActive: false,
+                    isSelected: false,
+                    children: null
+                },
+                {
+                    id: 'inventory-list',
+                    title: 'Phiếu nhập kho',
+                    icon: null,
+                    path: '/inventory/list',
+                    hasSubmenu: false,
+                    isActive: false,
+                    isSelected: false,
+                    children: null
+                },
+                {
+                    id: 'inventory-transfer',
+                    title: 'Phiếu điều chuyển',
+                    icon: null,
+                    path: '/inventory/transfer',
+                    hasSubmenu: false,
+                    isActive: false,
+                    isSelected: false,
+                    children: null
+                },
+                {
+                    id: 'inventory-export',
+                    title: 'Phiếu xuất kho',
+                    icon: null,
+                    path: '/inventory/export',
+                    hasSubmenu: false,
+                    isActive: false,
+                    isSelected: false,
+                    children: null
+                },
+                {
+                    id: 'inventory-check',
+                    title: 'Phiếu kiểm kho',
+                    icon: null,
+                    path: '/inventory/check',
+                    hasSubmenu: false,
+                    isActive: false,
+                    isSelected: false,
+                    children: null
+                },
+                {
+                    id: 'inventory-card',
+                    title: 'Thẻ kho',
+                    icon: null,
+                    path: '/inventory/card',
+                    hasSubmenu: false,
+                    isActive: false,
+                    isSelected: false,
+                    children: null
+                },
+                {
+                    id: 'inventory-report',
+                    title: 'Báo cáo tồn kho',
+                    icon: null,
+                    path: '/inventory/report',
+                    hasSubmenu: false,
+                    isActive: false,
+                    isSelected: false,
+                    children: null
+                }
+            ]
         },
         {
             id: 'order',
@@ -67,20 +203,10 @@ export const sidebarMenuData = {
                     children: null
                 },
                 {
-                    id: 'order-create',
-                    title: 'Tạo đơn hàng mới',
+                    id: 'order-report',
+                    title: 'Báo cáo',
                     icon: null,
-                    path: '/orders/create',
-                    hasSubmenu: false,
-                    isActive: false,
-                    isSelected: false,
-                    children: null
-                },
-                {
-                    id: 'order-history',
-                    title: 'Lịch sử đơn hàng',
-                    icon: null,
-                    path: '/orders/history',
+                    path: '/orders/report',
                     hasSubmenu: false,
                     isActive: false,
                     isSelected: false,
@@ -173,32 +299,23 @@ export const sidebarMenuData = {
             isExpanded: false,
             children: [
                 {
-                    id: 'settings-general',
-                    title: 'Cài đặt chung',
+                    id: 'settings-SPlater',
+                    title: 'Quy định SP bán chậm',
                     icon: null,
-                    path: '/settings/general',
+                    path: '/settings/SPlater',
                     hasSubmenu: false,
                     isActive: false,
                     children: null
                 },
                 {
-                    id: 'settings-users',
-                    title: 'Quản lý người dùng',
+                    id: 'settings-warnings',
+                    title: 'Cảnh báo kho',
                     icon: null,
-                    path: '/settings/users',
+                    path: '/settings/warnings',
                     hasSubmenu: false,
                     isActive: false,
                     children: null
                 },
-                {
-                    id: 'settings-permissions',
-                    title: 'Phân quyền',
-                    icon: null,
-                    path: '/settings/permissions',
-                    hasSubmenu: false,
-                    isActive: false,
-                    children: null
-                }
             ]
         },
         {

@@ -1,33 +1,25 @@
 import React, { useState, useRef } from 'react';
-import ButtonOnOff from '../../buttonOnOff';
 import EditDeleteBox from '../../editDeleteBox';
-import MoreIcon from '../../assets/icons/more.svg';
+import MoreIcon from '../../../assets/icons/more.svg';
 
 const TableRow = ({
     id,
     code,
     name,
-    description,
-    isActive,
+    contactPerson,
+    phone,
+    email,
+    address,
     updateTime,
     updateBy,
     isSelected = false,
     onSelect,
-    onToggleActive,
     onEdit,
     onDelete
 }) => {
-    const [isToggleOn, setIsToggleOn] = useState(isActive);
     const [showDropdown, setShowDropdown] = useState(false);
     const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
     const moreButtonRef = useRef(null);
-
-    const handleToggleChange = (newState) => {
-        setIsToggleOn(newState);
-        if (onToggleActive) {
-            onToggleActive(id, newState);
-        }
-    };
 
     const handleMoreClick = (e) => {
         e.stopPropagation();
@@ -72,36 +64,40 @@ const TableRow = ({
                 </div>
             </div>
 
-            {/* Mã loại phiếu */}
+            {/* Mã NCC */}
             <div className="flex items-center px-4 py-3 w-28">
-                <span className="text-sm font-normal text-gray-900">{code}</span>
+                <span className="text-xs font-normal text-gray-900">{code}</span>
             </div>
 
-            {/* Tên loại phiếu thu */}
+            {/* Tên NCC */}
             <div className="flex items-center flex-1 px-4 py-3">
-                <span className="text-sm font-normal text-gray-900">{name}</span>
+                <span className="text-xs font-normal text-gray-900">{name}</span>
             </div>
 
-            {/* Mô tả */}
-            <div className="flex items-center flex-1 px-4 py-3">
-                <span className="text-sm font-normal text-gray-900">{description}</span>
+            {/* Người liên hệ */}
+            <div className="flex items-center flex-1 px-4 py-3 ">
+                <span className="text-xs font-normal text-gray-900 ">{contactPerson}</span>
             </div>
 
-            {/* Hoạch toán kết quả kinh doanh - Toggle */}
-            <div className="flex items-center justify-center w-40 px-4 py-3">
-                <div className="flex items-center justify-center">
-                    <ButtonOnOff
-                        isOn={isToggleOn}
-                        onToggle={handleToggleChange}
-                    />
-                </div>
+            {/* Điện thoại */}
+            <div className="flex items-center px-4 py-3 w-32 ">
+                <span className="text-xs font-normal text-gray-900">{phone}</span>
+            </div>
+
+            {/* Email */}
+            <div className="flex items-center px-4 py-3 w-64 ">
+                <span className="text-xs font-normal text-gray-900">{email}</span>
+            </div>
+
+            {/* Địa chỉ */}
+            <div className="flex items-center flex-1 px-4 py-3 ">
+                <span className="text-xs font-normal text-gray-900">{address}</span>
             </div>
 
             {/* Cập nhật lần cuối */}
-            <div className="flex items-center flex-1 px-4 py-3">
+            <div className="flex items-center w-48 px-4 py-3 ">
                 <div className="flex items-center gap-1">
-                    <span className="text-sm font-normal text-gray-500">{updateTime} bởi</span>
-                    <span className="text-sm font-semibold text-[#2E319E]">{updateBy}</span>
+                    <span className="text-xs font-normal text-gray-500">{updateTime} bởi <span className="text-xs font-semibold text-[#2E319E]">{updateBy}</span></span>
                 </div>
             </div>
 

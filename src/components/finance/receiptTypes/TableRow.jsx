@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import ButtonOnOff from '../../buttonOnOff';
 import EditDeleteBox from '../../editDeleteBox';
-import MoreIcon from '../../assets/icons/more.svg';
+import MoreIcon from '../../../assets/icons/more.svg';
 
 const TableRow = ({
     id,
