@@ -155,7 +155,7 @@ const Sidebar = () => {
             className={`${isCollapsed ? 'w-20' : 'w-64'} min-w-20 flex flex-col justify-between p-4 shadow-lg rounded-[12px] overflow-y-auto fixed top-3 left-3 bottom-3`}
             style={{
                 backgroundColor: '#FFFFFF',
-                zIndex: 10
+                zIndex: 2
             }}
             onMouseEnter={() => setIsCollapsed(false)}
             onMouseLeave={() => setIsCollapsed(true)}
