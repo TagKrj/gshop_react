@@ -108,7 +108,4 @@ const ButtonFilter = ({
     );
 };
 
-
-
-export { ButtonFilter, ButtonFilterDemo };
 export default ButtonFilter;

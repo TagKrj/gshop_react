@@ -26,7 +26,7 @@ const ButtonOnOff = ({
             onClick={handleToggle}
             disabled={disabled}
             className={`relative inline-flex items-center w-8 h-4 rounded-lg transition-all duration-200 cursor-pointer focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed ${internalState
-                ? 'bg-indigo-600' // Màu tím khi bật
+                ? 'bg-[#6366F1]' // Màu tím khi bật
                 : 'bg-gray-300'   // Màu xám khi tắt
                 } ${className}`}
             {...props}
