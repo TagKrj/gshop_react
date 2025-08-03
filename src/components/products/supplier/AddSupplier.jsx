@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import importIcon from '../../../assets/icons/import.svg';
 import fileUploadIcon from '../../../assets/icons/file-upload.png';
 import excelIcon from '../../../assets/icons/filetype-excel.png';
@@ -8,20 +8,33 @@ import Button from '../../button';
 const AddSupplier = ({ isOpen, onClose }) => {
     const [activeTab, setActiveTab] = useState('upload'); // 'upload' or 'manual'
     const [formData, setFormData] = useState({
-        code: '',
         name: '',
         contactPerson: '',
-        position: '',
         phone: '',
         email: '',
-        address: '',
-        paymentMethod: '',
-        note: ''
+        address: ''
     });
     const [errors, setErrors] = useState({});
     const [files, setFiles] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const fileInputRef = useRef(null);
+    const modalRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                onClose();
+            }
+        };
+
+        if (isOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isOpen, onClose]);
 
     if (!isOpen) return null;
 
@@ -76,12 +89,12 @@ const AddSupplier = ({ isOpen, onClose }) => {
         if (activeTab === 'manual') {
             const newErrors = {};
 
-            if (!formData.code.trim()) {
-                newErrors.code = 'Mã nhà cung cấp là bắt buộc';
+            if (!formData.name.trim()) {
+                newErrors.name = 'Nhà cung cấp là bắt buộc';
             }
 
-            if (!formData.name.trim()) {
-                newErrors.name = 'Tên nhà cung cấp là bắt buộc';
+            if (!formData.phone.trim()) {
+                newErrors.phone = 'SĐT là bắt buộc';
             }
 
             if (Object.keys(newErrors).length > 0) {
@@ -105,8 +118,11 @@ const AddSupplier = ({ isOpen, onClose }) => {
 
     return (
         <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black/50 transition-all isolate">
-            <div className="bg-white rounded-[12px] shadow-xl w-[760px] max-h-[90vh] flex flex-col transition-transform duration-300 px-6"
-                style={{ zIndex: 9999 }}>
+            <div
+                ref={modalRef}
+                className="bg-white rounded-[12px] shadow-xl w-[760px] max-h-[90vh] flex flex-col transition-transform duration-300 px-6"
+                style={{ zIndex: 9999 }}
+            >
                 {/* Header */}
                 <div className="flex items-center justify-between py-6">
                     <h2 className="text-xl font-bold text-gray-700">Tạo nhà cung cấp</h2>
@@ -205,15 +221,9 @@ const AddSupplier = ({ isOpen, onClose }) => {
                                                     e.stopPropagation();
                                                     handleRemoveFile(index);
                                                 }}
-                                                className="w-5 h-5 flex items-center justify-center text-red-500 hover:bg-gray-100 rounded-full"
+                                                className="w-5 h-5 flex items-center justify-center text-red-500 rounded-full cursor-pointer"
                                             >
-                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M17.5 4.98334C14.725 4.70834 11.9333 4.56667 9.15 4.56667C7.5 4.56667 5.85 4.65001 4.2 4.81667L2.5 4.98334" stroke="#EB3838" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                                    <path d="M7.08331 4.14167L7.26665 3.05001C7.39998 2.25834 7.49998 1.66667 8.90831 1.66667H11.0916C12.5 1.66667 12.6083 2.29167 12.7333 3.05834L12.9166 4.14167" stroke="#EB3838" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                                    <path d="M15.7084 7.61667L15.1667 16.0083C15.075 17.3167 15 18.3333 12.675 18.3333H7.32502C5.00002 18.3333 4.92502 17.3167 4.83335 16.0083L4.29169 7.61667" stroke="#EB3838" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                                    <path d="M8.60834 13.75H11.3833" stroke="#EB3838" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                                    <path d="M7.91669 10.4167H12.0834" stroke="#EB3838" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                                </svg>
+                                                <img src={trashIcon} alt="Delete" className="w-5 h-5" />
                                             </button>
                                         </div>
                                     ))}
@@ -223,41 +233,25 @@ const AddSupplier = ({ isOpen, onClose }) => {
                     ) : (
                         /* Manual input form */
                         <div className="grid grid-cols-2 gap-x-6 gap-y-4 px-6">
-                            {/* Mã nhà cung cấp */}
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
-                                    Mã nhà cung cấp <span className="text-red-500">*</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="code"
-                                    value={formData.code}
-                                    onChange={handleInputChange}
-                                    className={`w-full px-3 py-2 border ${errors.code ? 'border-red-500' : 'border-gray-300'} rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500`}
-                                    placeholder="Nhập mã nhà cung cấp"
-                                />
-                                {errors.code && <p className="mt-1 text-xs text-red-500">{errors.code}</p>}
-                            </div>
-
-                            {/* Tên nhà cung cấp */}
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
-                                    Tên nhà cung cấp <span className="text-red-500">*</span>
+                            {/* Nhà cung cấp */}
+                            <div className="col-span-2">
+                                <label className="block text-sm font-medium text-[#737373] mb-1">
+                                    Nhà cung cấp <span className="text-red-500">*</span>
                                 </label>
                                 <input
                                     type="text"
                                     name="name"
                                     value={formData.name}
                                     onChange={handleInputChange}
-                                    className={`w-full px-3 py-2 border ${errors.name ? 'border-red-500' : 'border-gray-300'} rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500`}
-                                    placeholder="Nhập tên nhà cung cấp"
+                                    className={`w-full px-3 py-3 border ${errors.name ? 'border-red-500' : 'border-gray-300'} rounded-[8px] text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500`}
+                                    placeholder="Nhập nội dung"
                                 />
                                 {errors.name && <p className="mt-1 text-xs text-red-500">{errors.name}</p>}
                             </div>
 
                             {/* Người liên hệ */}
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                            <div className="col-span-2">
+                                <label className="block text-sm font-medium text-[#737373] mb-1">
                                     Người liên hệ
                                 </label>
                                 <input
@@ -265,44 +259,29 @@ const AddSupplier = ({ isOpen, onClose }) => {
                                     name="contactPerson"
                                     value={formData.contactPerson}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                                    placeholder="Nhập tên người liên hệ"
+                                    className="w-full px-3 py-3 border border-gray-300 rounded-[8px] text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                                    placeholder="Nhập nội dung"
                                 />
                             </div>
 
-                            {/* Chức vụ */}
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
-                                    Chức vụ
-                                </label>
-                                <input
-                                    type="text"
-                                    name="position"
-                                    value={formData.position}
-                                    onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                                    placeholder="Nhập chức vụ"
-                                />
-                            </div>
-
-                            {/* Điện thoại */}
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
-                                    Điện thoại
+                            {/* SĐT và Email */}
+                            <div className="col-span-1">
+                                <label className="block text-sm font-medium text-[#737373] mb-1">
+                                    SĐT <span className="text-red-500">*</span>
                                 </label>
                                 <input
                                     type="text"
                                     name="phone"
                                     value={formData.phone}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                                    placeholder="Nhập số điện thoại"
+                                    className={`w-full px-3 py-3 border ${errors.phone ? 'border-red-500' : 'border-gray-300'} rounded-[8px] text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500`}
+                                    placeholder="Nhập nội dung"
                                 />
+                                {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone}</p>}
                             </div>
 
-                            {/* Email */}
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                            <div className="col-span-1">
+                                <label className="block text-sm font-medium text-[#737373] mb-1">
                                     Email
                                 </label>
                                 <input
@@ -310,14 +289,14 @@ const AddSupplier = ({ isOpen, onClose }) => {
                                     name="email"
                                     value={formData.email}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                                    placeholder="Nhập email"
+                                    className="w-full px-3 py-3 border border-gray-300 rounded-[8px] text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                                    placeholder="Nhập nội dung"
                                 />
                             </div>
 
-                            {/* Địa chỉ - span full width */}
+                            {/* Địa chỉ */}
                             <div className="col-span-2">
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                <label className="block text-sm font-medium text-[#737373] mb-1">
                                     Địa chỉ
                                 </label>
                                 <input
@@ -325,41 +304,8 @@ const AddSupplier = ({ isOpen, onClose }) => {
                                     name="address"
                                     value={formData.address}
                                     onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                                    placeholder="Nhập địa chỉ"
-                                />
-                            </div>
-
-                            {/* Phương thức thanh toán */}
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
-                                    Phương thức thanh toán
-                                </label>
-                                <select
-                                    name="paymentMethod"
-                                    value={formData.paymentMethod}
-                                    onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                                >
-                                    <option value="">Chọn phương thức</option>
-                                    <option value="cash">Tiền mặt</option>
-                                    <option value="bank">Chuyển khoản</option>
-                                    <option value="credit">Công nợ</option>
-                                </select>
-                            </div>
-
-                            {/* Ghi chú */}
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
-                                    Ghi chú
-                                </label>
-                                <input
-                                    type="text"
-                                    name="note"
-                                    value={formData.note}
-                                    onChange={handleInputChange}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                                    placeholder="Nhập ghi chú"
+                                    className="w-full px-3 py-3 border border-gray-300 rounded-[8px] text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                                    placeholder="Nhập nội dung"
                                 />
                             </div>
                         </div>
@@ -377,7 +323,7 @@ const AddSupplier = ({ isOpen, onClose }) => {
                     <Button
                         type="primary"
                         onClick={handleSubmit}
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || (activeTab === 'upload' && files.length === 0) || (activeTab === 'manual' && (!formData.name.trim() || !formData.phone.trim()))}
                     >
                         {isSubmitting ? 'Đang xử lý...' : 'Xác nhận'}
                     </Button>
