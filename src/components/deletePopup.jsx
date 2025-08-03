@@ -1,7 +1,15 @@
 import React, { useRef, useEffect } from 'react';
-import Button from '../../button';
+import Button from './button';
 
-const DeleteSupplier = ({ isOpen, onClose, supplierName, onConfirm }) => {
+const DeletePopup = ({
+    isOpen,
+    onClose,
+    itemName,
+    itemType = 'item',
+    onConfirm,
+    confirmMessage,
+    width = '452px'
+}) => {
     const modalRef = useRef(null);
 
     useEffect(() => {
@@ -34,12 +42,13 @@ const DeleteSupplier = ({ isOpen, onClose, supplierName, onConfirm }) => {
         <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black/50 transition-all">
             <div
                 ref={modalRef}
-                className="bg-white rounded-[12px] shadow-lg w-[452px] flex flex-col"
+                className="bg-white rounded-[12px] shadow-lg flex flex-col"
+                style={{ width: width }}
             >
                 {/* Header */}
                 <div className="flex justify-between items-center p-6">
                     <h2 className="text-xl font-bold text-[#161413]">
-                        {`Bạn có chắc chắn muốn xóa "${supplierName || 'Nhà cung cấp'}" ?`}
+                        {`Bạn có chắc chắn muốn xóa "${itemName || itemType}" ?`}
                     </h2>
                     <button
                         onClick={onClose}
@@ -56,7 +65,7 @@ const DeleteSupplier = ({ isOpen, onClose, supplierName, onConfirm }) => {
                 <div className="flex flex-col gap-4 px-6 pb-4">
                     <div className="flex flex-col gap-3">
                         <p className="text-sm text-[#161413]">
-                            Thông tin nhà cung cấp sẽ bị xóa sau khi bạn xác nhận.
+                            {confirmMessage || `Thông tin ${itemType} sẽ bị xóa sau khi bạn xác nhận.`}
                         </p>
                     </div>
 
@@ -81,4 +90,5 @@ const DeleteSupplier = ({ isOpen, onClose, supplierName, onConfirm }) => {
     );
 };
 
-export default DeleteSupplier;
+
+export default DeletePopup;

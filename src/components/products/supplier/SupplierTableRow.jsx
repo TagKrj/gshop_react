@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import EditDeleteBox from '../../editDeleteBox';
 import EditSupplier from './EditSupplier';
-import DeleteSupplier from './DeleteSupplier';
+import DeletePopup from '../../deletePopup';
 import MoreIcon from '../../../assets/icons/more.svg';
 
 const SupplierTableRow = ({
@@ -157,10 +157,11 @@ const SupplierTableRow = ({
             />
 
             {/* Delete Supplier Modal */}
-            <DeleteSupplier
+            <DeletePopup
                 isOpen={showDeleteSupplier}
                 onClose={() => setShowDeleteSupplier(false)}
-                supplierName={name}
+                itemName={name}
+                itemType="nhà cung cấp"
                 onConfirm={handleConfirmDelete}
             />
         </div>
