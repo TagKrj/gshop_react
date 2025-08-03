@@ -39,7 +39,7 @@ const Main = ({
             {/* Container chính */}
             <div className="h-full pl-6 pr-3 pt-3 pb-3">
                 {/* Content area */}
-                <div className="bg-white rounded-lg shadow-sm min-h-full">
+                <div className="bg-white rounded-lg shadow-sm min-h-full pb-20">
                     <div className="p-6">
                         {/* Header section - moved inside white background */}
                         {(title || breadcrumb || headerButtons.length > 0) && (
