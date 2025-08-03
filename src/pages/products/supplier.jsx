@@ -5,12 +5,14 @@ import ButtonFilter from '../../components/buttonFilter';
 import ButtonAdd from '../../components/buttonAdd';
 import TableHeader from '../../components/products/supplier/TableHeader';
 import SupplierTableRow from '../../components/products/supplier/SupplierTableRow';
+import AddSupplier from '../../components/products/supplier/AddSupplier';
 import { mockSupplierData } from '../../constants/supplierData';
 
 const Supplier = () => {
     const [isFilterActive, setIsFilterActive] = useState(false);
     const [searchValue, setSearchValue] = useState('');
     const [selectedRows, setSelectedRows] = useState([]);
+    const [showAddSupplier, setShowAddSupplier] = useState(false);
 
     const handleFilterClick = () => {
         setIsFilterActive(!isFilterActive);
@@ -23,8 +25,7 @@ const Supplier = () => {
     };
 
     const handleAddClick = () => {
-        console.log('Add new receipt type clicked');
-        // Thêm logic tạo mới loại phiếu thu
+        setShowAddSupplier(true);
     };
 
     const handleRowSelect = (id) => {
@@ -109,6 +110,12 @@ const Supplier = () => {
 
             {/* Floating Add Button */}
             <ButtonAdd onClick={handleAddClick} />
+
+            {/* Add Supplier Modal */}
+            <AddSupplier
+                isOpen={showAddSupplier}
+                onClose={() => setShowAddSupplier(false)}
+            />
         </Main>
     );
 };
