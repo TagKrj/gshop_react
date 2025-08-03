@@ -1,8 +1,10 @@
 import React, { useState, useRef } from 'react';
 import EditDeleteBox from '../../editDeleteBox';
+import EditSupplier from './EditSupplier';
+import DeleteSupplier from './DeleteSupplier';
 import MoreIcon from '../../../assets/icons/more.svg';
 
-const TableRow = ({
+const SupplierTableRow = ({
     id,
     code,
     name,
@@ -19,6 +21,8 @@ const TableRow = ({
 }) => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
+    const [showEditSupplier, setShowEditSupplier] = useState(false);
+    const [showDeleteSupplier, setShowDeleteSupplier] = useState(false);
     const moreButtonRef = useRef(null);
 
     const handleMoreClick = (e) => {
@@ -38,15 +42,24 @@ const TableRow = ({
     };
 
     const handleEdit = () => {
+        setShowEditSupplier(true);
+        setShowDropdown(false);
+
         if (onEdit) {
             onEdit(id);
         }
     };
 
     const handleDelete = () => {
+        setShowDeleteSupplier(true);
+        setShowDropdown(false);
+    };
+
+    const handleConfirmDelete = () => {
         if (onDelete) {
             onDelete(id);
         }
+        setShowDeleteSupplier(false);
     };
 
     return (
@@ -127,8 +140,31 @@ const TableRow = ({
                     position={dropdownPosition}
                 />
             </div>
+
+            {/* Edit Supplier Modal */}
+            <EditSupplier
+                isOpen={showEditSupplier}
+                onClose={() => setShowEditSupplier(false)}
+                supplierData={{
+                    id,
+                    code,
+                    name,
+                    contactPerson,
+                    phone,
+                    email,
+                    address
+                }}
+            />
+
+            {/* Delete Supplier Modal */}
+            <DeleteSupplier
+                isOpen={showDeleteSupplier}
+                onClose={() => setShowDeleteSupplier(false)}
+                supplierName={name}
+                onConfirm={handleConfirmDelete}
+            />
         </div>
     );
 };
 
-export default TableRow;
+export default SupplierTableRow;

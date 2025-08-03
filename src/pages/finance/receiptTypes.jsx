@@ -67,12 +67,26 @@ const ReceiptTypes = () => {
     const allSelected = selectedRows.length === mockData.length && mockData.length > 0;
     const someSelected = selectedRows.length > 0 && selectedRows.length < mockData.length;
 
+    // Handlers for DeleteBox
+    const handleDeleteSelected = () => {
+        console.log('Deleting selected rows:', selectedRows);
+        // Add your delete logic here
+        setSelectedRows([]);
+    };
+
+    const handleDeselectAll = () => {
+        setSelectedRows([]);
+    };
+
     return (
         <Main
             title="Loại phiếu thu, chi"
             breadcrumb={['Quản lý tài chính', 'Loại phiếu thu, chi']}
             headerButtons={['Loại phiếu thu', 'Loại phiếu chi']}
             onTabChange={handleTabChange}
+            selectedItems={selectedRows}
+            onDeleteSelected={handleDeleteSelected}
+            onDeselectAll={handleDeselectAll}
         >
             <div className="space-y-4">
                 {/* Search & Filter Bar */}

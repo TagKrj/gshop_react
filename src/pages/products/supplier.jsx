@@ -105,10 +105,24 @@ const Supplier = () => {
     const allSelected = selectedRows.length === mockSupplierData.length && mockSupplierData.length > 0;
     const someSelected = selectedRows.length > 0 && selectedRows.length < mockSupplierData.length;
 
+    // Handlers for DeleteBox
+    const handleDeleteSelected = () => {
+        console.log('Deleting selected rows:', selectedRows);
+        // Add your delete logic here
+        setSelectedRows([]);
+    };
+
+    const handleDeselectAll = () => {
+        setSelectedRows([]);
+    };
+
     return (
         <Main
             title="Nhà cung cấp"
             breadcrumb={['Quản lý sản phẩm', 'Nhà cung cấp']}
+            selectedItems={selectedRows}
+            onDeleteSelected={handleDeleteSelected}
+            onDeselectAll={handleDeselectAll}
         >
             <div className="space-y-4">
                 {/* Search & Filter Bar */}

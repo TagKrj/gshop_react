@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DeleteBox from '../components/deleteBox';
 
 const Main = ({
     children,
@@ -7,6 +8,9 @@ const Main = ({
     headerButtons = [],
     onTabChange,
     className = '',
+    selectedItems = [],
+    onDeleteSelected,
+    onDeselectAll,
     ...props
 }) => {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
@@ -117,6 +121,17 @@ const Main = ({
                                         </div>
                                     )}
                                 </div>
+                            </div>
+                        )}
+
+                        {/* DeleteBox - appears when items are selected */}
+                        {selectedItems && selectedItems.length > 0 && (
+                            <div className="mb-4">
+                                <DeleteBox
+                                    selectedCount={selectedItems.length}
+                                    onDelete={onDeleteSelected}
+                                    onDeselect={onDeselectAll}
+                                />
                             </div>
                         )}
 
