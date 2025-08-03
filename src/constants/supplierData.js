@@ -90,3 +90,13 @@ export const mockSupplierData = [
 ];
 
 export default mockSupplierData;
+
+// Mock data for supplier filter dropdown
+export const supplierFilterData = [
+    { id: 'all', name: 'Tất cả' },
+    { id: 'supplier-a', name: 'Nhà cung cấp A' },
+    { id: 'supplier-b', name: 'Nhà cung cấp B' },
+    { id: 'supplier-c', name: 'Nhà cung cấp C' },
+    { id: 'supplier-d', name: 'Nhà cung cấp D' },
+    { id: 'supplier-e', name: 'Nhà cung cấp E' }
+];
