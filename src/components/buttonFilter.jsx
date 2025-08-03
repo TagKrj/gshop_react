@@ -108,57 +108,7 @@ const ButtonFilter = ({
     );
 };
 
-// Demo component để test
-const ButtonFilterDemo = () => {
-    const [activeFilters, setActiveFilters] = useState({
-        filter1: false,
-        filter2: false,
-        filter3: true, // Default active
-    });
 
-    const toggleFilter = (filterKey) => {
-        setActiveFilters(prev => ({
-            ...prev,
-            [filterKey]: !prev[filterKey]
-        }));
-    };
-
-    return (
-        <div style={{ padding: '20px', fontFamily: 'Open Sans' }}>
-            <h2>Button Filter Demo</h2>
-            <p>Filter buttons created từ Figma designs sử dụng MCP</p>
-
-            <div style={{ display: 'flex', gap: '12px', marginBottom: '20px', alignItems: 'center' }}>
-                <span>Filters:</span>
-                <ButtonFilter
-                    isActive={activeFilters.filter1}
-                    onClick={() => toggleFilter('filter1')}
-                />
-                <ButtonFilter
-                    isActive={activeFilters.filter2}
-                    onClick={() => toggleFilter('filter2')}
-                />
-                <ButtonFilter
-                    isActive={activeFilters.filter3}
-                    onClick={() => toggleFilter('filter3')}
-                />
-                <ButtonFilter
-                    disabled
-                    isActive={false}
-                />
-            </div>
-
-            <div style={{ marginTop: '20px', padding: '16px', backgroundColor: '#F8F9FA', borderRadius: '8px' }}>
-                <h3>Filter Status:</h3>
-                <ul>
-                    <li>Filter 1: {activeFilters.filter1 ? '✅ Active' : '❌ Inactive'}</li>
-                    <li>Filter 2: {activeFilters.filter2 ? '✅ Active' : '❌ Inactive'}</li>
-                    <li>Filter 3: {activeFilters.filter3 ? '✅ Active' : '❌ Inactive'}</li>
-                </ul>
-            </div>
-        </div>
-    );
-};
 
 export { ButtonFilter, ButtonFilterDemo };
 export default ButtonFilter;

@@ -107,29 +107,6 @@ const Button = ({
         }
     };
 
-    // Icon component for export type (optional - có thể sử dụng như example)
-    const ExportIcon = () => (
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path
-                d="M2.07 7.42L17.93 7.42L17.93 17.92L2.07 17.92L2.07 7.42Z"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                fill="none"
-            />
-            <path
-                d="M10 3.02L10 12.5"
-                stroke="currentColor"
-                strokeWidth="1.5"
-            />
-            <path
-                d="M7.21 2.08L10 2.08L12.79 4.87"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                fill="none"
-            />
-        </svg>
-    );
-
     // Render icon chỉ khi được truyền vào
     const renderIcon = () => {
         if (icon) {
