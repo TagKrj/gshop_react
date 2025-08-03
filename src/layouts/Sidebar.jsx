@@ -66,7 +66,7 @@ const Sidebar = () => {
             <div key={item.id} className="flex flex-col gap-2 w-full">
                 {/* Main Menu Item */}
                 <div
-                    className={`flex items-center justify-between px-3 py-2 cursor-pointer transition-all duration-200
+                    className={`flex items-center justify-between px-3 py-2 cursor-pointer
             ${level > 0 ? 'ml-4' : ''}
             ${item.isActive || item.isSelected
                             ? 'text-white'
@@ -128,7 +128,7 @@ const Sidebar = () => {
                                     <img
                                         src={ArrowDownIcon}
                                         alt="arrow"
-                                        className="w-full h-full transition-transform duration-300 ease-in-out"
+                                        className="w-full h-full"
                                         style={{
                                             filter: getIconFilter(item),
                                             transform: item.isExpanded ? 'rotate(180deg)' : 'rotate(0deg)'
@@ -152,8 +152,11 @@ const Sidebar = () => {
 
     return (
         <div
-            className={`${isCollapsed ? 'w-20' : 'w-64'} min-w-20 flex flex-col justify-between p-4 shadow-lg rounded-[12px] overflow-y-auto transition-all duration-300 ease-in-out`}
-            style={{ backgroundColor: '#FFFFFF' }}
+            className={`${isCollapsed ? 'w-20' : 'w-64'} min-w-20 flex flex-col justify-between p-4 shadow-lg rounded-[12px] overflow-y-auto fixed top-3 left-3 bottom-3`}
+            style={{
+                backgroundColor: '#FFFFFF',
+                zIndex: 10
+            }}
             onMouseEnter={() => setIsCollapsed(false)}
             onMouseLeave={() => setIsCollapsed(true)}
         >
@@ -161,7 +164,7 @@ const Sidebar = () => {
             <div className="flex flex-col gap-3 flex-1 overflow-y-auto">
                 {/* Logo */}
                 <div className="flex items-center gap-3 pt-3 pb-3 pl-2 pr-2 flex-shrink-0">
-                    <div className="w-8 h-8 rounded-md flex-shrink-0 flex items-center justify-center" style={{ backgroundColor: '#6366F1' }}>
+                    <div className="w-8 h-8 rounded-[4px] flex-shrink-0 flex items-center justify-center" style={{ backgroundColor: '#6366F1' }}>
                         <img
                             src={PolygonIcon}
                             alt="logo icon"
