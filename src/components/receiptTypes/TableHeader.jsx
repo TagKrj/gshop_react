@@ -1,6 +1,10 @@
 import React from 'react';
 
-const TableHeader = () => {
+const TableHeader = ({
+    allSelected = false,
+    someSelected = false,
+    onSelectAll
+}) => {
     return (
         <div className="flex items-center px-3">
             {/* Checkbox column */}
@@ -8,6 +12,11 @@ const TableHeader = () => {
                 <div className="flex items-center justify-center w-6 h-6">
                     <input
                         type="checkbox"
+                        checked={allSelected}
+                        ref={(el) => {
+                            if (el) el.indeterminate = someSelected && !allSelected;
+                        }}
+                        onChange={onSelectAll}
                         className="w-4 h-4 border border-gray-300 rounded focus:ring-[#6366F1] cursor-pointer"
                         style={{ accentColor: '#6366F1' }}
                     />

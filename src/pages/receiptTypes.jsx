@@ -43,6 +43,20 @@ const ReceiptTypes = () => {
         console.log(`Toggle row ${id} to ${isActive ? 'active' : 'inactive'}`);
     };
 
+    const handleSelectAll = () => {
+        if (selectedRows.length === mockData.length) {
+            // Nếu đã chọn tất cả, bỏ chọn tất cả
+            setSelectedRows([]);
+        } else {
+            // Chọn tất cả
+            setSelectedRows(mockData.map(item => item.id));
+        }
+    };
+
+    // Kiểm tra trạng thái select all
+    const allSelected = selectedRows.length === mockData.length && mockData.length > 0;
+    const someSelected = selectedRows.length > 0 && selectedRows.length < mockData.length;
+
     return (
         <Main
             title="Loại phiếu thu, chi"
@@ -67,7 +81,11 @@ const ReceiptTypes = () => {
                 {/* Table Container */}
                 <div className="bg-white rounded-lg overflow-hidden">
                     {/* Table Header */}
-                    <TableHeader />
+                    <TableHeader
+                        allSelected={allSelected}
+                        someSelected={someSelected}
+                        onSelectAll={handleSelectAll}
+                    />
 
                     {/* Table Content */}
                     {mockData.map((item, index) => (
