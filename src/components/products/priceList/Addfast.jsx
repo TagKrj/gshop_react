@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Portal from '../../Portal';
+import Button from '../../button';
 import CloseIcon from '../../../assets/icons/close_icon.svg';
 import ArrowDownIcon from '../../../assets/icons/arrow_down_icon.svg';
 
@@ -82,7 +83,7 @@ const Addfast = ({ isOpen, onClose, priceListCode, onSave }) => {
             <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50">
                 <div className="bg-white rounded-[12px] shadow-lg w-[756px] max-h-[90vh] flex flex-col">
                     {/* Header */}
-                    <div className="flex justify-between items-center p-6 border-b">
+                    <div className="flex justify-between items-center p-6">
                         <h2 className="text-[20px] font-bold text-[#404040]">
                             Thêm nhanh sản phẩm - Mã giá {formData.priceListCode}
                         </h2>
@@ -140,19 +141,27 @@ const Addfast = ({ isOpen, onClose, priceListCode, onSave }) => {
                             <div className="flex gap-3">
                                 <div className="flex-1">
                                     <div className="flex flex-col gap-2">
-                                        <label className="text-[16px] font-semibold text-[#737373]">
+                                        <label className="text-[16px] font-semibold text-[#737373]" htmlFor="product-code">
                                             Mã sản phẩm
                                         </label>
-                                        <div className={`flex justify-between items-center p-4 rounded-[8px] border ${errors['product.code'] ? 'border-red-500' : 'border-[#E5E5E5]'}`}>
-                                            <input
-                                                type="text"
+                                        <div className="relative">
+                                            <select
+                                                id="product-code"
                                                 name="product.code"
                                                 value={formData.product.code}
                                                 onChange={handleInputChange}
-                                                placeholder="Chọn"
-                                                className="w-full outline-none text-[16px] text-[#737373]"
+                                                className={`w-full appearance-none p-4 rounded-[8px] border outline-none text-[16px] text-[#737373] ${errors['product.code'] ? 'border-red-500' : 'border-[#E5E5E5]'}`}
+                                            >
+                                                <option value="" disabled>Chọn</option>
+                                                <option value="PD001">PD001</option>
+                                                <option value="PD002">PD002</option>
+                                                <option value="PD003">PD003</option>
+                                            </select>
+                                            <img
+                                                src={ArrowDownIcon}
+                                                alt="Arrow Down"
+                                                className="w-5 h-5 absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none"
                                             />
-                                            <img src={ArrowDownIcon} alt="Arrow Down" className="w-5 h-5" />
                                         </div>
                                         {errors['product.code'] && (
                                             <span className="text-red-500 text-sm">{errors['product.code']}</span>
@@ -241,19 +250,21 @@ const Addfast = ({ isOpen, onClose, priceListCode, onSave }) => {
                     </div>
 
                     {/* Footer */}
-                    <div className="flex justify-end items-center gap-2 p-6 border-t mt-auto">
-                        <button
+                    <div className="flex justify-end items-center gap-2 p-6 ">
+                        <Button
+                            type="secondary"
+                            size="medium"
                             onClick={onClose}
-                            className="px-5 py-3 border border-[#E5E5E5] rounded-[8px] text-[14px] font-semibold text-[#6366F1]"
                         >
                             Hủy
-                        </button>
-                        <button
+                        </Button>
+                        <Button
+                            type="primary"
+                            size="medium"
                             onClick={handleSubmit}
-                            className="px-5 py-3 bg-[#6366F1] rounded-[8px] text-[14px] font-semibold text-white"
                         >
                             Xác nhận
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </div>
