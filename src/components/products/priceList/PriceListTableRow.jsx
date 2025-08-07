@@ -66,7 +66,7 @@ const PriceListTableRow = ({
 
     return (
         <div className="flex flex-col">
-            <div className={`flex items-center px-3 py-3 rounded-lg mt-2 transition-colors cursor-pointer hover:bg-indigo-50 ${isSelected ? 'bg-indigo-50' : 'bg-gray-50'}`}>
+            <div className={`flex items-center px-3 py-3 rounded-[8px] mt-2 transition-colors cursor-pointer hover:bg-indigo-50 ${expanded ? 'bg-indigo-50 rounded-b-none border border-[#E5E5E5]' : ''} ${isSelected ? 'bg-indigo-50' : expanded ? 'bg-indigo-50' : 'bg-gray-50'}`}>
                 {/* Checkbox column */}
                 <div className="flex items-center justify-center w-12 px-2">
                     <div className="flex items-center justify-center w-6 h-6">
@@ -149,9 +149,9 @@ const PriceListTableRow = ({
             {/* Expanded detail section */}
             {
                 expanded && (
-                    <div className="rounded-b-[8px] bg-indigo-50 mt-0 mb-2 overflow-hidden">
+                    <div className="rounded-b-[8px] bg-indigo-50 mt-0 mb-2 overflow-hidden border border-[#E5E5E5] border-t-0">
                         {/* Header */}
-                        <div className="flex items-center bg-[#F3F4F6] px-3">
+                        <div className="flex items-center bg-[#F3F4F6] px-3 border-t border-indigo-100">
                             <div className="w-12 px-4 py-3 text-center">
                                 <span className="text-xs font-normal text-gray-500">STT</span>
                             </div>
@@ -175,7 +175,7 @@ const PriceListTableRow = ({
                             </div>
                         </div>
 
-                        {/* Product rows */}
+                        {/* Product rows - chỉ phần này scroll */}
                         <div className="max-h-64 overflow-y-auto">
                             {products.map((product, index) => (
                                 <div key={index} className="flex items-center bg-white px-3">
@@ -204,17 +204,17 @@ const PriceListTableRow = ({
                                     </div>
                                 </div>
                             ))}
+                        </div>
 
-                            {/* Add product button */}
-                            <div className="flex items-center justify-center py-2 bg-indigo-50 cursor-pointer hover:bg-indigo-100">
-                                <div className="w-5 h-5 flex items-center justify-center text-indigo-600">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    </svg>
-                                </div>
-                                <span className="ml-2 text-sm font-semibold text-indigo-600">Thêm sản phẩm</span>
+                        {/* Add product button */}
+                        <div className="flex items-center justify-center py-2 bg-indigo-50 cursor-pointer hover:bg-indigo-100 border-t border-gray-200">
+                            <div className="w-5 h-5 flex items-center justify-center text-[#6366F1]">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
                             </div>
+                            <span className="ml-2 text-sm font-semibold text-[#6366F1]">Thêm sản phẩm</span>
                         </div>
                     </div>
                 )
