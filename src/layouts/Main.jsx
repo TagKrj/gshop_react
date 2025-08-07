@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import DeleteBox from '../components/deleteBox';
+import DeleteBoxHeader from '../components/deleteBoxHeader';
 
 const Main = ({
     children,
@@ -127,7 +127,7 @@ const Main = ({
                         {/* DeleteBox - appears when items are selected */}
                         {selectedItems && selectedItems.length > 0 && (
                             <div className="mb-4">
-                                <DeleteBox
+                                <DeleteBoxHeader
                                     selectedCount={selectedItems.length}
                                     onDelete={onDeleteSelected}
                                     onDeselect={onDeselectAll}

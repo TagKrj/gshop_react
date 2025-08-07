@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Sidebar from './layouts/Sidebar'
 import Supplier from './pages/products/supplier'
+import TypeProducts from './pages/products/typeProducts'
 
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
     <>
       <div className="min-h-screen bg-gray-100">
         <Sidebar />
-        <Supplier />
+        <TypeProducts />
       </div>
     </>
   )
