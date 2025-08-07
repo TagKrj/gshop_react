@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import EditDeleteBox from '../../editDeleteBox';
 import DeletePopup from '../../deletePopup';
+import Addfast from './Addfast';
 import MoreIcon from '../../../assets/icons/more.svg';
 import arrowDown from '../../../assets/icons/arrow-down-2.svg';
 
@@ -21,6 +22,7 @@ const PriceListTableRow = ({
     const [showDropdown, setShowDropdown] = useState(false);
     const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+    const [showAddfast, setShowAddfast] = useState(false);
     const [expanded, setExpanded] = useState(false);
     const moreButtonRef = useRef(null);
 
@@ -42,6 +44,7 @@ const PriceListTableRow = ({
 
     const handleEdit = () => {
         setShowDropdown(false);
+        setShowAddfast(true);
         if (onEdit) {
             onEdit(id);
         }
@@ -207,7 +210,10 @@ const PriceListTableRow = ({
                         </div>
 
                         {/* Add product button */}
-                        <div className="flex items-center justify-center py-2 bg-indigo-50 cursor-pointer hover:bg-indigo-100 border-t border-gray-200">
+                        <div
+                            className="flex items-center justify-center py-2 bg-indigo-50 cursor-pointer hover:bg-indigo-100 border-t border-gray-200"
+                            onClick={() => setShowAddfast(true)}
+                        >
                             <div className="w-5 h-5 flex items-center justify-center text-[#6366F1]">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -227,6 +233,14 @@ const PriceListTableRow = ({
                 itemName={name}
                 itemType="bảng giá"
                 onConfirm={handleConfirmDelete}
+            />
+
+            {/* Chi tiết bảng giá Popup */}
+            <Addfast
+                isOpen={showAddfast}
+                onClose={() => setShowAddfast(false)}
+                priceListCode={code}
+                onSave={(data) => console.log('Saved:', data)}
             />
         </div >
     );

@@ -1,0 +1,175 @@
+import React, { useState, useEffect } from 'react';
+import Portal from '../../Portal';
+import CloseIcon from '../../../assets/icons/close.svg';
+import EditIcon from '../../../assets/icons/edit-2.svg';
+
+const Addfast = ({ isOpen, onClose, productData, onSave }) => {
+    // Nếu không có dữ liệu sản phẩm, khởi tạo một đối tượng rỗng
+    const initialData = productData || {
+        id: '',
+        code: '',
+        name: '',
+        category: 'Loại sản phẩm 1',
+        inputTax: 8,
+        outputTax: 10,
+        unit: 'Hộp',
+        unitsPerBox: 12,
+        lastUpdated: {
+            date: '12/12/2025 12:00',
+            by: 'Vũ Lê'
+        },
+        pricingList: [
+            { code: 'PC001', name: 'Bảng giá bán lẻ 1', price: 120000 },
+            { code: 'PC001', name: 'Bảng giá bán lẻ 2', price: 120000 },
+            { code: 'PC002', name: 'Bảng giá bán buôn 1', price: 90000 },
+            { code: 'PC002', name: 'Bảng giá bán buôn 2', price: 100000 }
+        ]
+    };
+
+    const [formData, setFormData] = useState(initialData);
+
+    // Cập nhật formData khi productData thay đổi
+    useEffect(() => {
+        if (productData) {
+            setFormData(productData);
+        }
+    }, [productData]);
+
+    const handleSave = () => {
+        if (onSave) {
+            onSave(formData);
+        }
+        onClose();
+    };
+
+    if (!isOpen) return null;
+
+    return (
+        <Portal>
+            <div className="fixed inset-0 bg-black bg-opacity-25 flex items-center justify-center z-50">
+                <div className="bg-white rounded-[12px] shadow-lg w-[1192px] max-h-[90vh] flex flex-col">
+                    {/* Header */}
+                    <div className="flex justify-between items-center px-6 py-6 border-b">
+                        <h2 className="text-[20px] font-bold text-[#404040]">
+                            Chi tiết bảng giá - Sản phẩm {formData.code}
+                        </h2>
+                        <button
+                            onClick={onClose}
+                            className="w-5 h-5 flex items-center justify-center"
+                        >
+                            <img src={CloseIcon} alt="Close" className="w-5 h-5" />
+                        </button>
+                    </div>
+
+                    {/* Body */}
+                    <div className="flex px-6 py-4 overflow-y-auto">
+                        {/* Thông tin chung */}
+                        <div className="w-[326px] flex flex-col gap-4">
+                            <h3 className="text-[16px] font-semibold text-[#6366F1]">
+                                Thông tin chung
+                            </h3>
+
+                            <div className="flex flex-col gap-2">
+                                <label className="text-[13px] text-[#737373]">Mã SKU</label>
+                                <div className="text-[16px] text-[#161413]">{formData.code}</div>
+                            </div>
+
+                            <div className="flex flex-col gap-2">
+                                <label className="text-[13px] text-[#737373]">Tên sản phẩm</label>
+                                <div className="text-[16px] text-[#161413]">{formData.name}</div>
+                            </div>
+
+                            <div className="flex flex-col gap-2">
+                                <label className="text-[13px] text-[#737373]">Loại sản phẩm</label>
+                                <div className="inline-flex px-3 py-1 rounded-[8px] border border-[#664D7F] text-[14px] text-[#2E319E]">
+                                    {formData.category}
+                                </div>
+                            </div>
+
+                            <div className="flex justify-between gap-3">
+                                <div className="flex-1 flex flex-col gap-2">
+                                    <label className="text-[13px] text-[#737373]">Thuế suất đầu vào (%)</label>
+                                    <div className="text-[16px] text-[#2E319E]">{formData.inputTax}</div>
+                                </div>
+                                <div className="flex-1 flex flex-col gap-2">
+                                    <label className="text-[13px] text-[#737373]">Thuế suất đầu ra (%)</label>
+                                    <div className="text-[16px] text-[#2E319E]">{formData.outputTax}</div>
+                                </div>
+                            </div>
+
+                            <div className="flex justify-between gap-3">
+                                <div className="flex-1 flex flex-col gap-2">
+                                    <label className="text-[13px] text-[#737373]">Đơn vị tính</label>
+                                    <div className="text-[16px] text-[#161413]">{formData.unit}</div>
+                                </div>
+                                <div className="flex-1 flex flex-col gap-2">
+                                    <label className="text-[13px] text-[#737373]">Đơn vị/thùng</label>
+                                    <div className="text-[16px] text-[#2E319E]">{formData.unitsPerBox}</div>
+                                </div>
+                            </div>
+
+                            <div className="flex flex-col gap-2">
+                                <label className="text-[13px] text-[#737373]">Cập nhật lần cuối</label>
+                                <div className="flex justify-between items-center py-2">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-6 h-6 rounded-[12px] bg-gray-200"></div>
+                                        <span className="text-[13px] font-semibold text-[#2A87F8]">Vũ Lê</span>
+                                    </div>
+                                    <div className="text-[13px] text-[#737373]">{formData.lastUpdated?.date}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Giá sản phẩm */}
+                        <div className="flex-1 ml-6 flex flex-col gap-4">
+                            <h3 className="text-[16px] font-semibold text-[#6366F1]">
+                                Giá sản phẩm
+                            </h3>
+
+                            <div className="border rounded-[8px] overflow-hidden">
+                                {/* Header */}
+                                <div className="flex bg-[#F3F4F6]">
+                                    <div className="w-[120px] px-4 py-3 text-[13px] text-[#737373]">Mã bảng giá</div>
+                                    <div className="flex-1 px-4 py-3 text-[13px] text-[#737373]">Tên bảng giá</div>
+                                    <div className="w-[166px] px-4 py-3 text-right text-[13px] text-[#737373]">Giá bán (VND)</div>
+                                </div>
+
+                                {/* List */}
+                                <div>
+                                    {formData.pricingList?.map((price, index) => (
+                                        <div key={index} className="flex bg-[#FAFAFA]">
+                                            <div className="w-[120px] h-[44px] px-4 py-3 text-[14px] text-[#161413]">{price.code}</div>
+                                            <div className="flex-1 h-[44px] px-4 py-3 text-[14px] text-[#161413]">{price.name}</div>
+                                            <div className="w-[166px] h-[44px] px-4 py-3 text-right text-[14px] text-[#2E319E]">
+                                                {price.price.toLocaleString()}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Footer */}
+                    <div className="flex justify-end items-center gap-2 px-6 py-4 border-t">
+                        <button
+                            onClick={onClose}
+                            className="px-5 py-3 border border-[#E5E5E5] rounded-[8px] text-[14px] font-semibold text-[#6366F1]"
+                        >
+                            Đóng
+                        </button>
+                        <button
+                            onClick={handleSave}
+                            className="px-5 py-3 bg-[#6366F1] rounded-[8px] text-[14px] font-semibold text-white flex items-center gap-2"
+                        >
+                            <img src={EditIcon} alt="Edit" className="w-5 h-5" />
+                            Chỉnh sửa
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </Portal>
+    );
+};
+
+export default Addfast;
