@@ -5,6 +5,7 @@ import './App.css'
 import Sidebar from './layouts/Sidebar'
 import Supplier from './pages/products/supplier'
 import TypeProducts from './pages/products/typeProducts'
+import PriceList from './pages/products/priceList'
 
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
     <>
       <div className="min-h-screen bg-gray-100">
         <Sidebar />
-        <TypeProducts />
+        <PriceList />
       </div>
     </>
   )
