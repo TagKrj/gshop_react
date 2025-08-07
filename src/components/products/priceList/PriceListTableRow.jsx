@@ -149,9 +149,9 @@ const PriceListTableRow = ({
             {/* Expanded detail section */}
             {
                 expanded && (
-                    <div className="rounded-lg bg-indigo-50 mt-0 mb-2 overflow-hidden px-3">
+                    <div className="rounded-b-[8px] bg-indigo-50 mt-0 mb-2 overflow-hidden">
                         {/* Header */}
-                        <div className="flex items-center bg-[#F3F4F6]">
+                        <div className="flex items-center bg-[#F3F4F6] px-3">
                             <div className="w-12 px-4 py-3 text-center">
                                 <span className="text-xs font-normal text-gray-500">STT</span>
                             </div>
@@ -178,7 +178,7 @@ const PriceListTableRow = ({
                         {/* Product rows */}
                         <div className="max-h-64 overflow-y-auto">
                             {products.map((product, index) => (
-                                <div key={index} className="flex items-center bg-white">
+                                <div key={index} className="flex items-center bg-white px-3">
                                     <div className="w-12 px-4 py-3 text-center">
                                         <span className="text-xs font-normal text-gray-900">{index + 1}</span>
                                     </div>
