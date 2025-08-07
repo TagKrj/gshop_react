@@ -25,7 +25,53 @@ export const mockPriceListData = [
                 "inputTax": 8,
                 "outputTax": 10,
                 "description": "Mô tả sản phẩm 2 với chất lượng vượt trội."
+            },
+            {
+                "id": 3,
+                "productCode": "PRD3085",
+                "productName": "Sản phẩm 2",
+                "price": 175153,
+                "inputTax": 8,
+                "outputTax": 10,
+                "description": "Mô tả sản phẩm 2 với chất lượng vượt trội."
+            },
+            {
+                "id": 4,
+                "productCode": "PRD3085",
+                "productName": "Sản phẩm 2",
+                "price": 175153,
+                "inputTax": 8,
+                "outputTax": 10,
+                "description": "Mô tả sản phẩm 2 với chất lượng vượt trội."
+            },
+            {
+                "id": 5,
+                "productCode": "PRD3085",
+                "productName": "Sản phẩm 2",
+                "price": 175153,
+                "inputTax": 8,
+                "outputTax": 10,
+                "description": "Mô tả sản phẩm 2 với chất lượng vượt trội."
+            },
+            {
+                "id": 6,
+                "productCode": "PRD3085",
+                "productName": "Sản phẩm 2",
+                "price": 175153,
+                "inputTax": 8,
+                "outputTax": 10,
+                "description": "Mô tả sản phẩm 2 với chất lượng vượt trội."
+            },
+            {
+                "id": 7,
+                "productCode": "PRD3085",
+                "productName": "Sản phẩm 2",
+                "price": 175153,
+                "inputTax": 8,
+                "outputTax": 10,
+                "description": "Mô tả sản phẩm 2 với chất lượng vượt trội."
             }
+
         ]
     },
     {

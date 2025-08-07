@@ -24,7 +24,7 @@ const TableHeader = ({
             </div>
 
             {/* Tên bảng giá */}
-            <div className="flex items-center px-4 py-3 w-100">
+            <div className="flex items-center px-4 py-3 w-122">
                 <span className="text-xs font-normal text-gray-500">Tên bảng giá</span>
             </div>
 

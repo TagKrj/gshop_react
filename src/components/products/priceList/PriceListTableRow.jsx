@@ -81,7 +81,7 @@ const PriceListTableRow = ({
                 </div>
 
                 {/* Tên bảng giá */}
-                <div className="flex items-center px-4 py-3 w-100">
+                <div className="flex items-center px-4 py-3 w-122">
                     <span className="text-xs font-normal text-gray-900">{name}</span>
                 </div>
 
@@ -100,20 +100,6 @@ const PriceListTableRow = ({
                     <div className="flex items-center gap-1">
                         <span className="text-xs font-normal text-gray-500">{updateTime} bởi <span className="text-xs font-semibold text-[#2E319E]">{updateBy}</span></span>
                     </div>
-                </div>
-
-                {/* Toggle expand button */}
-                <div className="flex items-center justify-center w-12 px-2">
-                    <button
-                        onClick={toggleExpand}
-                        className="flex items-center justify-center w-6 h-6 rounded-full transition-colors cursor-pointer"
-                    >
-                        <img
-                            src={arrowDown}
-                            alt={expanded ? "Collapse" : "Expand"}
-                            className={`w-4 h-4 text-[#6366F1] transition-transform ${expanded ? 'rotate-180' : ''}`}
-                        />
-                    </button>
                 </div>
 
                 {/* Action column - More button */}
@@ -142,30 +128,46 @@ const PriceListTableRow = ({
                         position={dropdownPosition}
                     />
                 </div>
+
+                {/* Toggle expand button */}
+                <div className="flex items-center justify-center w-12 px-2">
+                    <button
+                        onClick={toggleExpand}
+                        className="flex items-center justify-center w-6 h-6 rounded-full transition-colors cursor-pointer"
+                    >
+                        <img
+                            src={arrowDown}
+                            alt={expanded ? "Collapse" : "Expand"}
+                            className={`w-4 h-4 text-[#6366F1] transition-transform ${expanded ? 'rotate-180' : ''}`}
+                        />
+                    </button>
+                </div>
+
+
             </div>
 
             {/* Expanded detail section */}
             {
                 expanded && (
-                    <div className="rounded-lg bg-indigo-50 mt-0 mb-2 overflow-hidden">
+                    <div className="rounded-lg bg-indigo-50 mt-0 mb-2 overflow-hidden px-3">
                         {/* Header */}
-                        <div className="flex items-center bg-gray-200">
+                        <div className="flex items-center bg-[#F3F4F6]">
                             <div className="w-12 px-4 py-3 text-center">
                                 <span className="text-xs font-normal text-gray-500">STT</span>
                             </div>
-                            <div className="w-32 px-4 py-3">
-                                <span className="text-xs font-normal text-gray-500">Mã sản phẩm</span>
+                            <div className="px-4 py-3 w-40">
+                                <span className="text-xs font-normal text-gray-500 ">Mã sản phẩm</span>
                             </div>
-                            <div className="flex-1 px-4 py-3">
+                            <div className=" px-4 py-3 w-40">
                                 <span className="text-xs font-normal text-gray-500">Tên sản phẩm</span>
                             </div>
-                            <div className="w-32 px-4 py-3 text-right">
+                            <div className=" px-4 py-3 text-right w-70">
                                 <span className="text-xs font-normal text-gray-500">Giá bán (VND)</span>
                             </div>
-                            <div className="w-32 px-4 py-3 text-right">
+                            <div className=" px-4 py-3 text-right w-70">
                                 <span className="text-xs font-normal text-gray-500">Thuế suất đầu vào (%)</span>
                             </div>
-                            <div className="w-32 px-4 py-3 text-right">
+                            <div className=" px-4 py-3 text-right w-70 ">
                                 <span className="text-xs font-normal text-gray-500">Thuế suất đầu ra (%)</span>
                             </div>
                             <div className="flex-1 px-4 py-3">
@@ -180,21 +182,21 @@ const PriceListTableRow = ({
                                     <div className="w-12 px-4 py-3 text-center">
                                         <span className="text-xs font-normal text-gray-900">{index + 1}</span>
                                     </div>
-                                    <div className="w-32 px-4 py-3">
+                                    <div className="w-40 px-4 py-3">
                                         <span className="text-xs font-normal text-gray-900">{product.productCode}</span>
                                     </div>
-                                    <div className="flex-1 px-4 py-3">
+                                    <div className=" px-4 py-3 w-40">
                                         <span className="text-xs font-normal text-gray-900">{product.productName}</span>
                                     </div>
-                                    <div className="w-32 px-4 py-3 text-right">
+                                    <div className=" px-4 py-3 text-right w-70">
                                         <span className="text-xs font-normal text-indigo-700">
                                             {product.price.toLocaleString()}
                                         </span>
                                     </div>
-                                    <div className="w-32 px-4 py-3 text-right">
+                                    <div className=" px-4 py-3 text-right w-70">
                                         <span className="text-xs font-normal text-indigo-700">{product.inputTax}</span>
                                     </div>
-                                    <div className="w-32 px-4 py-3 text-right">
+                                    <div className="px-4 py-3 text-right w-70">
                                         <span className="text-xs font-normal text-indigo-700">{product.outputTax}</span>
                                     </div>
                                     <div className="flex-1 px-4 py-3">
