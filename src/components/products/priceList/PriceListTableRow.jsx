@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import EditDeleteBox from '../../editDeleteBox';
 import DeletePopup from '../../deletePopup';
 import Addfast from './Addfast';
+import EditPriceList from './EditPriceList';
 import MoreIcon from '../../../assets/icons/more.svg';
 import arrowDown from '../../../assets/icons/arrow-down-2.svg';
 
@@ -23,13 +24,18 @@ const PriceListTableRow = ({
     const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
     const [showAddfast, setShowAddfast] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
     const [expanded, setExpanded] = useState(false);
     const moreButtonRef = useRef(null);
 
-    // Debug: Log when showAddfast changes
+    // Debug: Log when showAddfast and showEditModal changes
     useEffect(() => {
         console.log('showAddfast state changed:', showAddfast);
     }, [showAddfast]);
+
+    useEffect(() => {
+        console.log('showEditModal state changed:', showEditModal);
+    }, [showEditModal]);
 
     const handleMoreClick = (e) => {
         e.stopPropagation();
@@ -49,7 +55,7 @@ const PriceListTableRow = ({
 
     const handleEdit = () => {
         setShowDropdown(false);
-        setShowAddfast(true);
+        setShowEditModal(true);
         if (onEdit) {
             onEdit(id);
         }
@@ -159,7 +165,7 @@ const PriceListTableRow = ({
                 expanded && (
                     <div className="rounded-b-[8px] bg-indigo-50 mt-0 mb-2 overflow-hidden border border-[#E5E5E5] border-t-0">
                         {/* Header */}
-                        <div className="flex items-center bg-[#F3F4F6] px-3 border-t border-indigo-100">
+                        <div className="flex items-center bg-[#F3F4F6] px-3">
                             <div className="w-12 px-4 py-3 text-center">
                                 <span className="text-xs font-normal text-gray-500">STT</span>
                             </div>
@@ -216,7 +222,7 @@ const PriceListTableRow = ({
 
                         {/* Add product button */}
                         <div
-                            className="flex items-center justify-center py-2 bg-indigo-50 cursor-pointer hover:bg-indigo-100 border-t border-gray-200"
+                            className="flex items-center justify-center py-2 bg-indigo-50 cursor-pointer hover:bg-indigo-100 "
                             onClick={(e) => {
                                 e.stopPropagation();
                                 setShowAddfast(true);
@@ -252,6 +258,23 @@ const PriceListTableRow = ({
                     console.log('Saved:', data);
                     // Thực hiện lưu dữ liệu
                     setShowAddfast(false);
+                }}
+            />
+
+            {/* Chỉnh sửa bảng giá Popup */}
+            <EditPriceList
+                isOpen={showEditModal}
+                onClose={() => setShowEditModal(false)}
+                priceListData={{
+                    id,
+                    code,
+                    name,
+                    products
+                }}
+                onSave={(updatedData) => {
+                    console.log('Saved updated data:', updatedData);
+                    // Thực hiện lưu dữ liệu đã cập nhật
+                    setShowEditModal(false);
                 }}
             />
         </div >
