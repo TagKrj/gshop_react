@@ -5,6 +5,7 @@ import Addfast from './Addfast';
 import EditPriceList from './EditPriceList';
 import MoreIcon from '../../../assets/icons/more.svg';
 import arrowDown from '../../../assets/icons/arrow-down-2.svg';
+import addIcon from '../../../assets/icons/add-indigo.svg';
 
 const PriceListTableRow = ({
     id,
@@ -228,12 +229,7 @@ const PriceListTableRow = ({
                                 setShowAddfast(true);
                             }}
                         >
-                            <div className="w-5 h-5 flex items-center justify-center text-[#6366F1]">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                </svg>
-                            </div>
+                            <img src={addIcon} alt="Add" className="w-5 h-5" />
                             <span className="ml-2 text-sm font-semibold text-[#6366F1]">Thêm sản phẩm</span>
                         </div>
                     </div>

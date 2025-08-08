@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import arrowDown from '../../../assets/icons/arrow-down.svg';
 import trashIcon from '../../../assets/icons/trash.svg';
+import addIcon from '../../../assets/icons/add-indigo.svg';
 import Portal from '../../Portal';
 import Button from '../../button';
 
@@ -60,25 +61,12 @@ const EditPriceList = ({ isOpen, onClose, priceListData, onSave }) => {
                     {/* Header */}
                     <div className="flex items-center justify-between px-6 py-6">
                         <h2 className="text-xl font-bold text-gray-800">Chỉnh sửa bảng giá</h2>
-                        <button
+                        <div
                             onClick={onClose}
-                            className="text-gray-600 hover:text-gray-800 focus:outline-none"
-                        >
-                            <svg
-                                className="w-5 h-5 transform rotate-45"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M12 5v14m7-7H5"
-                                ></path>
-                            </svg>
-                        </button>
+                            className="w-4 h-4 flex items-center justify-center relative cursor-pointer">
+                            <span className="absolute w-4 h-0.5 bg-gray-500 rotate-45"></span>
+                            <span className="absolute w-4 h-0.5 bg-gray-500 -rotate-45"></span>
+                        </div>
                     </div>
 
                     {/* Body */}
@@ -118,48 +106,48 @@ const EditPriceList = ({ isOpen, onClose, priceListData, onSave }) => {
                             <div className="flex flex-col gap-4">
                                 <h3 className="text-base font-semibold text-[#6366F1]">Chi tiết giá sản phẩm</h3>
 
-                                {/* Delete all button */}
-                                <div className="flex justify-end bg-red-50 py-2 px-6">
-                                    <button
-                                        onClick={handleDeleteAll}
-                                        className="flex items-center text-sm font-semibold text-red-600 cursor-pointer "
-                                    >
-                                        <span>Xóa tất cả</span>
-                                        <img src={trashIcon} alt="Delete" className="w-4 h-4 ml-2" />
-                                    </button>
-                                </div>
-
                                 {/* Table */}
                                 <div className="border border-gray-200 rounded-[8px] overflow-hidden">
                                     {/* Header */}
-                                    <div className="grid grid-cols-12 bg-gray-100">
-                                        <div className="col-span-1 py-3 px-4 text-xs text-gray-500 text-center">STT</div>
-                                        <div className="col-span-2 py-3 px-4 text-xs text-gray-500">Mã sản phẩm</div>
-                                        <div className="col-span-2 py-3 px-4 text-xs text-gray-500">Tên sản phẩm</div>
-                                        <div className="col-span-2 py-3 px-4 text-xs text-gray-500 text-right">Giá bán (VND)</div>
-                                        <div className="col-span-1 py-3 px-4 text-xs text-gray-500 text-right">Thuế suất đầu vào (%)</div>
-                                        <div className="col-span-1 py-3 px-4 text-xs text-gray-500 text-right">Thuế suất đầu ra (%)</div>
-                                        <div className="col-span-2 py-3 px-4 text-xs text-gray-500">Mô tả</div>
-                                        <div className="col-span-1 py-3 px-4 text-xs text-gray-500"></div>
+                                    <div className="flex bg-[#F3F4F6]">
+                                        <div className="w-[60px] py-3 px-1 text-xs text-[#737373] text-center">STT</div>
+                                        <div className="w-[120px] py-3 px-1 text-xs text-[#737373] ">Mã sản phẩm</div>
+                                        <div className="w-[150px] py-3 px-1 text-xs text-[#737373] ">Tên sản phẩm</div>
+                                        <div className="w-[220px] py-3 px-1 text-xs text-[#737373] text-right">Giá bán (VND)</div>
+                                        <div className="w-[170px] py-3 px-1 text-xs text-[#737373] text-right">Thuế suất đầu vào (%)</div>
+                                        <div className="w-[170px] py-3 pl-1 pr-5 text-xs text-[#737373] text-right">Thuế suất đầu ra (%)</div>
+                                        <div className="w-[270px] py-3 px-1 text-xs text-[#737373]">Mô tả</div>
+                                        <div className="flex-1 py-3 text-xs text-[#737373]"></div>
+                                    </div>
+
+                                    {/* Delete all button */}
+                                    <div className="flex justify-end bg-red-50 py-2 px-5">
+                                        <button
+                                            onClick={handleDeleteAll}
+                                            className="flex items-center text-sm font-semibold text-red-600 cursor-pointer "
+                                        >
+                                            <span className='mr-2'>Xóa tất cả</span>
+                                            <img src={trashIcon} alt="Delete" className="w-4 h-4" />
+                                        </button>
                                     </div>
 
                                     {/* Product rows */}
                                     <div className="max-h-[400px] overflow-y-auto">
                                         {productRows.map((row, index) => (
-                                            <div key={row.id || index} className="grid grid-cols-12 bg-white border-t border-gray-200">
-                                                <div className="col-span-1 py-3 px-4 text-xs text-center">{index + 1}</div>
-                                                <div className="col-span-2 py-3 px-4 text-xs">{row.productCode}</div>
-                                                <div className="col-span-2 py-3 px-4 text-xs">{row.productName}</div>
-                                                <div className="col-span-2 py-3 px-4 text-xs text-indigo-700 text-right">
+                                            <div key={row.id || index} className="flex bg-[#FAFAFA]">
+                                                <div className="w-[60px] py-3 px-1 text-xs text-center">{index + 1}</div>
+                                                <div className="w-[120px] py-3 px-1 text-xs">{row.productCode}</div>
+                                                <div className="w-[150px] py-3 px-1 text-xs">{row.productName}</div>
+                                                <div className="w-[220px] py-3 px-1 text-xs text-indigo-700 text-right">
                                                     {typeof row.price === 'number' ? row.price.toLocaleString() : row.price}
                                                 </div>
-                                                <div className="col-span-1 py-3 px-4 text-xs text-indigo-700 text-right">{row.inputTax}</div>
-                                                <div className="col-span-1 py-3 px-4 text-xs text-indigo-700 text-right">{row.outputTax}</div>
-                                                <div className="col-span-2 py-3 px-4 text-xs">{row.description}</div>
-                                                <div className="col-span-1 py-3 px-4 flex justify-center">
+                                                <div className="w-[170px] py-3 px-1 text-xs text-indigo-700 text-right">{row.inputTax}</div>
+                                                <div className="w-[170px] py-3 pl-1 pr-5 text-xs text-indigo-700 text-right">{row.outputTax}</div>
+                                                <div className="w-[270px] py-3 px-1 text-xs">{row.description}</div>
+                                                <div className="flex-1 py-3 px-1 flex justify-center ">
                                                     <button
                                                         onClick={() => handleDeleteProduct(index)}
-                                                        className="p-2 hover:bg-gray-100 rounded-full"
+                                                        className="p-2 hover:bg-gray-100 rounded-full cursor-pointer"
                                                     >
                                                         <img src={trashIcon} alt="Delete" className="w-4 h-4" />
                                                     </button>
@@ -168,18 +156,18 @@ const EditPriceList = ({ isOpen, onClose, priceListData, onSave }) => {
                                         ))}
 
                                         {/* Add new product row */}
-                                        <div className="grid grid-cols-12 bg-gray-50 border-t border-gray-200">
-                                            <div className="col-span-1 py-3 px-4 text-xs text-center">
+                                        <div className="flex bg-gray-50 py-2">
+                                            <div className="w-[60px] py-3 px-1 text-xs text-center">
                                                 {productRows.length + 1}
                                             </div>
-                                            <div className="col-span-2 py-3 px-4 text-xs relative">
+                                            <div className="w-[120px] text-xs relative bg">
                                                 <div
                                                     className="relative"
                                                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                                                 >
                                                     <div
                                                         ref={productCodeRef}
-                                                        className="flex items-center justify-between w-full px-4 py-3 text-sm border border-gray-200 rounded-lg cursor-pointer"
+                                                        className="flex items-center justify-between w-full px-4 py-3 text-sm border border-gray-200 rounded-[8px] cursor-pointer bg-white"
                                                     >
                                                         <span className="text-gray-600">Chọn</span>
                                                         <img
@@ -189,7 +177,7 @@ const EditPriceList = ({ isOpen, onClose, priceListData, onSave }) => {
                                                         />
                                                     </div>
                                                     {isDropdownOpen && (
-                                                        <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg">
+                                                        <div className="absolute w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg">
                                                             <ul className="py-1 max-h-48 overflow-y-auto">
                                                                 <li
                                                                     className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
@@ -202,7 +190,7 @@ const EditPriceList = ({ isOpen, onClose, priceListData, onSave }) => {
                                                                         setIsDropdownOpen(false);
                                                                     }}
                                                                 >
-                                                                    123456789 - Tên sản phẩm 1
+                                                                    OP3456789
                                                                 </li>
                                                                 <li
                                                                     className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
@@ -215,90 +203,68 @@ const EditPriceList = ({ isOpen, onClose, priceListData, onSave }) => {
                                                                         setIsDropdownOpen(false);
                                                                     }}
                                                                 >
-                                                                    987654321 - Tên sản phẩm 2
+                                                                    OP98765432
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                     )}
                                                 </div>
                                             </div>
-                                            <div className="col-span-2 py-3 px-4 text-xs">
+                                            <div className="w-[150px] px-4 text-xs">
                                                 <span className="block py-3">
                                                     {newProductRow.productName || '-'}
                                                 </span>
                                             </div>
-                                            <div className="col-span-2 py-3 px-4 text-xs">
-                                                <input
-                                                    type="text"
-                                                    value={newProductRow.price}
-                                                    onChange={(e) => setNewProductRow({ ...newProductRow, price: e.target.value })}
-                                                    className="w-full px-4 py-3 text-sm text-right border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                                                    placeholder="Nhập số"
-                                                />
+
+                                            <div className="w-[220px] text-xs flex justify-end">
+                                                <div className='w-[100px]'>
+                                                    <input
+                                                        type="text"
+                                                        value={newProductRow.inputTax}
+                                                        onChange={(e) => setNewProductRow({ ...newProductRow, inputTax: e.target.value })}
+                                                        className="w-full px-4 py-3 text-sm text-right border border-gray-200 rounded-[8px] focus:outline-none focus:ring-1 focus:ring-indigo-500 bg-white"
+                                                        placeholder="Nhập số"
+                                                    />
+                                                </div>
                                             </div>
-                                            <div className="col-span-1 py-3 px-4 text-xs">
-                                                <input
-                                                    type="text"
-                                                    value={newProductRow.inputTax}
-                                                    onChange={(e) => setNewProductRow({ ...newProductRow, inputTax: e.target.value })}
-                                                    className="w-full px-4 py-3 text-sm text-right border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                                                    placeholder="Nhập số"
-                                                />
+                                            <div className='w-[170px] '>
+
                                             </div>
-                                            <div className="col-span-1 py-3 px-4 text-xs">
+                                            <div className="w-[170px] flex justify-end pr-5 text-xs">
+                                                <div className='w-[100px]'></div>
                                                 <input
                                                     type="text"
                                                     value={newProductRow.outputTax}
                                                     onChange={(e) => setNewProductRow({ ...newProductRow, outputTax: e.target.value })}
-                                                    className="w-full px-4 py-3 text-sm text-right border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                                                    className="w-full px-4 py-3 text-sm text-right border border-gray-200 rounded-[8px] focus:outline-none focus:ring-1 focus:ring-indigo-500 bg-white"
                                                     placeholder="Nhập số"
                                                 />
                                             </div>
-                                            <div className="col-span-2 py-3 px-4 text-xs">
+                                            <div className="w-[270px] text-xs">
                                                 <input
                                                     type="text"
                                                     value={newProductRow.description}
                                                     onChange={(e) => setNewProductRow({ ...newProductRow, description: e.target.value })}
-                                                    className="w-full px-4 py-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                                                    className="w-full px-4 py-3 text-sm border border-gray-200 rounded-[8px] focus:outline-none focus:ring-1 focus:ring-indigo-500 bg-white"
                                                     placeholder="Nhập nội dung"
                                                 />
                                             </div>
-                                            <div className="col-span-1 py-3 px-4 flex justify-center">
+                                            <div className="flex-1 px-1 flex justify-center">
                                                 <button
                                                     onClick={handleDeleteProduct}
-                                                    className="p-2 hover:bg-gray-100 rounded-full"
+                                                    className="p-2 hover:bg-gray-100 rounded-full cursor-pointer"
                                                 >
                                                     <img src={trashIcon} alt="Delete" className="w-4 h-4" />
                                                 </button>
                                             </div>
                                         </div>
+                                    </div>
 
-                                        {/* Add new product button */}
-                                        <div className="flex items-center justify-center py-3 bg-indigo-50  border-gray-200 cursor-pointer hover:bg-indigo-100"
-                                            onClick={handleAddProduct}>
-                                            <svg
-                                                className="w-5 h-5 text-indigo-600"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path
-                                                    d="M6 12H18"
-                                                    stroke="#6366F1"
-                                                    strokeWidth="1.5"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                />
-                                                <path
-                                                    d="M12 18V6"
-                                                    stroke="#6366F1"
-                                                    strokeWidth="1.5"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                />
-                                            </svg>
-                                            <span className="ml-2 text-sm font-semibold text-indigo-600">Thêm sản phẩm</span>
-                                        </div>
+                                    {/* Add new product button */}
+                                    <div className="flex items-center justify-center py-3 bg-indigo-50 border-t border-gray-200 cursor-pointer hover:bg-indigo-100"
+                                        onClick={handleAddProduct}>
+                                        <img src={addIcon} alt="Add" className="w-5 h-5" />
+                                        <span className="ml-2 text-sm font-semibold text-[#6366F1]">Thêm sản phẩm</span>
                                     </div>
                                 </div>
                             </div>
