@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Portal from '../../Portal';
 import Button from '../../button';
-import CloseIcon from '../../../assets/icons/close_icon.svg';
-import ArrowDownIcon from '../../../assets/icons/arrow_down_icon.svg';
+import ArrowDownIcon from '../../../assets/icons/arrow-down.svg';
 
 const Addfast = ({ isOpen, onClose, priceListCode, onSave }) => {
     const initialFormData = {
@@ -20,6 +19,7 @@ const Addfast = ({ isOpen, onClose, priceListCode, onSave }) => {
 
     const [formData, setFormData] = useState(initialFormData);
     const [errors, setErrors] = useState({});
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     useEffect(() => {
         if (priceListCode) {
@@ -87,12 +87,13 @@ const Addfast = ({ isOpen, onClose, priceListCode, onSave }) => {
                         <h2 className="text-[20px] font-bold text-[#404040]">
                             Thêm nhanh sản phẩm - Mã giá {formData.priceListCode}
                         </h2>
-                        <button
+                        {/* Nút đóng (X)*/}
+                        <div
                             onClick={onClose}
-                            className="w-5 h-5 flex items-center justify-center"
-                        >
-                            <img src={CloseIcon} alt="Close" className="w-5 h-5" />
-                        </button>
+                            className="w-4 h-4 flex items-center justify-center relative cursor-pointer">
+                            <span className="absolute w-4 h-0.5 bg-gray-500 rotate-45"></span>
+                            <span className="absolute w-4 h-0.5 bg-gray-500 -rotate-45"></span>
+                        </div>
                     </div>
 
                     {/* Body */}
@@ -157,11 +158,13 @@ const Addfast = ({ isOpen, onClose, priceListCode, onSave }) => {
                                                 <option value="PD002">PD002</option>
                                                 <option value="PD003">PD003</option>
                                             </select>
-                                            <img
-                                                src={ArrowDownIcon}
-                                                alt="Arrow Down"
-                                                className="w-5 h-5 absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none"
-                                            />
+                                            <button className='cursor-pointer'>
+                                                <img
+                                                    src={ArrowDownIcon}
+                                                    alt="Arrow Down"
+                                                    className="w-3 h-3 absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none "
+                                                />
+                                            </button>
                                         </div>
                                         {errors['product.code'] && (
                                             <span className="text-red-500 text-sm">{errors['product.code']}</span>

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import EditDeleteBox from '../../editDeleteBox';
 import DeletePopup from '../../deletePopup';
 import Addfast from './Addfast';
@@ -25,6 +25,11 @@ const PriceListTableRow = ({
     const [showAddfast, setShowAddfast] = useState(false);
     const [expanded, setExpanded] = useState(false);
     const moreButtonRef = useRef(null);
+
+    // Debug: Log when showAddfast changes
+    useEffect(() => {
+        console.log('showAddfast state changed:', showAddfast);
+    }, [showAddfast]);
 
     const handleMoreClick = (e) => {
         e.stopPropagation();
@@ -212,7 +217,10 @@ const PriceListTableRow = ({
                         {/* Add product button */}
                         <div
                             className="flex items-center justify-center py-2 bg-indigo-50 cursor-pointer hover:bg-indigo-100 border-t border-gray-200"
-                            onClick={() => setShowAddfast(true)}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setShowAddfast(true);
+                            }}
                         >
                             <div className="w-5 h-5 flex items-center justify-center text-[#6366F1]">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -240,7 +248,11 @@ const PriceListTableRow = ({
                 isOpen={showAddfast}
                 onClose={() => setShowAddfast(false)}
                 priceListCode={code}
-                onSave={(data) => console.log('Saved:', data)}
+                onSave={(data) => {
+                    console.log('Saved:', data);
+                    // Thực hiện lưu dữ liệu
+                    setShowAddfast(false);
+                }}
             />
         </div >
     );
