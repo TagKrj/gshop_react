@@ -95,6 +95,10 @@ const PriceListTableRow = ({
                     </div>
                 </div>
 
+                {/* Ảnh */}
+                <div className="flex items-center px-4 py-3 w-30 bg-accent">
+                </div>
+
                 {/* Tên bảng giá */}
                 <div className="flex items-center px-4 py-3 w-122">
                     <span className="text-xs font-normal text-gray-900">{name}</span>
