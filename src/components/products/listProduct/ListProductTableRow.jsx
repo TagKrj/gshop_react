@@ -3,6 +3,7 @@ import EditDeleteBox from '../../editDeleteBox';
 import DeletePopup from '../../deletePopup';
 import Addfast from './Addfast';
 import EditListProduct from './editListProduct';
+import AddListProduct from './AddListProduct';
 import MoreIcon from '../../../assets/icons/more.svg';
 import arrowDown from '../../../assets/icons/arrow-down-2.svg';
 import addIcon from '../../../assets/icons/add-indigo.svg';
@@ -26,6 +27,7 @@ const PriceListTableRow = ({
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
     const [showAddfast, setShowAddfast] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
+    const [showAddModal, setShowAddModal] = useState(false);
     const [expanded, setExpanded] = useState(false);
     const moreButtonRef = useRef(null);
 
@@ -37,6 +39,10 @@ const PriceListTableRow = ({
     useEffect(() => {
         console.log('showEditModal state changed:', showEditModal);
     }, [showEditModal]);
+
+    useEffect(() => {
+        console.log('showAddModal state changed:', showAddModal);
+    }, [showAddModal]);
 
     const handleMoreClick = (e) => {
         e.stopPropagation();
@@ -60,6 +66,11 @@ const PriceListTableRow = ({
         if (onEdit) {
             onEdit(id);
         }
+    };
+
+    const handleAdd = () => {
+        setShowDropdown(false);
+        setShowAddModal(true);
     };
 
     const handleDelete = () => {
@@ -276,6 +287,12 @@ const PriceListTableRow = ({
                     // Thực hiện lưu dữ liệu đã cập nhật
                     setShowEditModal(false);
                 }}
+            />
+
+            {/* Thêm sản phẩm mới Popup */}
+            <AddListProduct
+                isOpen={showAddModal}
+                onClose={() => setShowAddModal(false)}
             />
         </div >
     );

@@ -6,6 +6,7 @@ import ButtonAdd from '../../components/buttonAdd';
 import TableHeader from '../../components/products/listProduct/TableHeader';
 import ListProductTableRow from '../../components/products/listProduct/ListProductTableRow';
 import AddPrice from '../../components/products/priceList/AddPrice';
+import AddListProduct from '../../components/products/listProduct/AddListProduct';
 import FilterSupplier from '../../components/products/supplier/FilterSupplier';
 import ListFilterSupplier from '../../components/products/supplier/ListFilterSupplier';
 import Portal from '../../components/Portal';
@@ -17,6 +18,7 @@ const PriceList = () => {
     const [selectedRows, setSelectedRows] = useState([]);
     const [showAddSupplier, setShowAddSupplier] = useState(false);
     const [showAddPrice, setShowAddPrice] = useState(false);
+    const [showAddListProduct, setShowAddListProduct] = useState(false);
     const [showSupplierList, setShowSupplierList] = useState(false);
     const [supplierFilter, setSupplierFilter] = useState('');
     const [listPosition, setListPosition] = useState({ top: 0, left: 0 });
@@ -32,7 +34,7 @@ const PriceList = () => {
     };
 
     const handleAddClick = () => {
-        setShowAddPrice(true);
+        setShowAddListProduct(true);
     };
 
     const handleRowSelect = (id) => {
@@ -217,6 +219,12 @@ const PriceList = () => {
                 isOpen={showAddPrice}
                 onClose={() => setShowAddPrice(false)}
                 onSubmit={handleAddPrice}
+            />
+
+            {/* Add List Product Modal */}
+            <AddListProduct
+                isOpen={showAddListProduct}
+                onClose={() => setShowAddListProduct(false)}
             />
         </Main>
     );
