@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import EditDeleteBox from '../../editDeleteBox';
 import DeletePopup from '../../deletePopup';
 import Addfast from './Addfast';
-import EditPriceList from './EditPriceList';
+import EditListProduct from './editListProduct';
 import MoreIcon from '../../../assets/icons/more.svg';
 import arrowDown from '../../../assets/icons/arrow-down-2.svg';
 import addIcon from '../../../assets/icons/add-indigo.svg';
@@ -261,11 +261,11 @@ const PriceListTableRow = ({
                 }}
             />
 
-            {/* Chỉnh sửa bảng giá Popup */}
-            <EditPriceList
+            {/* Chỉnh sửa sản phẩm Popup */}
+            <EditListProduct
                 isOpen={showEditModal}
                 onClose={() => setShowEditModal(false)}
-                priceListData={{
+                productData={{
                     id,
                     code,
                     name,
