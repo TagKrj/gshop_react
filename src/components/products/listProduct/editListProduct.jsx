@@ -5,6 +5,7 @@ import arrowDown from '../../../assets/icons/arrow-down.svg';
 import trash from '../../../assets/icons/trash.svg';
 import addIndigo from '../../../assets/icons/add-indigo.svg';
 import fileUpload from '../../../assets/icons/file-upload.png';
+import imageIcon from '../../../assets/icons/image.svg';
 
 const EditListProduct = ({ isOpen, onClose, productData }) => {
     const [activeTab, setActiveTab] = useState('info'); // 'info' or 'upload'
@@ -100,21 +101,23 @@ const EditListProduct = ({ isOpen, onClose, productData }) => {
                                     <div className="space-y-3">
                                         <div className="grid grid-cols-2 gap-3">
                                             <div className="space-y-2">
-                                                <div className="flex">
+                                                <div className="flex h-[24px]">
                                                     <label className="text-[#737373] font-semibold text-sm">Tên sản phẩm</label>
                                                     <span className="text-[#EB3838] ml-1">*</span>
                                                 </div>
                                                 <input
                                                     type="text"
-                                                    className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-4"
+                                                    className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-3 h-[46px]"
                                                     defaultValue="Đồ chơi thông minh cho trẻ em"
                                                 />
                                             </div>
                                             <div className="space-y-2">
-                                                <label className="text-[#737373] font-semibold text-sm">Mã SKU</label>
+                                                <div className="flex h-[24px]">
+                                                    <label className="text-[#737373] font-semibold text-sm">Mã SKU</label>
+                                                </div>
                                                 <input
                                                     type="text"
-                                                    className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-4"
+                                                    className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-3 h-[46px]"
                                                     defaultValue="PD001"
                                                 />
                                             </div>
@@ -122,13 +125,13 @@ const EditListProduct = ({ isOpen, onClose, productData }) => {
 
                                         <div className="grid grid-cols-2 gap-3">
                                             <div className="space-y-2">
-                                                <div className="flex">
+                                                <div className="flex h-[24px]">
                                                     <label className="text-[#737373] font-semibold text-sm">Loại sản phẩm</label>
                                                     <span className="text-[#EB3838] ml-1">*</span>
                                                 </div>
                                                 <div className="relative">
                                                     <select
-                                                        className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-4 appearance-none bg-white"
+                                                        className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-3 h-[46px] appearance-none bg-white"
                                                         defaultValue="Loại sản phẩm 1"
                                                     >
                                                         <option>Loại sản phẩm 1</option>
@@ -143,10 +146,12 @@ const EditListProduct = ({ isOpen, onClose, productData }) => {
                                                 </div>
                                             </div>
                                             <div className="space-y-2">
-                                                <label className="text-[#737373] font-semibold text-sm">Ngưỡng cảnh báo tồn kho (đơn vị)</label>
+                                                <div className="flex h-[24px]">
+                                                    <label className="text-[#737373] font-semibold text-sm">Ngưỡng cảnh báo tồn kho (đơn vị)</label>
+                                                </div>
                                                 <input
                                                     type="number"
-                                                    className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-4 text-right"
+                                                    className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-3 h-[46px] text-right"
                                                     defaultValue="100"
                                                 />
                                             </div>
@@ -154,18 +159,22 @@ const EditListProduct = ({ isOpen, onClose, productData }) => {
 
                                         <div className="grid grid-cols-2 gap-3">
                                             <div className="space-y-2">
-                                                <label className="text-[#737373] font-semibold text-sm">Thuế suất đầu vào (%)</label>
+                                                <div className="flex h-[24px]">
+                                                    <label className="text-[#737373] font-semibold text-sm">Thuế suất đầu vào (%)</label>
+                                                </div>
                                                 <input
                                                     type="number"
-                                                    className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-4 text-right"
+                                                    className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-3 h-[46px] text-right"
                                                     defaultValue="8"
                                                 />
                                             </div>
                                             <div className="space-y-2">
-                                                <label className="text-[#737373] font-semibold text-sm">Thuế suất đầu ra (%)</label>
+                                                <div className="flex h-[24px]">
+                                                    <label className="text-[#737373] font-semibold text-sm">Thuế suất đầu ra (%)</label>
+                                                </div>
                                                 <input
                                                     type="number"
-                                                    className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-4 text-right"
+                                                    className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-3 h-[46px] text-right"
                                                     defaultValue="10"
                                                 />
                                             </div>
@@ -173,13 +182,13 @@ const EditListProduct = ({ isOpen, onClose, productData }) => {
 
                                         <div className="grid grid-cols-2 gap-3">
                                             <div className="space-y-2">
-                                                <div className="flex">
+                                                <div className="flex h-[24px]">
                                                     <label className="text-[#737373] font-semibold text-sm">Đơn vị tính</label>
                                                     <span className="text-[#EB3838] ml-1">*</span>
                                                 </div>
                                                 <div className="relative">
                                                     <select
-                                                        className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-4 appearance-none bg-white"
+                                                        className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-3 h-[46px] appearance-none bg-white"
                                                         defaultValue="Hộp"
                                                     >
                                                         <option>Hộp</option>
@@ -194,10 +203,12 @@ const EditListProduct = ({ isOpen, onClose, productData }) => {
                                                 </div>
                                             </div>
                                             <div className="space-y-2">
-                                                <label className="text-[#737373] font-semibold text-sm">Đơn vị/thùng</label>
+                                                <div className="flex h-[24px]">
+                                                    <label className="text-[#737373] font-semibold text-sm">Đơn vị/thùng</label>
+                                                </div>
                                                 <input
                                                     type="number"
-                                                    className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-4 text-right"
+                                                    className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-3 h-[46px] text-right"
                                                     defaultValue="12"
                                                 />
                                             </div>
@@ -294,27 +305,33 @@ const EditListProduct = ({ isOpen, onClose, productData }) => {
                                     <h3 className="text-[#6366F1] font-semibold mb-6">Kích thước sản phẩm</h3>
                                     <div className="grid grid-cols-3 gap-3">
                                         <div className="space-y-2">
-                                            <label className="text-[#737373] font-semibold text-sm">Dài (cm)</label>
+                                            <div className="flex h-[24px]">
+                                                <label className="text-[#737373] font-semibold text-sm">Dài (cm)</label>
+                                            </div>
                                             <input
                                                 type="number"
-                                                className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-4 text-right bg-gray-50"
+                                                className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-3 h-[46px] text-right bg-gray-50"
                                                 defaultValue="0"
                                                 disabled
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-[#737373] font-semibold text-sm">Rộng (cm)</label>
+                                            <div className="flex h-[24px]">
+                                                <label className="text-[#737373] font-semibold text-sm">Rộng (cm)</label>
+                                            </div>
                                             <input
                                                 type="number"
-                                                className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-4 text-right"
+                                                className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-3 h-[46px] text-right"
                                                 defaultValue="0"
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-[#737373] font-semibold text-sm">Cao (cm)</label>
+                                            <div className="flex h-[24px]">
+                                                <label className="text-[#737373] font-semibold text-sm">Cao (cm)</label>
+                                            </div>
                                             <input
                                                 type="number"
-                                                className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-4 text-right"
+                                                className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-3 h-[46px] text-right"
                                                 defaultValue="0"
                                             />
                                         </div>
@@ -357,11 +374,8 @@ const EditListProduct = ({ isOpen, onClose, productData }) => {
                                                 className="flex items-center justify-between p-3 border border-[#F5F5F5] rounded-[8px] bg-[#FAFAFA]"
                                             >
                                                 <div className="flex items-center gap-3">
-                                                    <div className="w-[30px] h-[30px] flex items-center justify-center border border-[#DBDEE0] rounded-md">
-                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M21.98 8.71C21.9 8 21.64 7.35 21.21 6.82C20.33 5.73 18.85 5.54 16.68 5.97C15.46 4.58 14.57 4 12.98 4H11.02C9.43 4 8.54 4.58 7.32 5.97C5.15 5.54 3.67 5.73 2.79 6.82C1.43 8.51 2.23 11.38 4.66 14.47C4.37 15.06 4.21 15.71 4.2 16.37C4.15 18.43 5.8 20 8.2 20H15.8C18.2 20 19.85 18.43 19.8 16.37C19.79 15.71 19.63 15.06 19.34 14.47C20.8 12.68 21.63 10.92 21.98 9.35C22.2 8.49 22.16 8.76 21.98 8.71Z" stroke="#8B8C99" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                                            <path d="M7.5 14C9.98528 14 12 11.9853 12 9.5C12 7.01472 9.98528 5 7.5 5C5.01472 5 3 7.01472 3 9.5C3 11.9853 5.01472 14 7.5 14Z" stroke="#8B8C99" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                                        </svg>
+                                                    <div className="w-[30px] h-[30px] flex items-center justify-center border border-[#DBDEE0] rounded-[6px]">
+                                                        <img src={imageIcon} alt="Image" className="w-6 h-6" />
                                                     </div>
                                                     <span className="font-semibold text-sm text-[#404040]">{file.name}</span>
                                                 </div>
