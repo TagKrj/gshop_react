@@ -9,6 +9,8 @@ import imageIcon from '../../../assets/icons/image.svg';
 import excelIcon from '../../../assets/icons/filetype-excel.png';
 import importIcon from '../../../assets/icons/import.svg';
 import Button from '../../button';
+import SelectOption from './selectOption';
+import { mockSelectOptions } from '../../../constants/listProductData';
 
 const EditListProduct = ({ isOpen, onClose, productData }) => {
     const [activeTab, setActiveTab] = useState('upload'); // 'info' or 'upload'
@@ -20,6 +22,7 @@ const EditListProduct = ({ isOpen, onClose, productData }) => {
     ]);
     const [uploadedFiles, setUploadedFiles] = useState([]);
     const [uploadedExcelFiles, setUploadedExcelFiles] = useState([]);
+    const [selectedUnit, setSelectedUnit] = useState({ value: 'UN01', label: 'UN01 - Hộp' });
     const fileInputRef = useRef(null);
 
     const handleTabChange = (tab) => {
@@ -275,18 +278,12 @@ const EditListProduct = ({ isOpen, onClose, productData }) => {
                                                         <span className="text-[#EB3838] ml-1">*</span>
                                                     </div>
                                                     <div className="relative">
-                                                        <select
-                                                            className="w-full border border-[#E5E5E5] rounded-[8px] px-4 py-3 h-[50px] appearance-none bg-white focus:outline-none focus:ring-1 focus:ring-[#6366F1] focus:border-[#6366F1]"
-                                                            defaultValue="Hộp"
-                                                        >
-                                                            <option>Hộp</option>
-                                                            <option>Cái</option>
-                                                            <option>Thùng</option>
-                                                        </select>
-                                                        <img
-                                                            src={arrowDown}
-                                                            alt="Arrow"
-                                                            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4"
+                                                        <SelectOption
+                                                            options={mockSelectOptions}
+                                                            onSelect={setSelectedUnit}
+                                                            placeholder="Chọn đơn vị tính"
+                                                            selectedOption={selectedUnit}
+                                                            width="100%"
                                                         />
                                                     </div>
                                                 </div>

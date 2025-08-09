@@ -210,3 +210,11 @@ export const mockProductListData = [
         updatedBy: "Nguyễn Thị K"
     }
 ];
+
+
+export const mockSelectOptions = [
+    { value: "UN01", label: "UN01 - Hộp" },
+    { value: "UN02", label: "UN02 - Cái" },
+    { value: "UN03", label: "UN03 - Bộ" },
+    { value: "UN04", label: "UN04 - Chiếc" }
+];
