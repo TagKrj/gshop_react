@@ -5,7 +5,7 @@ import ButtonFilter from '../../components/buttonFilter';
 import ButtonAdd from '../../components/buttonAdd';
 import TableHeader from '../../components/products/priceList/TableHeader';
 import PriceListTableRow from '../../components/products/priceList/PriceListTableRow';
-import AddEditTypeProducts from '../../components/products/typeProducts/addEditTypeProducts';
+import AddPrice from '../../components/products/priceList/AddPrice';
 import FilterSupplier from '../../components/products/supplier/FilterSupplier';
 import ListFilterSupplier from '../../components/products/supplier/ListFilterSupplier';
 import Portal from '../../components/Portal';
@@ -16,7 +16,7 @@ const PriceList = () => {
     const [searchValue, setSearchValue] = useState('');
     const [selectedRows, setSelectedRows] = useState([]);
     const [showAddSupplier, setShowAddSupplier] = useState(false);
-    const [showAddEditTypeProducts, setShowAddEditTypeProducts] = useState(false);
+    const [showAddPrice, setShowAddPrice] = useState(false);
     const [showSupplierList, setShowSupplierList] = useState(false);
     const [supplierFilter, setSupplierFilter] = useState('');
     const [listPosition, setListPosition] = useState({ top: 0, left: 0 });
@@ -32,7 +32,7 @@ const PriceList = () => {
     };
 
     const handleAddClick = () => {
-        setShowAddEditTypeProducts(true);
+        setShowAddPrice(true);
     };
 
     const handleRowSelect = (id) => {
@@ -47,16 +47,12 @@ const PriceList = () => {
         console.log(`Toggle row ${id} to ${isActive ? 'active' : 'inactive'}`);
     };
 
-    const handleAddTypeProduct = async (formData) => {
-        console.log('Adding new type product:', formData);
-        // Ở đây bạn sẽ thêm logic để gửi dữ liệu lên server
-        // Giả lập xử lý bất đồng bộ
+    const handleAddPrice = async (formData) => {
+        console.log('Adding new price list:', formData);
+        // Xử lý thêm mới bảng giá
         return new Promise((resolve) => {
             setTimeout(() => {
-                // Nếu thành công
                 resolve();
-                // Nếu có lỗi
-                // throw new Error('Thông tin loại sản phẩm đã tồn tại!');
             }, 500);
         });
     };
@@ -216,11 +212,11 @@ const PriceList = () => {
             {/* Floating Add Button */}
             <ButtonAdd onClick={handleAddClick} />
 
-            {/* Add/Edit Type Products Modal */}
-            <AddEditTypeProducts
-                isOpen={showAddEditTypeProducts}
-                onClose={() => setShowAddEditTypeProducts(false)}
-                onSubmit={handleAddTypeProduct}
+            {/* Add Price Modal */}
+            <AddPrice
+                isOpen={showAddPrice}
+                onClose={() => setShowAddPrice(false)}
+                onSubmit={handleAddPrice}
             />
         </Main>
     );
