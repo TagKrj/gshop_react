@@ -101,12 +101,12 @@ const EditListProduct = ({ isOpen, onClose, productData }) => {
 
     return (
         <Portal>
-            <div className="fixed inset-0 bg-black bg-opacity-25 flex items-center justify-center z-50">
+            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
                 <div className="bg-white rounded-xl shadow-lg w-[1127px] max-h-[90vh] flex flex-col">
                     {/* Header */}
                     <div className="flex justify-between items-center p-6">
                         <h2 className="text-xl font-bold text-[#404040]">Chỉnh sửa sản phẩm - Mã PD001</h2>
-                        <button onClick={onClose} className="w-5 h-5">
+                        <button onClick={onClose} className="w-5 h-5 cursor-pointer">
                             <img src={closeIcon} alt="Close" />
                         </button>
                     </div>
@@ -114,13 +114,13 @@ const EditListProduct = ({ isOpen, onClose, productData }) => {
                     {/* Tabs */}
                     <div className="flex border-b border-[#F5F5F5] px-3">
                         <button
-                            className={`px-3 py-2 font-semibold text-sm ${activeTab === 'upload' ? 'text-[#404040] border-b-2 border-[#2E319E] cursor-pointer' : 'text-[#737373]'}`}
+                            className={`px-3 py-2 font-semibold text-sm cursor-pointer ${activeTab === 'upload' ? 'text-[#404040] border-b-2 border-[#2E319E] ' : 'text-[#737373]'}`}
                             onClick={() => handleTabChange('upload')}
                         >
                             Tải lên file
                         </button>
                         <button
-                            className={`px-3 py-2 font-semibold text-sm ${activeTab === 'info' ? 'text-[#404040] border-b-2 border-[#2E319E] cursor-pointer' : 'text-[#737373]'}`}
+                            className={`px-3 py-2 font-semibold text-sm cursor-pointer ${activeTab === 'info' ? 'text-[#404040] border-b-2 border-[#2E319E] ' : 'text-[#737373]'}`}
                             onClick={() => handleTabChange('info')}
                         >
                             Nhập thông tin
