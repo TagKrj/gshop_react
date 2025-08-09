@@ -23,23 +23,52 @@ const TableHeader = ({
                 </div>
             </div>
 
-            {/* Tên bảng giá */}
-            <div className="flex items-center px-4 py-3 w-122">
-                <span className="text-xs font-normal text-gray-500">Tên bảng giá</span>
+            {/* Ảnh */}
+            <div className="flex items-center px-4 py-3 w-30 bg-accent">
             </div>
 
-            {/* Mã bảng giá*/}
-            <div className="flex items-center flex-1 px-4 py-3 ">
-                <span className="text-xs font-normal text-gray-500">Mã bảng giá</span>
+            {/* Mã SKU */}
+            <div className="flex items-center px-4 py-3 w-40 bg-amber-200">
+                <span className="text-xs font-normal text-gray-500">Mã SKU</span>
             </div>
 
-            {/* Ngày tạo */}
-            <div className="flex items-center flex-1 px-4 py-3 ">
-                <span className="text-xs font-normal text-gray-500">Ngày tạo</span>
+            {/* Tên sản phẩm*/}
+            <div className="flex items-center px-4 py-3 w-40 bg-accent-hover ">
+                <span className="text-xs font-normal text-gray-500">Tên sản phẩm</span>
             </div>
 
-            {/* Cập nhật lần cuối */}
-            <div className="flex items-center px-4 py-3 w-100 ">
+            {/* Loại sản phẩm */}
+            <div className="flex items-center px-4 py-3 w-50 bg-amber-300 ">
+                <span className="text-xs font-normal text-gray-500">Loại sản phẩm</span>
+            </div>
+
+            {/* Thuế suất đầu vào (%) */}
+            <div className="flex items-center px-4 py-3 w-45 bg-amber-200">
+                <span className="text-xs font-normal text-gray-500">Thuế suất đầu vào (%)</span>
+            </div>
+
+            {/* Thuế suất đầu ra (%*/}
+            <div className="flex items-center px-4 py-3 w-40 bg-amber-300">
+                <span className="text-xs font-normal text-gray-500">Thuế suất đầu ra (%)</span>
+            </div>
+
+            {/* Đơn vị tính */}
+            <div className="flex items-center px-4 py-3 w-25 bg-amber-700">
+                <span className="text-xs font-normal text-gray-500">Đơn vị tính</span>
+            </div>
+
+            {/* Đơn vị/thùng */}
+            <div className="flex items-center px-4 py-3 ">
+                <span className="text-xs font-normal text-gray-500">Đơn vị/thùng</span>
+            </div>
+
+            {/* Ngưỡng cảnh báo tồn kho (đơn vị) */}
+            <div className="flex items-center px-4 py-3 w-40 bg-amber-500">
+                <span className="text-xs font-normal text-gray-500 text-end ">Ngưỡng cảnh báo tồn kho (đơn vị)</span>
+            </div>
+
+            {/* Cập nhật lần cuối*/}
+            <div className="flex items-center px-4 py-3 ">
                 <span className="text-xs font-normal text-gray-500">Cập nhật lần cuối</span>
             </div>
 
