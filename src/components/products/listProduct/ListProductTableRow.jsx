@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import EditDeleteBox from '../../editDeleteBox';
 import DeletePopup from '../../deletePopup';
-import Addfast from './Addfast';
 import EditListProduct from './editListProduct';
 import AddListProduct from './AddListProduct';
+import DetailListPrice from './detailListPrice';
 import MoreIcon from '../../../assets/icons/more.svg';
 import arrowDown from '../../../assets/icons/arrow-down-2.svg';
-import addIcon from '../../../assets/icons/add-indigo.svg';
+import eyeIcon from '../../../assets/icons/eye.svg';
 
 const ListProductTableRow = ({
     id,
@@ -47,6 +47,7 @@ const ListProductTableRow = ({
     const [showAddfast, setShowAddfast] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showAddModal, setShowAddModal] = useState(false);
+    const [showDetailPrice, setShowDetailPrice] = useState(false);
     const [expanded, setExpanded] = useState(false);
     const moreButtonRef = useRef(null);
 
@@ -222,72 +223,64 @@ const ListProductTableRow = ({
             {
                 expanded && (
                     <div className="rounded-b-[8px] bg-white mt-0 mb-2 overflow-hidden border border-[#E5E5E5] border-t-0">
-                        {/* Header */}
-                        <div className="flex items-center bg-[#F3F4F6] px-3">
-                            <div className="w-12 px-4 py-3 text-center">
-                                <span className="text-xs font-medium text-gray-500">STT</span>
-                            </div>
-                            <div className="px-4 py-3 w-[120px]">
-                                <span className="text-xs font-medium text-gray-500">Mã sản phẩm</span>
-                            </div>
-                            <div className="px-4 py-3 w-[150px]">
-                                <span className="text-xs font-medium text-gray-500">Tên sản phẩm</span>
-                            </div>
-                            <div className="px-4 py-3 text-right w-[140px]">
-                                <span className="text-xs font-medium text-gray-500">Giá bán (VND)</span>
-                            </div>
-                            <div className="px-4 py-3 text-right w-[140px]">
-                                <span className="text-xs font-medium text-gray-500">Thuế suất đầu vào (%)</span>
-                            </div>
-                            <div className="px-4 py-3 text-right w-[140px]">
-                                <span className="text-xs font-medium text-gray-500">Thuế suất đầu ra (%)</span>
-                            </div>
-                            <div className="flex-1 px-4 py-3">
-                                <span className="text-xs font-medium text-gray-500">Mô tả</span>
-                            </div>
-                        </div>
+                        {/* Chi tiết sản phẩm */}
+                        <div className="flex flex-row flex-wrap items-start gap-3 p-6">
+                            {/* Cột 1: Dài + Giá sản phẩm */}
+                            <div className=" flex-1 ">
+                                {/* Dài (cm) */}
+                                <div className="flex flex-col gap-1 mb-4">
+                                    <span className="text-[13px] font-normal text-[#737373]">Dài (cm)</span>
+                                    <span className="text-[16px] font-normal text-[#161413]">{length || 0}</span>
+                                </div>
 
-                        {/* Product rows - chỉ phần này scroll */}
-                        <div className="max-h-64 overflow-y-auto">
-                            {products.map((product, index) => (
-                                <div key={index} className="flex items-center bg-white px-3">
-                                    <div className="w-12 px-4 py-3 text-center">
-                                        <span className="text-xs font-medium text-gray-900">{index + 1}</span>
-                                    </div>
-                                    <div className="px-4 py-3 w-[120px]">
-                                        <span className="text-xs font-medium text-gray-900">{product.productCode}</span>
-                                    </div>
-                                    <div className="px-4 py-3 w-[150px]">
-                                        <span className="text-xs font-medium text-gray-900">{product.productName}</span>
-                                    </div>
-                                    <div className="px-4 py-3 text-right w-[140px]">
-                                        <span className="text-xs font-medium text-indigo-700">
-                                            {product.price?.toLocaleString?.()}
-                                        </span>
-                                    </div>
-                                    <div className="px-4 py-3 text-right w-[140px]">
-                                        <span className="text-xs font-medium text-indigo-700">{product.inputTax}</span>
-                                    </div>
-                                    <div className="px-4 py-3 text-right w-[140px]">
-                                        <span className="text-xs font-medium text-indigo-700">{product.outputTax}</span>
-                                    </div>
-                                    <div className="flex-1 px-4 py-3">
-                                        <span className="text-xs font-medium text-gray-900">{product.description}</span>
+                                {/* Giá sản phẩm */}
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-[13px] font-normal text-[#737373]">Giá sản phẩm</span>
+                                    <div
+                                        className="flex items-center gap-2 cursor-pointer"
+                                        onClick={() => setShowDetailPrice(true)}
+                                    >
+                                        <span className="text-[14px] font-semibold text-[#2E319E]">Xem chi tiết</span>
+                                        <img src={eyeIcon} alt="Xem chi tiết" className="w-4 h-4" />
                                     </div>
                                 </div>
-                            ))}
-                        </div>
+                            </div>
 
-                        {/* Add product button */}
-                        <div
-                            className="flex items-center justify-center py-2 bg-white cursor-pointer hover:bg-gray-50"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                setShowAddfast(true);
-                            }}
-                        >
-                            <img src={addIcon} alt="Add" className="w-5 h-5" />
-                            <span className="ml-2 text-sm font-medium text-[#6366F1]">Thêm sản phẩm</span>
+                            {/* Cột 2: Rộng + Hình ảnh sản phẩm */}
+                            <div className=" flex-1 ">
+                                {/* Rộng (cm) */}
+                                <div className="flex flex-col gap-1 mb-4">
+                                    <span className="text-[13px] font-normal text-[#737373]">Rộng (cm)</span>
+                                    <span className="text-[16px] font-normal text-[#161413]">{width || 0}</span>
+                                </div>
+
+                                {/* Hình ảnh sản phẩm */}
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-[13px] font-normal text-[#737373]">Hình ảnh sản phẩm</span>
+                                    <div className="flex flex-row gap-2 mt-1">
+                                        {nameImgProduct && nameImgProduct.length > 0 ? (
+                                            nameImgProduct.map(imgObj => (
+                                                <div
+                                                    key={imgObj.id}
+                                                    className="bg-[#F3F4F6] border border-[#F5F5F5] rounded-[99px] px-3 py-2"
+                                                >
+                                                    <span className="text-[13px] font-semibold text-[#2E319E]">{imgObj.name}</span>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <span className="text-xs text-gray-400">Không có ảnh</span>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Cột 3: Cao */}
+                            <div className=" flex-1 ">
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-[13px] font-normal text-[#737373]">Cao (cm)</span>
+                                    <span className="text-[16px] font-normal text-[#161413]">{height || 0}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 )
@@ -302,15 +295,32 @@ const ListProductTableRow = ({
                 onConfirm={handleConfirmDelete}
             />
 
-            {/* Chi tiết sản phẩm Popup */}
-            <Addfast
-                isOpen={showAddfast}
-                onClose={() => setShowAddfast(false)}
-                priceListCode={code}
-                onSave={(data) => {
-                    console.log('Saved:', data);
-                    // Thực hiện lưu dữ liệu
-                    setShowAddfast(false);
+            {/* Chi tiết giá sản phẩm */}
+            <DetailListPrice
+                isOpen={showDetailPrice}
+                onClose={() => setShowDetailPrice(false)}
+                productData={{
+                    id,
+                    code,
+                    name,
+                    category: productTypeName,
+                    inputTax: InputTaxRate,
+                    outputTax: OutputTaxRate,
+                    unit,
+                    unitsPerBox: unitPerBox,
+                    lastUpdated: {
+                        date: lastUpdate,
+                        by: updatedBy
+                    },
+                    pricingList: priceList?.map(price => ({
+                        code: price.code || 'PC001',
+                        name: price.name || 'Bảng giá mặc định',
+                        price: price.price || 0
+                    })) || []
+                }}
+                onSave={(updatedData) => {
+                    console.log('Chi tiết giá sản phẩm:', updatedData);
+                    setShowDetailPrice(false);
                 }}
             />
 

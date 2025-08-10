@@ -3,28 +3,9 @@ import Portal from '../../Portal';
 import CloseIcon from '../../../assets/icons/close.svg';
 import EditIcon from '../../../assets/icons/edit-2.svg';
 
-const Addfast = ({ isOpen, onClose, productData, onSave }) => {
-    // Nếu không có dữ liệu sản phẩm, khởi tạo một đối tượng rỗng
-    const initialData = productData || {
-        id: '',
-        code: '',
-        name: '',
-        category: 'Loại sản phẩm 1',
-        inputTax: 8,
-        outputTax: 10,
-        unit: 'Hộp',
-        unitsPerBox: 12,
-        lastUpdated: {
-            date: '12/12/2025 12:00',
-            by: 'Vũ Lê'
-        },
-        pricingList: [
-            { code: 'PC001', name: 'Bảng giá bán lẻ 1', price: 120000 },
-            { code: 'PC001', name: 'Bảng giá bán lẻ 2', price: 120000 },
-            { code: 'PC002', name: 'Bảng giá bán buôn 1', price: 90000 },
-            { code: 'PC002', name: 'Bảng giá bán buôn 2', price: 100000 }
-        ]
-    };
+const DetailListPrice = ({ isOpen, onClose, productData, onSave }) => {
+    // Sử dụng trực tiếp dữ liệu từ productData
+    const initialData = productData || {};
 
     const [formData, setFormData] = useState(initialData);
 
@@ -136,15 +117,23 @@ const Addfast = ({ isOpen, onClose, productData, onSave }) => {
 
                                 {/* List */}
                                 <div>
-                                    {formData.pricingList?.map((price, index) => (
-                                        <div key={index} className="flex bg-[#FAFAFA]">
-                                            <div className="w-[120px] h-[44px] px-4 py-3 text-[14px] text-[#161413]">{price.code}</div>
-                                            <div className="flex-1 h-[44px] px-4 py-3 text-[14px] text-[#161413]">{price.name}</div>
-                                            <div className="w-[166px] h-[44px] px-4 py-3 text-right text-[14px] text-[#2E319E]">
-                                                {price.price.toLocaleString()}
+                                    {formData.pricingList?.length > 0 ? (
+                                        formData.pricingList.map((price, index) => (
+                                            <div key={index} className="flex bg-[#FAFAFA]">
+                                                <div className="w-[120px] h-[44px] px-4 py-3 text-[14px] text-[#161413]">{price.code}</div>
+                                                <div className="flex-1 h-[44px] px-4 py-3 text-[14px] text-[#161413]">{price.name}</div>
+                                                <div className="w-[166px] h-[44px] px-4 py-3 text-right text-[14px] text-[#2E319E]">
+                                                    {(price.price || 0).toLocaleString()}
+                                                </div>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <div className="flex bg-[#FAFAFA]">
+                                            <div className="w-full px-4 py-3 text-center text-[14px] text-gray-500">
+                                                Không có dữ liệu
                                             </div>
                                         </div>
-                                    ))}
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -172,4 +161,4 @@ const Addfast = ({ isOpen, onClose, productData, onSave }) => {
     );
 };
 
-export default Addfast;
+export default DetailListPrice;
