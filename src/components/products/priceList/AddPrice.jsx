@@ -4,6 +4,7 @@ import trashIcon from '../../../assets/icons/trash.svg';
 import addIcon from '../../../assets/icons/add-indigo.svg';
 import Portal from '../../Portal';
 import Button from '../../button';
+import { useClickOutside, renderCloseButton } from '../../../utils/popupHelpers.jsx';
 
 const EditPriceList = ({ isOpen, onClose, priceListData, onSave }) => {
     const [name, setName] = useState(priceListData?.name || '');
@@ -52,21 +53,19 @@ const EditPriceList = ({ isOpen, onClose, priceListData, onSave }) => {
         setProductRows([]);
     };
 
+    // Sử dụng hook useClickOutside để xử lý click ra ngoài
+    const modalRef = useClickOutside(onClose, isOpen);
+
     if (!isOpen) return null;
 
     return (
         <Portal>
             <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-900/50 ">
-                <div className="bg-white rounded-xl shadow-lg w-[1260px] max-h-[90vh] flex flex-col">
+                <div ref={modalRef} className="bg-white rounded-xl shadow-lg w-[1260px] max-h-[90vh] flex flex-col">
                     {/* Header */}
                     <div className="flex items-center justify-between px-6 py-6">
                         <h2 className="text-xl font-bold text-gray-800">Tạo bảng giá</h2>
-                        <div
-                            onClick={onClose}
-                            className="w-4 h-4 flex items-center justify-center relative cursor-pointer">
-                            <span className="absolute w-4 h-0.5 bg-gray-500 rotate-45"></span>
-                            <span className="absolute w-4 h-0.5 bg-gray-500 -rotate-45"></span>
-                        </div>
+                        {renderCloseButton(onClose)}
                     </div>
 
                     {/* Body */}

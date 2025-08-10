@@ -11,6 +11,7 @@ import importIcon from '../../../assets/icons/import.svg';
 import Button from '../../button';
 import SelectOption from './selectOption';
 import { mockSelectOptions } from '../../../constants/listProductData';
+import { useClickOutside, renderCloseButton } from '../../../utils/popupHelpers.jsx';
 
 const AddListProduct = ({ isOpen, onClose }) => {
     const [activeTab, setActiveTab] = useState('info'); // 'info' or 'upload'
@@ -100,18 +101,19 @@ const AddListProduct = ({ isOpen, onClose }) => {
         setUploadedExcelFiles(uploadedExcelFiles.filter(file => file.id !== id));
     };
 
+    // Sử dụng hook useClickOutside để xử lý click ra ngoài
+    const modalRef = useClickOutside(onClose, isOpen);
+
     if (!isOpen) return null;
 
     return (
         <Portal>
             <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-                <div className="bg-white rounded-xl shadow-lg w-[1127px] max-h-[90vh] flex flex-col">
+                <div ref={modalRef} className="bg-white rounded-xl shadow-lg w-[1127px] max-h-[90vh] flex flex-col">
                     {/* Header */}
                     <div className="flex justify-between items-center p-6">
                         <h2 className="text-xl font-bold text-[#404040]">Tạo sản phẩm</h2>
-                        <button onClick={onClose} className="w-5 h-5 cursor-pointer">
-                            <img src={closeIcon} alt="Close" />
-                        </button>
+                        {renderCloseButton(onClose)}
                     </div>
 
                     {/* Tabs */}

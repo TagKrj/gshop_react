@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Portal from '../../Portal';
 import Button from '../../button';
 import ArrowDownIcon from '../../../assets/icons/arrow-down.svg';
+import { useClickOutside, renderCloseButton } from '../../../utils/popupHelpers.jsx';
 
 const Addfast = ({ isOpen, onClose, priceListCode, onSave }) => {
     const initialFormData = {
@@ -76,24 +77,21 @@ const Addfast = ({ isOpen, onClose, priceListCode, onSave }) => {
         }
     };
 
+    // Sử dụng hook useClickOutside để xử lý click ra ngoài
+    const modalRef = useClickOutside(onClose, isOpen);
+
     if (!isOpen) return null;
 
     return (
         <Portal>
             <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50">
-                <div className="bg-white rounded-[12px] shadow-lg w-[756px] max-h-[90vh] flex flex-col">
+                <div ref={modalRef} className="bg-white rounded-[12px] shadow-lg w-[756px] max-h-[90vh] flex flex-col">
                     {/* Header */}
                     <div className="flex justify-between items-center p-6">
                         <h2 className="text-[20px] font-bold text-[#404040]">
                             Thêm nhanh sản phẩm - Mã giá {formData.priceListCode}
                         </h2>
-                        {/* Nút đóng (X)*/}
-                        <div
-                            onClick={onClose}
-                            className="w-4 h-4 flex items-center justify-center relative cursor-pointer">
-                            <span className="absolute w-4 h-0.5 bg-gray-500 rotate-45"></span>
-                            <span className="absolute w-4 h-0.5 bg-gray-500 -rotate-45"></span>
-                        </div>
+                        {renderCloseButton(onClose)}
                     </div>
 
                     {/* Body */}

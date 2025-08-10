@@ -5,8 +5,9 @@ import excelIcon from '../../../assets/icons/filetype-excel.png';
 import trashIcon from '../../../assets/icons/trash.svg';
 import Button from '../../button';
 import Portal from '../../Portal';
+import { useClickOutside, renderCloseButton } from '../../../utils/popupHelpers.jsx';
 
-const AddSupplier = ({ isOpen, onClose }) => {
+const EditSupplier = ({ isOpen, onClose }) => {
     const [activeTab, setActiveTab] = useState('upload'); // 'upload' or 'manual'
     const [formData, setFormData] = useState({
         name: '',
@@ -19,23 +20,9 @@ const AddSupplier = ({ isOpen, onClose }) => {
     const [files, setFiles] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const fileInputRef = useRef(null);
-    const modalRef = useRef(null);
 
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (modalRef.current && !modalRef.current.contains(event.target)) {
-                onClose();
-            }
-        };
-
-        if (isOpen) {
-            document.addEventListener('mousedown', handleClickOutside);
-        }
-
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [isOpen, onClose]);
+    // Sử dụng hook useClickOutside để xử lý click ra ngoài
+    const modalRef = useClickOutside(onClose, isOpen);
 
     if (!isOpen) return null;
 
@@ -128,16 +115,7 @@ const AddSupplier = ({ isOpen, onClose }) => {
                     {/* Header */}
                     <div className="flex items-center justify-between py-6">
                         <h2 className="text-xl font-bold text-gray-700">Chỉnh sửa nhà cung cấp</h2>
-                        <button
-                            onClick={onClose}
-                            className="w-6 h-6 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 cursor-pointer"
-                        >
-                            {/* Nút đóng (X)*/}
-                            <div className="w-4 h-4 flex items-center justify-center relative">
-                                <span className="absolute w-4 h-0.5 bg-gray-500 rotate-45"></span>
-                                <span className="absolute w-4 h-0.5 bg-gray-500 -rotate-45"></span>
-                            </div>
-                        </button>
+                        {renderCloseButton(onClose)}
                     </div>
 
                     {/* Tabs */}
@@ -337,4 +315,4 @@ const AddSupplier = ({ isOpen, onClose }) => {
     );
 };
 
-export default AddSupplier;
+export default EditSupplier;

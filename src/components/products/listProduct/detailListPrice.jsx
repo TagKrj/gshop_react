@@ -3,6 +3,7 @@ import Portal from '../../Portal';
 import CloseIcon from '../../../assets/icons/close_icon.svg';
 import EditIcon from '../../../assets/icons/edit-2.svg';
 import Button from '../../button';
+import { useClickOutside, renderCloseButton } from '../../../utils/popupHelpers.jsx';
 
 const DetailListPrice = ({ isOpen, onClose, productData, onSave }) => {
     // Sử dụng trực tiếp dữ liệu từ productData
@@ -24,23 +25,21 @@ const DetailListPrice = ({ isOpen, onClose, productData, onSave }) => {
         onClose();
     };
 
+    // Sử dụng hook useClickOutside để xử lý click ra ngoài
+    const modalRef = useClickOutside(onClose, isOpen);
+
     if (!isOpen) return null;
 
     return (
         <Portal>
             <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-                <div className="bg-white rounded-[12px] shadow-lg w-[1192px] max-h-[90vh] flex flex-col">
+                <div ref={modalRef} className="bg-white rounded-[12px] shadow-lg w-[1192px] max-h-[90vh] flex flex-col">
                     {/* Header */}
                     <div className="flex justify-between items-center px-6 py-6 ">
                         <h2 className="text-[20px] font-bold text-[#404040]">
                             Chi tiết bảng giá - Sản phẩm {formData.code}
                         </h2>
-                        <button
-                            onClick={onClose}
-                            className="w-3 h-3 flex items-center justify-center cursor-pointer"
-                        >
-                            <img src={CloseIcon} alt="Close" className="w-5 h-5" />
-                        </button>
+                        {renderCloseButton(onClose)}
                     </div>
 
                     {/* Body */}
