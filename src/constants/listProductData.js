@@ -1,4 +1,5 @@
 import product from '../assets/imgs/product.png';
+import avatar from '../assets/imgs/avatar_1.png';
 
 export const mockListProductData = [
     {
@@ -15,6 +16,7 @@ export const mockListProductData = [
         "unit": "Hộp",
         "unitPerBox": 10,
         "inventoryThreshold": 5,
+        "imgAvatar": avatar,
         "lastUpdate": "12/12/2025 12:00",
         "updatedBy": "Nguyễn Văn A",
         "length": 10,
@@ -47,6 +49,7 @@ export const mockListProductData = [
         "unit": "Cái",
         "unitPerBox": 20,
         "inventoryThreshold": 10,
+        "imgAvatar": avatar,
         "lastUpdate": "15/12/2025 14:30",
         "updatedBy": "Trần Thị B",
         "length": 15,
@@ -75,6 +78,7 @@ export const mockListProductData = [
         "unit": "Bộ",
         "unitPerBox": 5,
         "inventoryThreshold": 3,
+        "imgAvatar": avatar,
         "lastUpdate": "18/12/2025 09:20",
         "updatedBy": "Lê Văn C",
         "length": 25,
@@ -103,6 +107,7 @@ export const mockListProductData = [
         "unit": "Cái",
         "unitPerBox": 8,
         "inventoryThreshold": 4,
+        "imgAvatar": avatar,
         "lastUpdate": "20/12/2025 11:00",
         "updatedBy": "Nguyễn Văn D",
         "length": 40,
@@ -131,6 +136,7 @@ export const mockListProductData = [
         "unit": "Cái",
         "unitPerBox": 15,
         "inventoryThreshold": 6,
+        "imgAvatar": avatar,
         "lastUpdate": "22/12/2025 08:15",
         "updatedBy": "Phạm Thị E",
         "length": 50,
@@ -159,6 +165,7 @@ export const mockListProductData = [
         "unit": "Quyển",
         "unitPerBox": 50,
         "inventoryThreshold": 20,
+        "imgAvatar": avatar,
         "lastUpdate": "24/12/2025 16:45",
         "updatedBy": "Đỗ Văn F",
         "length": 30,
@@ -186,6 +193,7 @@ export const mockListProductData = [
         "unit": "Bộ",
         "unitPerBox": 30,
         "inventoryThreshold": 8,
+        "imgAvatar": avatar,
         "lastUpdate": "26/12/2025 10:50",
         "updatedBy": "Nguyễn Văn G",
         "length": 40,

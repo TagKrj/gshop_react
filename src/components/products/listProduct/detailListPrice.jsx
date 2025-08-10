@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Portal from '../../Portal';
-import CloseIcon from '../../../assets/icons/close.svg';
+import CloseIcon from '../../../assets/icons/close_icon.svg';
 import EditIcon from '../../../assets/icons/edit-2.svg';
+import Button from '../../button';
 
 const DetailListPrice = ({ isOpen, onClose, productData, onSave }) => {
     // Sử dụng trực tiếp dữ liệu từ productData
@@ -27,16 +28,16 @@ const DetailListPrice = ({ isOpen, onClose, productData, onSave }) => {
 
     return (
         <Portal>
-            <div className="fixed inset-0 bg-black bg-opacity-25 flex items-center justify-center z-50">
+            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
                 <div className="bg-white rounded-[12px] shadow-lg w-[1192px] max-h-[90vh] flex flex-col">
                     {/* Header */}
-                    <div className="flex justify-between items-center px-6 py-6 border-b">
+                    <div className="flex justify-between items-center px-6 py-6 ">
                         <h2 className="text-[20px] font-bold text-[#404040]">
                             Chi tiết bảng giá - Sản phẩm {formData.code}
                         </h2>
                         <button
                             onClick={onClose}
-                            className="w-5 h-5 flex items-center justify-center"
+                            className="w-3 h-3 flex items-center justify-center cursor-pointer"
                         >
                             <img src={CloseIcon} alt="Close" className="w-5 h-5" />
                         </button>
@@ -62,7 +63,7 @@ const DetailListPrice = ({ isOpen, onClose, productData, onSave }) => {
 
                             <div className="flex flex-col gap-2">
                                 <label className="text-[13px] text-[#737373]">Loại sản phẩm</label>
-                                <div className="inline-flex px-3 py-1 rounded-[8px] border border-[#664D7F] text-[14px] text-[#2E319E]">
+                                <div className="inline-flex w-fit px-3 py-1 rounded-[8px] border border-[#664D7F] text-[14px] text-[#2E319E]">
                                     {formData.category}
                                 </div>
                             </div>
@@ -93,8 +94,10 @@ const DetailListPrice = ({ isOpen, onClose, productData, onSave }) => {
                                 <label className="text-[13px] text-[#737373]">Cập nhật lần cuối</label>
                                 <div className="flex justify-between items-center py-2">
                                     <div className="flex items-center gap-2">
-                                        <div className="w-6 h-6 rounded-[12px] bg-gray-200"></div>
-                                        <span className="text-[13px] font-semibold text-[#2A87F8]">Vũ Lê</span>
+                                        <div className="w-6 h-6 rounded-[12px] bg-gray-200">
+                                            <img src={formData.imgAvatar} alt="Avatar" className="w-full h-full object-cover rounded-[12px]" />
+                                        </div>
+                                        <span className="text-[13px] font-semibold text-[#2A87F8]">{formData.lastUpdated?.by}</span>
                                     </div>
                                     <div className="text-[13px] text-[#737373]">{formData.lastUpdated?.date}</div>
                                 </div>
@@ -107,7 +110,7 @@ const DetailListPrice = ({ isOpen, onClose, productData, onSave }) => {
                                 Giá sản phẩm
                             </h3>
 
-                            <div className="border rounded-[8px] overflow-hidden">
+                            <div className=" rounded-[8px] overflow-hidden">
                                 {/* Header */}
                                 <div className="flex bg-[#F3F4F6]">
                                     <div className="w-[120px] px-4 py-3 text-[13px] text-[#737373]">Mã bảng giá</div>
@@ -140,20 +143,22 @@ const DetailListPrice = ({ isOpen, onClose, productData, onSave }) => {
                     </div>
 
                     {/* Footer */}
-                    <div className="flex justify-end items-center gap-2 px-6 py-4 border-t">
-                        <button
+                    <div className="flex justify-end items-center gap-2 px-6 py-4">
+                        <Button
+                            type="secondary"
+                            size="medium"
                             onClick={onClose}
-                            className="px-5 py-3 border border-[#E5E5E5] rounded-[8px] text-[14px] font-semibold text-[#6366F1]"
                         >
                             Đóng
-                        </button>
-                        <button
+                        </Button>
+                        <Button
+                            type="primary"
+                            size="medium"
                             onClick={handleSave}
-                            className="px-5 py-3 bg-[#6366F1] rounded-[8px] text-[14px] font-semibold text-white flex items-center gap-2"
+                            icon={<img src={EditIcon} alt="Edit" className="w-5 h-5" />}
                         >
-                            <img src={EditIcon} alt="Edit" className="w-5 h-5" />
                             Chỉnh sửa
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </div>

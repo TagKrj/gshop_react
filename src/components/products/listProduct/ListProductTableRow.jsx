@@ -19,6 +19,7 @@ const ListProductTableRow = ({
     unit,
     unitPerBox,
     inventoryThreshold,
+    imgAvatar,
     lastUpdate,
     updatedBy,
     length,
@@ -308,6 +309,7 @@ const ListProductTableRow = ({
                     outputTax: OutputTaxRate,
                     unit,
                     unitsPerBox: unitPerBox,
+                    imgAvatar: imgAvatar,
                     lastUpdated: {
                         date: lastUpdate,
                         by: updatedBy
