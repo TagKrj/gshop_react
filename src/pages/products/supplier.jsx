@@ -10,6 +10,20 @@ import FilterSupplier from '../../components/products/supplier/FilterSupplier';
 import ListFilterSupplier from '../../components/products/supplier/ListFilterSupplier';
 import Portal from '../../components/Portal';
 import { mockSupplierData } from '../../constants/supplierData';
+import {
+    handleRowSelect,
+    handleSelectAll,
+    handleDeleteSelected,
+    handleDeselectAll,
+    handleFilterClick,
+    handleSearchChange,
+    handleSupplierClick,
+    handleSupplierSelect,
+    handleApplyFilter,
+    handleToggleActive,
+    handleEditRow,
+    handleDeleteRow
+} from '../../utils/screenHelpers';
 
 const Supplier = () => {
     const [isFilterActive, setIsFilterActive] = useState(false);
@@ -22,83 +36,48 @@ const Supplier = () => {
     const filterButtonRef = useRef(null);
     const supplierInputRef = useRef(null);
 
-    const handleFilterClick = () => {
-        setIsFilterActive(!isFilterActive);
+    const handleFilterClickLocal = () => {
+        handleFilterClick(isFilterActive, setIsFilterActive);
     };
 
-    const handleSearchChange = (e) => {
-        setSearchValue(e.target.value);
-        console.log('Search value:', e.target.value);
+    const handleSearchChangeLocal = (e) => {
+        handleSearchChange(e, setSearchValue);
     };
 
     const handleAddClick = () => {
         setShowAddSupplier(true);
     };
 
-    const handleRowSelect = (id) => {
-        setSelectedRows(prev =>
-            prev.includes(id)
-                ? prev.filter(rowId => rowId !== id)
-                : [...prev, id]
-        );
+    const handleRowSelectLocal = (id) => {
+        handleRowSelect(id, selectedRows, setSelectedRows);
     };
 
-    const handleToggleActive = (id, isActive) => {
-        console.log(`Toggle row ${id} to ${isActive ? 'active' : 'inactive'}`);
+    const handleToggleActiveLocal = (id, isActive) => {
+        handleToggleActive(id, isActive);
     };
 
-    const handleEditRow = (id) => {
-        console.log(`Edit row ${id}`);
-        // Thêm logic chỉnh sửa
+    const handleEditRowLocal = (id) => {
+        handleEditRow(id);
     };
 
-    const handleDeleteRow = (id) => {
-        console.log(`Delete row ${id}`);
-        // Thêm logic xóa
+    const handleDeleteRowLocal = (id) => {
+        handleDeleteRow(id);
     };
 
-    const handleSelectAll = () => {
-        if (selectedRows.length === mockSupplierData.length) {
-            // Nếu đã chọn tất cả, bỏ chọn tất cả
-            setSelectedRows([]);
-        } else {
-            // Chọn tất cả
-            setSelectedRows(mockSupplierData.map(item => item.id));
-        }
+    const handleSelectAllLocal = () => {
+        handleSelectAll(mockSupplierData, selectedRows, setSelectedRows);
     };
 
-    const handleApplyFilter = (filterData) => {
-        console.log('Filter applied:', filterData);
-        // Thêm logic để áp dụng bộ lọc vào dữ liệu
-        if (filterData.supplier) {
-            setSupplierFilter(filterData.supplier);
-        }
+    const handleApplyFilterLocal = (filterData) => {
+        handleApplyFilter(filterData, setSupplierFilter);
     };
 
-    const handleSupplierClick = (event) => {
-        // Lấy vị trí của filter box
-        if (event && event.currentTarget) {
-            const rect = event.currentTarget.getBoundingClientRect();
-            setListPosition({
-                top: rect.top + window.scrollY,
-                left: rect.left + window.scrollX - 300 // Dịch sang trái 300px
-            });
-        }
-        setShowSupplierList(!showSupplierList);
+    const handleSupplierClickLocal = (event) => {
+        handleSupplierClick(event, setListPosition, showSupplierList, setShowSupplierList);
     };
 
-    const handleSupplierSelect = (selectedSuppliers) => {
-        // Lấy tên nhà cung cấp từ danh sách đã chọn
-        const supplierNames = selectedSuppliers.map(supplier => supplier.name);
-
-        // Nếu chọn "Tất cả", hiển thị "Tất cả"
-        // Nếu không, nối các tên nhà cung cấp đã chọn
-        const displayName = selectedSuppliers.some(s => s.id === 'all')
-            ? 'Tất cả'
-            : supplierNames.join(', ');
-
-        setSupplierFilter(displayName || '');
-        setShowSupplierList(false);
+    const handleSupplierSelectLocal = (selectedSuppliers) => {
+        handleSupplierSelect(selectedSuppliers, setSupplierFilter, setShowSupplierList);
     };
 
     // Kiểm tra trạng thái select all
@@ -106,14 +85,12 @@ const Supplier = () => {
     const someSelected = selectedRows.length > 0 && selectedRows.length < mockSupplierData.length;
 
     // Handlers for DeleteBox
-    const handleDeleteSelected = () => {
-        console.log('Deleting selected rows:', selectedRows);
-        // Add your delete logic here
-        setSelectedRows([]);
+    const handleDeleteSelectedLocal = () => {
+        handleDeleteSelected(selectedRows, setSelectedRows);
     };
 
-    const handleDeselectAll = () => {
-        setSelectedRows([]);
+    const handleDeselectAllLocal = () => {
+        handleDeselectAll(setSelectedRows);
     };
 
     return (
@@ -121,8 +98,8 @@ const Supplier = () => {
             title="Nhà cung cấp"
             breadcrumb={['Quản lý sản phẩm', 'Nhà cung cấp']}
             selectedItems={selectedRows}
-            onDeleteSelected={handleDeleteSelected}
-            onDeselectAll={handleDeselectAll}
+            onDeleteSelected={handleDeleteSelectedLocal}
+            onDeselectAll={handleDeselectAllLocal}
         >
             <div className="space-y-4">
                 {/* Search & Filter Bar */}
@@ -130,12 +107,12 @@ const Supplier = () => {
                     <InputSearch
                         placeholder="Tìm kiếm"
                         value={searchValue}
-                        onChange={handleSearchChange}
+                        onChange={handleSearchChangeLocal}
                     />
                     <div ref={filterButtonRef}>
                         <ButtonFilter
                             isActive={isFilterActive}
-                            onClick={handleFilterClick}
+                            onClick={handleFilterClickLocal}
                         />
                     </div>
 
@@ -144,9 +121,9 @@ const Supplier = () => {
                             <FilterSupplier
                                 isOpen={isFilterActive}
                                 onClose={() => setIsFilterActive(false)}
-                                onApplyFilter={handleApplyFilter}
+                                onApplyFilter={handleApplyFilterLocal}
                                 supplierFilter={supplierFilter}
-                                onSupplierClick={handleSupplierClick}
+                                onSupplierClick={handleSupplierClickLocal}
                                 showSupplierList={showSupplierList}
                             />
                         </div>
@@ -165,7 +142,7 @@ const Supplier = () => {
                                 <ListFilterSupplier
                                     isOpen={showSupplierList}
                                     onClose={() => setShowSupplierList(false)}
-                                    onSelect={handleSupplierSelect}
+                                    onSelect={handleSupplierSelectLocal}
                                     position={{
                                         top: 0,
                                         left: 0
@@ -182,7 +159,7 @@ const Supplier = () => {
                     <TableHeader
                         allSelected={allSelected}
                         someSelected={someSelected}
-                        onSelectAll={handleSelectAll}
+                        onSelectAll={handleSelectAllLocal}
                     />
 
                     {/* Table Content */}
@@ -191,9 +168,9 @@ const Supplier = () => {
                             key={item.id}
                             {...item}
                             isSelected={selectedRows.includes(item.id)}
-                            onSelect={handleRowSelect}
-                            onEdit={handleEditRow}
-                            onDelete={handleDeleteRow}
+                            onSelect={handleRowSelectLocal}
+                            onEdit={handleEditRowLocal}
+                            onDelete={handleDeleteRowLocal}
                         />
                     ))}
                 </div>
