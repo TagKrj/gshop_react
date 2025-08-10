@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Portal from '../../Portal';
 import Button from '../../button';
+import { useClickOutside, renderCloseButton } from '../../../utils/popupHelpers.jsx';
 
 const AddEditTypeProducts = ({
     isOpen,
@@ -98,27 +99,21 @@ const AddEditTypeProducts = ({
 
     const isFormValid = formData.name.trim() && !Object.keys(errors).length;
 
+    // Sử dụng hook useClickOutside để xử lý click ra ngoài
+    const modalRef = useClickOutside(onClose, isOpen);
+
     if (!isOpen) return null;
 
     return (
         <Portal>
             <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-                <div className="bg-white rounded-xl shadow-2xl w-[740px] max-h-[90vh] overflow-hidden">
+                <div ref={modalRef} className="bg-white rounded-xl shadow-2xl w-[740px] max-h-[90vh] overflow-hidden">
                     {/* Header */}
                     <div className="flex justify-between items-center px-6 py-6 border-b border-gray-100">
                         <h2 className="text-xl font-bold text-gray-700">
                             {getTitle()}
                         </h2>
-                        <button
-                            onClick={onClose}
-                            className="w-6 h-6 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 cursor-pointer"
-                        >
-                            {/* Nút đóng (X)*/}
-                            <div className="w-4 h-4 flex items-center justify-center relative">
-                                <span className="absolute w-4 h-0.5 bg-gray-500 rotate-45"></span>
-                                <span className="absolute w-4 h-0.5 bg-gray-500 -rotate-45"></span>
-                            </div>
-                        </button>
+                        {renderCloseButton(onClose)}
                     </div>
 
                     {/* Body */}
@@ -147,8 +142,7 @@ const AddEditTypeProducts = ({
                                     </label>
                                     <span className="text-red-500 font-semibold">*</span>
                                 </div>
-                                <div className={`border rounded-lg p-4 ${errors.name ? 'border-red-500' : 'border-gray-200'
-                                    }`}>
+                                <div className={`border rounded-lg p-4 ${errors.name ? 'border-red-500' : 'border-gray-200'}`}>
                                     <input
                                         type="text"
                                         value={formData.name}
