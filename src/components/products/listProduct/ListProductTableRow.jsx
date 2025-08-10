@@ -8,20 +8,39 @@ import MoreIcon from '../../../assets/icons/more.svg';
 import arrowDown from '../../../assets/icons/arrow-down-2.svg';
 import addIcon from '../../../assets/icons/add-indigo.svg';
 
-const PriceListTableRow = ({
+const ListProductTableRow = ({
     id,
+    img,
     code,
     name,
-    creationDate,
-    createdBy,
-    updateTime,
-    updateBy,
-    products = [],
+    productType: { id: productTypeId, name: productTypeName } = {},
+    InputTaxRate,
+    OutputTaxRate,
+    unit,
+    unitPerBox,
+    inventoryThreshold,
+    lastUpdate,
+    updatedBy,
+    length,
+    width,
+    height,
+    nameImgProduct = [],
+    priceList = [],
     isSelected = false,
     onSelect,
     onEdit,
     onDelete
 }) => {
+    // Build products for the expanded section from incoming priceList
+    const products = (priceList ?? []).map((pl) => ({
+        productCode: code,
+        productName: name,
+        price: pl.price,
+        inputTax: InputTaxRate,
+        outputTax: OutputTaxRate,
+        description: pl.name
+    }));
+
     const [showDropdown, setShowDropdown] = useState(false);
     const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -31,18 +50,9 @@ const PriceListTableRow = ({
     const [expanded, setExpanded] = useState(false);
     const moreButtonRef = useRef(null);
 
-    // Debug: Log when showAddfast and showEditModal changes
-    useEffect(() => {
-        console.log('showAddfast state changed:', showAddfast);
-    }, [showAddfast]);
-
-    useEffect(() => {
-        console.log('showEditModal state changed:', showEditModal);
-    }, [showEditModal]);
-
-    useEffect(() => {
-        console.log('showAddModal state changed:', showAddModal);
-    }, [showAddModal]);
+    const colorBorder = [
+        '#EAB308', '#45A487', '#0066FF', '#D72677', '#F86528', '#664D7F', '#10B981'
+    ];
 
     const handleMoreClick = (e) => {
         e.stopPropagation();
@@ -92,7 +102,8 @@ const PriceListTableRow = ({
 
     return (
         <div className="flex flex-col">
-            <div className={`flex items-center px-3 py-3 rounded-[8px] mt-2 transition-colors cursor-pointer hover:bg-indigo-50 ${expanded ? 'bg-indigo-50 rounded-b-none border border-[#E5E5E5]' : ''} ${isSelected ? 'bg-indigo-50' : expanded ? 'bg-indigo-50' : 'bg-gray-50'}`}>
+            {/* Main row */}
+            <div className={`flex items-center px-3 py-3 rounded-[8px] mt-2 transition-colors cursor-pointer hover:bg-indigo-50  ${expanded ? 'bg-indigo-50 rounded-b-none border border-[#E5E5E5]' : ''} ${isSelected ? 'bg-indigo-50' : expanded ? 'bg-indigo-50' : 'bg-[#FAFAFA]'}`}>
                 {/* Checkbox column */}
                 <div className="flex items-center justify-center w-12 px-2">
                     <div className="flex items-center justify-center w-6 h-6">
@@ -106,30 +117,63 @@ const PriceListTableRow = ({
                     </div>
                 </div>
 
-                {/* Ảnh */}
-                <div className="flex items-center px-4 py-3 w-30 bg-accent">
+                {/* Ảnh sản phẩm */}
+                <div className="flex items-center justify-center w-25">
+                    {img && (
+                        <img src={img} alt={name} className="w-[55px] h-[55px] object-cover rounded-[4px]" />
+                    )}
                 </div>
 
-                {/* Tên bảng giá */}
-                <div className="flex items-center px-4 py-3 w-122">
-                    <span className="text-xs font-normal text-gray-900">{name}</span>
+                {/* Mã sản phẩm */}
+                <div className="flex items-center px-4 py-3 w-40">
+                    <span className="text-sm font-medium text-[#161413]">{code}</span>
                 </div>
 
-                {/* Mã bảng giá */}
-                <div className="flex items-center flex-1 px-4 py-3">
-                    <span className="text-xs font-normal text-gray-900">{code}</span>
+                {/* Tên sản phẩm */}
+                <div className="flex items-center px-4 py-3 w-45">
+                    <span className="text-sm font-medium text-[#161413]">{name}</span>
                 </div>
 
-                {/* Ngày tạo */}
-                <div className="flex items-center flex-1 px-4 py-3">
-                    <span className="text-xs font-normal text-gray-500">{creationDate} bởi <span className="text-xs font-semibold text-[#2E319E]">{createdBy}</span></span>
+                {/* Loại sản phẩm */}
+                <div className="flex items-center px-4 py-3 w-50">
+                    <div className="px-3 rounded-[8px] border text-center"
+                        style={{ borderColor: colorBorder[id % colorBorder.length] }}>
+                        <span className="text-sm font-normal text-[#2E319E]">{productTypeName}</span>
+                    </div>
+                </div>
+
+                {/* Thuế suất đầu vào */}
+                <div className="flex items-center justify-end px-4 py-3 w-45">
+                    <div className="px-3 py-1">
+                        <span className="text-sm font-normal text-[#2E319E]">{InputTaxRate}</span>
+                    </div>
+                </div>
+
+                {/* Thuế suất đầu ra */}
+                <div className="flex items-center justify-end px-4 py-3 w-40">
+                    <div className="px-3 py-1 ">
+                        <span className="text-sm font-normal text-[#2E319E]">{OutputTaxRate}</span>
+                    </div>
+                </div>
+
+                {/* Đơn vị */}
+                <div className="flex items-center px-4 py-3 w-25">
+                    <span className="text-sm font-light text-[#161413]">{unit}</span>
+                </div>
+
+                {/* Đơn vị/thùng */}
+                <div className="flex items-center justify-end px-4 py-3 w-25">
+                    <span className="text-sm font-medium text-[#2E319E]">{unitPerBox || 0}</span>
+                </div>
+
+                {/* Ngưỡng tồn kho */}
+                <div className="flex items-center justify-end px-4 py-3 w-40">
+                    <span className="text-sm font-medium text-[#2E319E]">{inventoryThreshold || 0}</span>
                 </div>
 
                 {/* Cập nhật lần cuối */}
-                <div className="flex items-center w-100 px-4 py-3 ">
-                    <div className="flex items-center gap-1">
-                        <span className="text-xs font-normal text-gray-500">{updateTime} bởi <span className="text-xs font-semibold text-[#2E319E]">{updateBy}</span></span>
-                    </div>
+                <div className="flex items-center px-4 py-3 flex-1">
+                    <span className="text-xs font-normal text-gray-500">{lastUpdate}{updatedBy ? <> bởi <span className="text-xs font-semibold text-[#2E319E]">{updatedBy}</span></> : null}</span>
                 </div>
 
                 {/* Action column - More button */}
@@ -137,7 +181,7 @@ const PriceListTableRow = ({
                     <button
                         ref={moreButtonRef}
                         onClick={handleMoreClick}
-                        className={`flex items-center justify-center w-6 h-6 rounded-full transition-colors cursor-pointer ${isSelected ? 'bg-[#6366F1] text-white hover:bg-[#6366F1]' : 'text-gray-500 hover:bg-gray-200'}`}
+                        className="flex items-center justify-center w-6 h-6 rounded-full transition-colors cursor-pointer hover:bg-gray-100"
                     >
                         <img
                             src={MoreIcon}
@@ -172,36 +216,34 @@ const PriceListTableRow = ({
                         />
                     </button>
                 </div>
-
-
             </div>
 
             {/* Expanded detail section */}
             {
                 expanded && (
-                    <div className="rounded-b-[8px] bg-indigo-50 mt-0 mb-2 overflow-hidden border border-[#E5E5E5] border-t-0">
+                    <div className="rounded-b-[8px] bg-white mt-0 mb-2 overflow-hidden border border-[#E5E5E5] border-t-0">
                         {/* Header */}
                         <div className="flex items-center bg-[#F3F4F6] px-3">
                             <div className="w-12 px-4 py-3 text-center">
-                                <span className="text-xs font-normal text-gray-500">STT</span>
+                                <span className="text-xs font-medium text-gray-500">STT</span>
                             </div>
-                            <div className="px-4 py-3 w-40">
-                                <span className="text-xs font-normal text-gray-500 ">Mã sản phẩm</span>
+                            <div className="px-4 py-3 w-[120px]">
+                                <span className="text-xs font-medium text-gray-500">Mã sản phẩm</span>
                             </div>
-                            <div className=" px-4 py-3 w-40">
-                                <span className="text-xs font-normal text-gray-500">Tên sản phẩm</span>
+                            <div className="px-4 py-3 w-[150px]">
+                                <span className="text-xs font-medium text-gray-500">Tên sản phẩm</span>
                             </div>
-                            <div className=" px-4 py-3 text-right w-70">
-                                <span className="text-xs font-normal text-gray-500">Giá bán (VND)</span>
+                            <div className="px-4 py-3 text-right w-[140px]">
+                                <span className="text-xs font-medium text-gray-500">Giá bán (VND)</span>
                             </div>
-                            <div className=" px-4 py-3 text-right w-70">
-                                <span className="text-xs font-normal text-gray-500">Thuế suất đầu vào (%)</span>
+                            <div className="px-4 py-3 text-right w-[140px]">
+                                <span className="text-xs font-medium text-gray-500">Thuế suất đầu vào (%)</span>
                             </div>
-                            <div className=" px-4 py-3 text-right w-70 ">
-                                <span className="text-xs font-normal text-gray-500">Thuế suất đầu ra (%)</span>
+                            <div className="px-4 py-3 text-right w-[140px]">
+                                <span className="text-xs font-medium text-gray-500">Thuế suất đầu ra (%)</span>
                             </div>
                             <div className="flex-1 px-4 py-3">
-                                <span className="text-xs font-normal text-gray-500">Mô tả</span>
+                                <span className="text-xs font-medium text-gray-500">Mô tả</span>
                             </div>
                         </div>
 
@@ -210,27 +252,27 @@ const PriceListTableRow = ({
                             {products.map((product, index) => (
                                 <div key={index} className="flex items-center bg-white px-3">
                                     <div className="w-12 px-4 py-3 text-center">
-                                        <span className="text-xs font-normal text-gray-900">{index + 1}</span>
+                                        <span className="text-xs font-medium text-gray-900">{index + 1}</span>
                                     </div>
-                                    <div className="w-40 px-4 py-3">
-                                        <span className="text-xs font-normal text-gray-900">{product.productCode}</span>
+                                    <div className="px-4 py-3 w-[120px]">
+                                        <span className="text-xs font-medium text-gray-900">{product.productCode}</span>
                                     </div>
-                                    <div className=" px-4 py-3 w-40">
-                                        <span className="text-xs font-normal text-gray-900">{product.productName}</span>
+                                    <div className="px-4 py-3 w-[150px]">
+                                        <span className="text-xs font-medium text-gray-900">{product.productName}</span>
                                     </div>
-                                    <div className=" px-4 py-3 text-right w-70">
-                                        <span className="text-xs font-normal text-indigo-700">
-                                            {product.price.toLocaleString()}
+                                    <div className="px-4 py-3 text-right w-[140px]">
+                                        <span className="text-xs font-medium text-indigo-700">
+                                            {product.price?.toLocaleString?.()}
                                         </span>
                                     </div>
-                                    <div className=" px-4 py-3 text-right w-70">
-                                        <span className="text-xs font-normal text-indigo-700">{product.inputTax}</span>
+                                    <div className="px-4 py-3 text-right w-[140px]">
+                                        <span className="text-xs font-medium text-indigo-700">{product.inputTax}</span>
                                     </div>
-                                    <div className="px-4 py-3 text-right w-70">
-                                        <span className="text-xs font-normal text-indigo-700">{product.outputTax}</span>
+                                    <div className="px-4 py-3 text-right w-[140px]">
+                                        <span className="text-xs font-medium text-indigo-700">{product.outputTax}</span>
                                     </div>
                                     <div className="flex-1 px-4 py-3">
-                                        <span className="text-xs font-normal text-gray-900">{product.description}</span>
+                                        <span className="text-xs font-medium text-gray-900">{product.description}</span>
                                     </div>
                                 </div>
                             ))}
@@ -238,14 +280,14 @@ const PriceListTableRow = ({
 
                         {/* Add product button */}
                         <div
-                            className="flex items-center justify-center py-2 bg-indigo-50 cursor-pointer hover:bg-indigo-100 "
+                            className="flex items-center justify-center py-2 bg-white cursor-pointer hover:bg-gray-50"
                             onClick={(e) => {
                                 e.stopPropagation();
                                 setShowAddfast(true);
                             }}
                         >
                             <img src={addIcon} alt="Add" className="w-5 h-5" />
-                            <span className="ml-2 text-sm font-semibold text-[#6366F1]">Thêm sản phẩm</span>
+                            <span className="ml-2 text-sm font-medium text-[#6366F1]">Thêm sản phẩm</span>
                         </div>
                     </div>
                 )
@@ -256,11 +298,11 @@ const PriceListTableRow = ({
                 isOpen={showDeleteConfirm}
                 onClose={() => setShowDeleteConfirm(false)}
                 itemName={name}
-                itemType="bảng giá"
+                itemType="sản phẩm"
                 onConfirm={handleConfirmDelete}
             />
 
-            {/* Chi tiết bảng giá Popup */}
+            {/* Chi tiết sản phẩm Popup */}
             <Addfast
                 isOpen={showAddfast}
                 onClose={() => setShowAddfast(false)}
@@ -294,8 +336,8 @@ const PriceListTableRow = ({
                 isOpen={showAddModal}
                 onClose={() => setShowAddModal(false)}
             />
-        </div >
+        </div>
     );
 };
 
-export default PriceListTableRow;
+export default ListProductTableRow;

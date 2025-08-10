@@ -10,9 +10,9 @@ import AddListProduct from '../../components/products/listProduct/AddListProduct
 import FilterSupplier from '../../components/products/supplier/FilterSupplier';
 import ListFilterSupplier from '../../components/products/supplier/ListFilterSupplier';
 import Portal from '../../components/Portal';
-import { mockPriceListData } from '../../constants/priceListData';
+import { mockListProductData } from '../../constants/listProductData';
 
-const PriceList = () => {
+const ListProduct = () => {
     const [isFilterActive, setIsFilterActive] = useState(false);
     const [searchValue, setSearchValue] = useState('');
     const [selectedRows, setSelectedRows] = useState([]);
@@ -114,8 +114,8 @@ const PriceList = () => {
     };
 
     // Kiểm tra trạng thái select all
-    const allSelected = selectedRows.length === mockPriceListData.length && mockPriceListData.length > 0;
-    const someSelected = selectedRows.length > 0 && selectedRows.length < mockPriceListData.length;
+    const allSelected = selectedRows.length === mockListProductData.length && mockListProductData.length > 0;
+    const someSelected = selectedRows.length > 0 && selectedRows.length < mockListProductData.length;
 
     // Handlers for DeleteBox
     const handleDeleteSelected = () => {
@@ -198,7 +198,7 @@ const PriceList = () => {
                     />
 
                     {/* Table Content */}
-                    {mockPriceListData.map((item) => (
+                    {mockListProductData.map((item) => (
                         <ListProductTableRow
                             key={item.id}
                             {...item}
@@ -230,4 +230,4 @@ const PriceList = () => {
     );
 };
 
-export default PriceList;
+export default ListProduct;

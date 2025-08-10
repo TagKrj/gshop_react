@@ -24,51 +24,51 @@ const TableHeader = ({
             </div>
 
             {/* Ảnh */}
-            <div className="flex items-center px-4 py-3 w-30 bg-accent">
+            <div className="flex items-center px-4 py-3 w-25">
             </div>
 
             {/* Mã SKU */}
-            <div className="flex items-center px-4 py-3 w-40 bg-amber-200">
+            <div className="flex items-center px-4 py-3 w-40">
                 <span className="text-xs font-normal text-gray-500">Mã SKU</span>
             </div>
 
             {/* Tên sản phẩm*/}
-            <div className="flex items-center px-4 py-3 w-40 bg-accent-hover ">
+            <div className="flex items-center px-4 py-3 w-45">
                 <span className="text-xs font-normal text-gray-500">Tên sản phẩm</span>
             </div>
 
             {/* Loại sản phẩm */}
-            <div className="flex items-center px-4 py-3 w-50 bg-amber-300 ">
+            <div className="flex items-center px-4 py-3 w-50">
                 <span className="text-xs font-normal text-gray-500">Loại sản phẩm</span>
             </div>
 
             {/* Thuế suất đầu vào (%) */}
-            <div className="flex items-center px-4 py-3 w-45 bg-amber-200">
+            <div className="flex items-center px-4 py-3 w-45">
                 <span className="text-xs font-normal text-gray-500">Thuế suất đầu vào (%)</span>
             </div>
 
             {/* Thuế suất đầu ra (%*/}
-            <div className="flex items-center px-4 py-3 w-40 bg-amber-300">
+            <div className="flex items-center px-4 py-3 w-40">
                 <span className="text-xs font-normal text-gray-500">Thuế suất đầu ra (%)</span>
             </div>
 
             {/* Đơn vị tính */}
-            <div className="flex items-center px-4 py-3 w-25 bg-amber-700">
+            <div className="flex items-center px-4 py-3 w-25">
                 <span className="text-xs font-normal text-gray-500">Đơn vị tính</span>
             </div>
 
             {/* Đơn vị/thùng */}
-            <div className="flex items-center px-4 py-3 ">
+            <div className="flex items-center px-4 py-3 w-25">
                 <span className="text-xs font-normal text-gray-500">Đơn vị/thùng</span>
             </div>
 
             {/* Ngưỡng cảnh báo tồn kho (đơn vị) */}
-            <div className="flex items-center px-4 py-3 w-40 bg-amber-500">
+            <div className="flex items-center px-4 py-3 w-40">
                 <span className="text-xs font-normal text-gray-500 text-end ">Ngưỡng cảnh báo tồn kho (đơn vị)</span>
             </div>
 
             {/* Cập nhật lần cuối*/}
-            <div className="flex items-center px-4 py-3 ">
+            <div className="flex items-center px-4 py-3 flex-1">
                 <span className="text-xs font-normal text-gray-500">Cập nhật lần cuối</span>
             </div>
 
