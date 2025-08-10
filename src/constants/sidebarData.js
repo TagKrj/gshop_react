@@ -60,10 +60,10 @@ export const sidebarMenuData = {
                     children: null
                 },
                 {
-                    id: 'product-import',
+                    id: 'product-PriceList',
                     title: 'Bảng giá',
                     icon: null,
-                    path: '/products/import',
+                    path: '/products/price-list',
                     hasSubmenu: false,
                     isActive: false,
                     isSelected: false,

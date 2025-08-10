@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { sidebarMenuData } from '../constants/sidebarData';
 import { findMenuItemById, updateMenuState, getMenuItemStyle, getIconFilter, toggleMenuExclusive, initializeMenuState, closeAllSubmenus } from '../utils/sidebar';
 import PolygonIcon from '../assets/icons/Polygon.svg';
 
 const Sidebar = () => {
+    const navigate = useNavigate();
+
     // State để quản lý trạng thái collapse/expand của sidebar
     const [isCollapsed, setIsCollapsed] = useState(true);
 
@@ -86,6 +89,11 @@ const Sidebar = () => {
                         } else {
                             // Menu con hoặc menu không có submenu - select
                             selectMenuItem(item.id);
+
+                            // Nếu có path, thực hiện navigate
+                            if (item.path) {
+                                navigate(item.path);
+                            }
                         }
                     }}
                 >
