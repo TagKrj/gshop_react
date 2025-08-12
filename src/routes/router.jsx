@@ -3,6 +3,15 @@ import priceList from "../pages/products/priceList";
 import supplier from "../pages/products/supplier";
 import typeProducts from "../pages/products/typeProducts";
 import receiptTypes from "../pages/finance/receiptTypes";
+import login from "../pages/auth/Login";
+
+const Auth = [
+    {
+        id: 'auth-login',
+        path: '/auth/login',
+        screen: login,
+    }
+];
 
 const ProductManagement = [
     {
@@ -37,6 +46,7 @@ const FinanceManagement = [
 
 // Combine all routes
 const router = [
+    ...Auth,
     ...ProductManagement,
     ...FinanceManagement
 ];

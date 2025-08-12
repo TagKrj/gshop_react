@@ -5,14 +5,30 @@ import './App.css'
 import Sidebar from './layouts/Sidebar'
 import router from './routes/router'
 import Supplier from './pages/products/supplier'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, Navigate, Outlet } from 'react-router-dom'
+import Login from "./pages/auth/Login";
+
+// Layout với Sidebar cho các trang chính
+const MainLayout = () => {
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <Sidebar />
+      <div className="ml-64 p-5">
+        <Outlet />
+      </div>
+    </div>
+  );
+};
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-gray-100">
-        <Sidebar />
-        <Routes>
+      <Routes>
+        {/* Route đăng nhập riêng biệt, không có sidebar */}
+        <Route path="/auth/login" element={<Login />} />
+
+        {/* Các route chính với sidebar */}
+        <Route element={<MainLayout />}>
           {router.map((route, index) => (
             <Route
               key={index}
@@ -20,10 +36,11 @@ function App() {
               element={<route.screen />}
             />
           ))}
-          <Route path="/" element={<Supplier />} />
-          <Route path="*" element={<div>404 Not Found</div>} />
-        </Routes>
-      </div>
+        </Route>
+
+        {/* Route mặc định chuyển hướng đến trang login */}
+        <Route path="*" element={<Navigate to="/auth/login" />} />
+      </Routes>
     </BrowserRouter>
   )
 }
