@@ -9,7 +9,7 @@ import imageIcon from '../../../assets/icons/image.svg';
 import excelIcon from '../../../assets/icons/filetype-excel.png';
 import importIcon from '../../../assets/icons/import.svg';
 import Button from '../../Common/Button.jsx';
-import SelectOption from './selectOption.jsx';
+import SelectOption from './SelectOption.jsx';
 import { mockSelectOptions } from '../../../constants/listProductData';
 import { useClickOutside, renderCloseButton } from '../../../utils/popupHelpers.jsx';
 

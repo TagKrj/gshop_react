@@ -3,7 +3,7 @@ import EditDeleteBox from '../../Common/EditDeleteBox';
 import DeletePopup from '../../Common/DeletePopup';
 import EditListProduct from './EditListProduct';
 import AddListProduct from './AddListProduct';
-import DetailListPrice from './detailListPrice';
+import DetailListPrice from './DetailListPrice';
 import MoreIcon from '../../../assets/icons/more.svg';
 import arrowDown from '../../../assets/icons/arrow-down-2.svg';
 import eyeIcon from '../../../assets/icons/eye.svg';

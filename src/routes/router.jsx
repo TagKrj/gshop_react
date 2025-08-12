@@ -1,15 +1,15 @@
-import listProduct from "../pages/products/ListProduct";
-import priceList from "../pages/products/PriceList";
-import supplier from "../pages/products/Supplier";
-import typeProducts from "../pages/products/TypeProducts";
-import receiptTypes from "../pages/finance/ReceiptTypes";
-import login from "../pages/auth/Login";
+import ListProduct from "../pages/products/ListProduct";
+import PriceList from "../pages/products/PriceList";
+import Supplier from "../pages/products/Supplier";
+import TypeProducts from "../pages/products/TypeProducts";
+import ReceiptTypes from "../pages/finance/ReceiptTypes";
+import Login from "../pages/auth/Login";
 
 const Auth = [
     {
         id: 'auth-login',
         path: '/auth/login',
-        screen: login,
+        screen: Login,
     }
 ];
 
@@ -17,30 +17,30 @@ const ProductManagement = [
     {
         id: 'product-list',
         path: '/products/list',
-        screen: listProduct,
+        screen: ListProduct,
     },
     {
         id: 'product-price-list',
         path: '/products/price-list',
-        screen: priceList,
+        screen: PriceList,
     },
     {
         id: 'product-suppliers',
         path: '/products/suppliers',
-        screen: supplier,
+        screen: Supplier,
     },
     {
         id: 'product-types',
         path: '/products/types',
-        screen: typeProducts,
+        screen: TypeProducts,
     }
 ];
 
 const FinanceManagement = [
     {
-        // id: 'finance-receipt-types',
-        // path: '/finance/receipt-types',
-        // screen: receiptTypes,
+        id: 'finance-receipt-types',
+        path: '/finance/receipt-types',
+        screen: ReceiptTypes,
     }
 ];
 
