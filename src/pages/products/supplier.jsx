@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Main from '../../layouts/Main';
-import InputSearch from '../../components/InpurtSearch';
-import ButtonFilter from '../../components/ButtonFilter';
-import ButtonAdd from '../../components/ButtonAdd';
+import Main from '../../components/Layout/Main';
+import InputSearch from '../../components/Common/InputSearch';
+import ButtonFilter from '../../components/Common/ButtonFilter';
+import ButtonAdd from '../../components/Common/ButtonAdd';
 import TableHeader from '../../components/products/supplier/TableHeader';
 import SupplierTableRow from '../../components/products/supplier/SupplierTableRow';
 import AddSupplier from '../../components/products/supplier/AddSupplier';
 import FilterSupplier from '../../components/products/supplier/FilterSupplier';
 import ListFilterSupplier from '../../components/products/supplier/ListFilterSupplier';
-import Portal from '../../components/Portal';
+import Portal from '../../components/Common/Portal';
 import { mockSupplierData } from '../../constants/supplierData';
 import {
     handleRowSelect,

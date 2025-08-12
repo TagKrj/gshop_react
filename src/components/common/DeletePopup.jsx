@@ -90,9 +90,7 @@ const DeletePopup = ({
                 </div>
             </div>
         </Portal>
-
     );
 };
-
 
 export default DeletePopup;

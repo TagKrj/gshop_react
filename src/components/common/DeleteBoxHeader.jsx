@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DeleteBox = ({ selectedCount, onDelete, onDeselect }) => {
+const DeleteBoxHeader = ({ selectedCount, onDelete, onDeselect }) => {
     if (selectedCount <= 0) return null;
 
     return (
@@ -26,4 +26,4 @@ const DeleteBox = ({ selectedCount, onDelete, onDeselect }) => {
     );
 };
 
-export default DeleteBox;
+export default DeleteBoxHeader;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import FilterAddIcon from '../assets/icons/filter-add.svg';
+import FilterAddIcon from '../../assets/icons/filter-add.svg';
 
 const ButtonFilter = ({
     isActive = false,

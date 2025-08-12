@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import arrowDownIcon from '../../../assets/icons/arrow-down.svg';
-import Button from '../../button';
-import TimeFilterChips from '../../TimeFilterChips';
-import DateRangePickers from '../../DateRangePickers';
+import Button from '../../Common/Button';
+import TimeFilterChips from '../../Common/TimeFilterChips';
+import DateRangePickers from '../../Common/DateRangePickers';
 
 const FilterSupplier = ({ isOpen, onClose, onApplyFilter, supplierFilter = '', onSupplierClick, showSupplierList }) => {
     const [filterData, setFilterData] = useState({

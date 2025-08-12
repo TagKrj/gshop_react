@@ -1,5 +1,5 @@
 import React from 'react';
-import addIcon from '../assets/icons/add.svg';
+import addIcon from '../../assets/icons/add.svg';
 
 const ButtonAdd = ({
     onClick,

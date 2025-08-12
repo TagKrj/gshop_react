@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
-import EditDeleteBox from '../../EditDeleteBox';
+import EditDeleteBox from '../../Common/EditDeleteBox';
 import AddEditTypeProducts from './AddEditTypeProducts';
-import DeletePopup from '../../DeletePopup';
+import DeletePopup from '../../Common/DeletePopup';
 import MoreIcon from '../../../assets/icons/more.svg';
 
 const TypeProductsTableRow = ({

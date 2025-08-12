@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import DeleteBoxHeader from '../components/DeleteBoxHeader';
+import DeleteBoxHeader from '../Common/DeleteBoxHeader';
 
 const Main = ({
     children,

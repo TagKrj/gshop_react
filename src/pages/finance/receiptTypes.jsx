@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Main from '../../layouts/Main';
-import InputSearch from '../../components/InpurtSearch';
-import ButtonFilter from '../../components/ButtonFilter';
-import ButtonAdd from '../../components/ButtonAdd';
+import Main from '../../components/Layout/Main';
+import InputSearch from '../../components/Common/InputSearch';
+import ButtonFilter from '../../components/Common/ButtonFilter';
+import ButtonAdd from '../../components/Common/ButtonAdd';
 import TableHeader from '../../components/finance/receiptTypes/TableHeader';
 import TableRow from '../../components/finance/receiptTypes/TableRow';
 import { mockData } from '../../constants/receiptTypesData';

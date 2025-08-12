@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import EditDeleteBox from '../../EditDeleteBox';
-import DeletePopup from '../../DeletePopup';
+import EditDeleteBox from '../../Common/EditDeleteBox';
+import DeletePopup from '../../Common/DeletePopup';
 import EditListProduct from './EditListProduct';
 import AddListProduct from './AddListProduct';
 import DetailListPrice from './detailListPrice';

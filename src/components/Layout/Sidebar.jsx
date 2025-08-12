@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { sidebarMenuData } from '../constants/sidebarData';
-import { findMenuItemById, updateMenuState, getMenuItemStyle, getIconFilter, toggleMenuExclusive, initializeMenuState, closeAllSubmenus } from '../utils/sidebar';
-import PolygonIcon from '../assets/icons/Polygon.svg';
+import { sidebarMenuData } from '../../constants/sidebarData';
+import { findMenuItemById, updateMenuState, getMenuItemStyle, getIconFilter, toggleMenuExclusive, initializeMenuState, closeAllSubmenus } from '../../utils/sidebar';
+import PolygonIcon from '../../assets/icons/Polygon.svg';
 
 const Sidebar = () => {
     const navigate = useNavigate();

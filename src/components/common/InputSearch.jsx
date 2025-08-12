@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchIcon from '../assets/icons/search-normal.svg';
+import SearchIcon from '../../assets/icons/search-normal.svg';
 
 const InputSearch = ({
     placeholder = "Tìm kiếm",

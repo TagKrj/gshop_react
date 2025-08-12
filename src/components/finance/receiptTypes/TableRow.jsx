@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import ButtonOnOff from '../../ButtonOnOff';
-import EditDeleteBox from '../../EditDeleteBox';
+import ButtonOnOff from '../../Common/ButtonOnOff';
+import EditDeleteBox from '../../Common/EditDeleteBox';
 import MoreIcon from '../../../assets/icons/more.svg';
 
 const TableRow = ({

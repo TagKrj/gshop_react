@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Portal from '../../Portal';
+import Portal from '../../Common/Portal.jsx';
 import CloseIcon from '../../../assets/icons/close_icon.svg';
 import EditIcon from '../../../assets/icons/edit-2.svg';
-import Button from '../../Button.jsx';
+import Button from '../../Common/Button.jsx';
 import { useClickOutside, renderCloseButton } from '../../../utils/popupHelpers.jsx';
 
 const DetailListPrice = ({ isOpen, onClose, productData, onSave }) => {

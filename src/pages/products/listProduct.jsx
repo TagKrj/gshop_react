@@ -1,15 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Main from '../../layouts/Main';
-import InputSearch from '../../components/InpurtSearch';
-import ButtonFilter from '../../components/ButtonFilter';
-import ButtonAdd from '../../components/ButtonAdd';
+import Main from '../../components/Layout/Main';
+import InputSearch from '../../components/Common/InputSearch';
+import ButtonFilter from '../../components/Common/ButtonFilter';
+import ButtonAdd from '../../components/Common/ButtonAdd';
 import TableHeader from '../../components/products/listProduct/TableHeader';
 import ListProductTableRow from '../../components/products/listProduct/ListProductTableRow';
 import AddPrice from '../../components/products/priceList/AddPrice';
 import AddListProduct from '../../components/products/listProduct/AddListProduct';
 import FilterSupplier from '../../components/products/supplier/FilterSupplier';
 import ListFilterSupplier from '../../components/products/supplier/ListFilterSupplier';
-import Portal from '../../components/Portal';
+import Portal from '../../components/Common/Portal';
 import { mockListProductData } from '../../constants/listProductData';
 import {
     handleRowSelect,
