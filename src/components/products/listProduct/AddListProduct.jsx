@@ -8,8 +8,8 @@ import fileUpload from '../../../assets/icons/file-upload.png';
 import imageIcon from '../../../assets/icons/image.svg';
 import excelIcon from '../../../assets/icons/filetype-excel.png';
 import importIcon from '../../../assets/icons/import.svg';
-import Button from '../../button';
-import SelectOption from './selectOption';
+import Button from '../../Button.jsx';
+import SelectOption from './SelectOption.jsx';
 import { mockSelectOptions } from '../../../constants/listProductData';
 import { useClickOutside, renderCloseButton } from '../../../utils/popupHelpers.jsx';
 

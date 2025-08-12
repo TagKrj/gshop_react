@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Main from '../../layouts/Main';
-import InputSearch from '../../components/inpurtSearch';
-import ButtonFilter from '../../components/buttonFilter';
-import ButtonAdd from '../../components/buttonAdd';
+import InputSearch from '../../components/InpurtSearch';
+import ButtonFilter from '../../components/ButtonFilter';
+import ButtonAdd from '../../components/ButtonAdd';
 import TableHeader from '../../components/products/typeProducts/TableHeader';
 import TypeProductsTableRow from '../../components/products/typeProducts/TypeProductsTableRow';
-import AddEditTypeProducts from '../../components/products/typeProducts/addEditTypeProducts';
+import AddEditTypeProducts from '../../components/products/typeProducts/AddEditTypeProducts';
 import FilterSupplier from '../../components/products/supplier/FilterSupplier';
 import ListFilterSupplier from '../../components/products/supplier/ListFilterSupplier';
 import Portal from '../../components/Portal';

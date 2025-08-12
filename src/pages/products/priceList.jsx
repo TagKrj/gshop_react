@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Main from '../../layouts/Main';
-import InputSearch from '../../components/inpurtSearch';
-import ButtonFilter from '../../components/buttonFilter';
-import ButtonAdd from '../../components/buttonAdd';
+import InputSearch from '../../components/InpurtSearch';
+import ButtonFilter from '../../components/ButtonFilter';
+import ButtonAdd from '../../components/ButtonAdd';
 import TableHeader from '../../components/products/priceList/TableHeader';
 import PriceListTableRow from '../../components/products/priceList/PriceListTableRow';
 import AddPrice from '../../components/products/priceList/AddPrice';

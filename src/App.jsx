@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Sidebar from './layouts/Sidebar'
 import router from './routes/router'
-import Supplier from './pages/products/supplier'
+import Supplier from './pages/products/Supplier'
 import { BrowserRouter, Route, Routes, Navigate, Outlet } from 'react-router-dom'
 import Login from "./pages/auth/Login";
 

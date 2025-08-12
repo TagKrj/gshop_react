@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Portal from '../../Portal';
-import Button from '../../button';
+import Button from '../../Button.jsx';
 import ArrowDownIcon from '../../../assets/icons/arrow-down.svg';
 import { useClickOutside, renderCloseButton } from '../../../utils/popupHelpers.jsx';
 

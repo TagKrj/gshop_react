@@ -3,7 +3,7 @@ import arrowDown from '../../../assets/icons/arrow-down.svg';
 import trashIcon from '../../../assets/icons/trash.svg';
 import addIcon from '../../../assets/icons/add-indigo.svg';
 import Portal from '../../Portal';
-import Button from '../../button';
+import Button from '../../Button.jsx';
 import { useClickOutside, renderCloseButton } from '../../../utils/popupHelpers.jsx';
 
 const EditPriceList = ({ isOpen, onClose, priceListData, onSave }) => {

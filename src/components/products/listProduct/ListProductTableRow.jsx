@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import EditDeleteBox from '../../editDeleteBox';
-import DeletePopup from '../../deletePopup';
-import EditListProduct from './editListProduct';
+import EditDeleteBox from '../../EditDeleteBox';
+import DeletePopup from '../../DeletePopup';
+import EditListProduct from './EditListProduct';
 import AddListProduct from './AddListProduct';
 import DetailListPrice from './detailListPrice';
 import MoreIcon from '../../../assets/icons/more.svg';

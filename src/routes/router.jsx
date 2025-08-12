@@ -1,8 +1,8 @@
-import listProduct from "../pages/products/listProduct";
-import priceList from "../pages/products/priceList";
-import supplier from "../pages/products/supplier";
-import typeProducts from "../pages/products/typeProducts";
-import receiptTypes from "../pages/finance/receiptTypes";
+import listProduct from "../pages/products/ListProduct";
+import priceList from "../pages/products/PriceList";
+import supplier from "../pages/products/Supplier";
+import typeProducts from "../pages/products/TypeProducts";
+import receiptTypes from "../pages/finance/ReceiptTypes";
 import login from "../pages/auth/Login";
 
 const Auth = [

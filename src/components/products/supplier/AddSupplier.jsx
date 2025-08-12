@@ -3,7 +3,7 @@ import importIcon from '../../../assets/icons/import.svg';
 import fileUploadIcon from '../../../assets/icons/file-upload.png';
 import excelIcon from '../../../assets/icons/filetype-excel.png';
 import trashIcon from '../../../assets/icons/trash.svg';
-import Button from '../../button';
+import Button from '../../Button.jsx';
 import Portal from '../../Portal';
 import { useClickOutside, renderCloseButton } from '../../../utils/popupHelpers.jsx';
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Portal from '../../Portal';
-import Button from '../../button';
+import Portal from '../../Portal.jsx';
+import Button from '../../Button.jsx';
 import { useClickOutside, renderCloseButton } from '../../../utils/popupHelpers.jsx';
 
 const AddEditTypeProducts = ({

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import Portal from '../../Portal';
+import Portal from '../../Portal.jsx';
 import closeIcon from '../../../assets/icons/close_icon.svg';
 import arrowDown from '../../../assets/icons/arrow-down.svg';
 import trash from '../../../assets/icons/trash.svg';
@@ -8,9 +8,9 @@ import fileUpload from '../../../assets/icons/file-upload.png';
 import imageIcon from '../../../assets/icons/image.svg';
 import excelIcon from '../../../assets/icons/filetype-excel.png';
 import importIcon from '../../../assets/icons/import.svg';
-import Button from '../../button';
-import SelectOption from './selectOption';
-import { mockSelectOptions } from '../../../constants/listProductData';
+import Button from '../../Button.jsx';
+import SelectOption from './SelectOption.jsx';
+import { mockSelectOptions } from '../../../constants/listProductData.js';
 import { useClickOutside, renderCloseButton } from '../../../utils/popupHelpers.jsx';
 
 const EditListProduct = ({ isOpen, onClose, productData }) => {

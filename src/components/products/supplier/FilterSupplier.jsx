@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import arrowDownIcon from '../../../assets/icons/arrow-down.svg';
-import Button from '../../button';
+import Button from '../../Button';
 import TimeFilterChips from '../../TimeFilterChips';
 import DateRangePickers from '../../DateRangePickers';
 

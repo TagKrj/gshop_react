@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import EditDeleteBox from '../../editDeleteBox';
-import DeletePopup from '../../deletePopup';
+import EditDeleteBox from '../../EditDeleteBox';
+import DeletePopup from '../../DeletePopup';
 import Addfast from './Addfast';
 import EditPriceList from './EditPriceList';
 import MoreIcon from '../../../assets/icons/more.svg';

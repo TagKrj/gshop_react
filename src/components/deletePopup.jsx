@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import Button from './button';
+import Button from './Button';
 import Portal from './Portal';
 
 const DeletePopup = ({
